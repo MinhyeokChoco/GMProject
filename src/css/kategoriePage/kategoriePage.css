@@ -48,3 +48,18 @@
     margin-right: 30px;
     cursor: pointer;
 }
+
+/* 제목 영역 말줄임표(...) 표시 */
+.div-item-object > h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.div-item-object > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+}

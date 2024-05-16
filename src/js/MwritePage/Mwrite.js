@@ -11,7 +11,12 @@ postBtn.addEventListener('click', () => {
         alert("제목을 입력하세요");
         return;
     }
-    // 본문 공백입력 방지
+    // 제목 글자수 제한
+    if (document.querySelector("#title-box-form-input").value.length > 30) {
+        alert("제목은 30자를 넘길 수 없습니다.");
+        return;
+    }
+        // 본문 공백입력 방지
     if (document.querySelector("#text-box-area").value.trim() == "") {
         alert("본문 내용을 입력하세요");
         return;

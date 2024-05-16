@@ -70,7 +70,9 @@
     border-radius: var(--boder-radius);
     padding: 20px;
     margin-top: 15px;
-    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    
 }
 
 /* 수정, 삭제, 목록으로 영역*/
