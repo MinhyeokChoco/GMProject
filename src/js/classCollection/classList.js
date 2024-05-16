@@ -1,25 +1,25 @@
-// 유저 로그인 유무를 가져오는 클래스
+/* 유저 로그인 유무를 가져오는 클래스 */
 class UserLoginStatus {
-    // 로그인 유무 세션 저장
+    // 로그인 유무 로컬 저장
     storeUserStatus(binary) {
-        sessionStorage.setItem('sLoginStatus', binary);
+        localStorage.setItem('lLoginStatus', binary);
     }
 
     // 세션에서 로그인 유무 불러오기
     getUserStatus() {
-        sessionStorage.getItem('sLoginStatus');
+        return localStorage.getItem('lLoginStatus');
     }
 
-    // 로그아웃시 세션 삭제
+    // 로그아웃시 로컬 삭제
     removeUserStatus() {
-        sessionStorage.removeItem('sLoginStatus');
+        localStorage.removeItem('lLoginStatus');
     }
 }
 
 
-// 유저 정보 (아이디, 닉네임 로컬에 저장)
+/* 유저 정보 (아이디, 닉네임, 프로필사진 로컬에 저장) */
 class UserLoginManager {
-    userInforBox = {};
+    userInforBox = {}; // 
 
     // 유저 정보 로컬스토리지에 저장
     setUserInforBox(obj) {
@@ -38,29 +38,60 @@ class UserLoginManager {
     }
 }
 
-// 작성한 글을 객체로 만드는 클래스
+
+/* 작성한 글을 객체로 만드는 클래스*/
 class MateBoardManager {
-    constructor(_title, _content, _nickname) {
+    constructor(_title, _content, _nickname, _userID) {
         this.postTitle = _title; // 제목
         this.postContent = _content; // 내용 (본문)
         this.userNicknameInfor = _nickname; // 닉네임
+        this.userId = _userID; // 아이디
         this.postView = 0; // 조회수
-        this.postDate = () => {
-            return new Date().getFullYear() + "-"+ (new Date().getMonth() + 1) +"-"+ new Date().getDate()
-        }
+        this.postDate = new Date().getFullYear() + "-"+ (new Date().getMonth() + 1) +"-"+ new Date().getDate() // 날짜 (yyyy-mm-dd)
     }
 }
 
-// 작성한 글을 배열에 넣고 로컬저장소에 넣거나 가져오는 클래스
-class storeBoard {
-    contentArray = [];
-
-    setContentArray(contentObj) {
-        this.contentArray.push(contentObj);
-        localStorage.setItem('lContentObj', JSON.stringify(this.contentArray));
+/* 작성한 글을 배열에 넣고 로컬저장소에 넣거나 가져오는 클래스 */
+class StoreBoard {
+    contentArray = []; // 작성글을 임시로 넣을 배열
+    
+    constructor (kategorieName){
+        if (this.getContentArray(kategorieName) == null) {
+            this.contentArray = [];
+        }else{
+            this.contentArray = this.getContentArray(kategorieName);
+        }
     }
 
-    getContentArray() {
-        return JSON.parse(localStorage.getItem('lContentObj'));
+    // 작성글을 로컬스토리지에 저장하는 함수
+    setContentArray(contentObj, kategorieName) {
+        console.log(kategorieName);
+        this.contentArray.push(contentObj); 
+        localStorage.setItem(kategorieName, JSON.stringify(this.contentArray));
+    }
+
+    // 작성글을 불러오는 함수
+    getContentArray(kategorieName) {
+        return JSON.parse(localStorage.getItem(kategorieName)); // 스토리지에 있는 글을 가져옴
+    }
+}
+
+/* 카테고리명 세션에 저장하는 클래스 */
+class MemorizeKategorie {
+    setSession(globalGameName) {
+        sessionStorage.setItem('sGameName', globalGameName);
+    }
+    getSession() {
+        return sessionStorage.getItem('sGameName');
+    }
+}
+
+/* HTML 문서 내 컨텐츠 가져오는 클래스 */
+class GetConetent {
+    getTitleContent(HTMLid) {
+        return document.querySelector(HTMLid).value;
+    }
+    getPosterConetent(HTMLid) {
+        return document.querySelector(HTMLid).value;
     }
 }
