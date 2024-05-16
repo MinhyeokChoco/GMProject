@@ -21,7 +21,7 @@
             <input type="text" id="header_search_box" placeholder="게임 또는 유저 검색"><img src="../../image/돋보기.png" id="header_search_image">
         </div>
         <div class="login_box">
-            <div class="login">로그인</div>
+            <div class="login"><button type="button" class="login_modal_btn">로그인</button></div>
         </div>
     </div>
     <div class="wrap">
@@ -228,6 +228,29 @@
                         <div class="download_app">Apple Store</div>
                     </div>
                 </a>
+            </div>
+        </div>
+        <div class="login_modal">
+            <span>X</span>
+            <div class="modal_logo">
+                <img src="../../image/GM로고.png">
+            </div>
+            <div class="modal_text">GM에서 게임 메이트와 즐겁게 대화하며 롤 듀오를 즐겨보세요!</div>
+            <div class="login_form">
+                <form id="login_input">
+                    <span class="member-input">
+                        <h2>로그인</h2>
+                        <input required type="text" name="userID" id="loginID" placeholder="아이디를 입력해주세요.">
+                    </span>
+                    <span class="member-input">
+                        <input required type="password" name="userPW" id="loginPW" placeholder="비밀번호를 입력해주세요.">
+                    </span>
+                    <input type="checkbox" id="auto_login"><span id="auto_login_text">로그인 상태 유지</span>
+                </form>
+                <div class="login_btn_box">
+                    <button class="login_btn">로그인</button>
+                </div>
+                <span id="signup_text">혹시 아직 회원이 아니신가요?<button id="signup_btn">회원가입</button></span>
             </div>
         </div>
     </div>
