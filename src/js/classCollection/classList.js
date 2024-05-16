@@ -1,7 +1,7 @@
 /* 유저 로그인 유무를 가져오는 클래스 */
 class UserLoginStatus {
     // 로그인 유무 로컬 저장
-    storeUserStatus(binary) {
+    setUserStatus(binary) {
         localStorage.setItem('lLoginStatus', binary);
     }
 
@@ -65,12 +65,11 @@ class StoreBoard {
 
     // 작성글을 로컬스토리지에 저장하는 함수
     setContentArray(contentObj, kategorieName) {
-        console.log(kategorieName);
         this.contentArray.push(contentObj); 
         localStorage.setItem(kategorieName, JSON.stringify(this.contentArray));
     }
 
-    // 작성글을 불러오는 함수
+    // 로컬스토리지에서 작성글을 불러오는 함수
     getContentArray(kategorieName) {
         return JSON.parse(localStorage.getItem(kategorieName)); // 스토리지에 있는 글을 가져옴
     }
@@ -93,5 +92,22 @@ class GetConetent {
     }
     getPosterConetent(HTMLid) {
         return document.querySelector(HTMLid).value;
+    }
+}
+
+
+/* 프로필 사진 관리 클래스 */
+class UserProfileImg {
+    imgBox = [];
+
+    setProfileImg(id, imgSrc) {
+        userImege = {[id]: imgSrc};
+        this.imgBox.push(userImege);
+        localStorage.setItem("lUserProfile", JSON.stringify(imgBox));
+    }
+
+    getProfileImg(id) {
+        const profileImgObj = JSON.parse(localStorage.getItem("lUserProfile"));
+        return profileImgObj[id]; // 이미지 주소를 가져옴
     }
 }

@@ -27,8 +27,9 @@ window.onload = () => {
     const mContentList = new StoreBoard().getContentArray(globalGameName);
     console.log(mContentList);
 
-    for (i = 0; i < mContentList.length; i++)
+    for (let i = 0; i < mContentList.length; i++)
         {
+            const pTag_03 = document.createElement("p"); // 글번호
             const divTag = document.createElement("div");
             const hTag = document.createElement("h3"); // 제목
             const spanTag = document.createElement("span"); // 본문
@@ -37,14 +38,17 @@ window.onload = () => {
             divTag.classList.add('div-item-object');
             
             document.querySelector("#div-item-box").prepend(divTag);
-            divTag.append(hTag);
-            divTag.append(spanTag);
-            divTag.append(pTag);
-            divTag.append(pTag_02);
-            hTag.innerHTML = mContentList[i].postTitle;
-            spanTag.innerHTML = mContentList[i].postContent;
-            pTag.innerHTML = mContentList[i].userNicknameInfor;
-            pTag_02.innerHTML = `댓글 수 0`;
-            console.log(i)
+            divTag.append(pTag_03, hTag, spanTag, pTag, pTag_02);
+            pTag_03.innerHTML = `# ${i+1}`; // 글번호
+            hTag.innerHTML = mContentList[i].postTitle; // 제목
+            spanTag.innerHTML = mContentList[i].postContent; // 본문
+            pTag.innerHTML = mContentList[i].userNicknameInfor; // 닉네임
+            pTag_02.innerHTML = `댓글 수 0`; // 댓글수
+
+            //div 태그에 링크 기능 추가
+            divTag.addEventListener("click", () => {
+                new MemorizeKategorie().setSession(globalGameName)
+                window.location.href = `../detailPage/detailPage.html?index=${i}`
+            })
         }
 }
