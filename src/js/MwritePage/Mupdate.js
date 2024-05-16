@@ -29,11 +29,8 @@ postBtn.addEventListener('click', () => {
     }
 
     const updateObj = new MateBoardManager(new GetConetent().getTitleContent("#title-box-form-input"), new GetConetent().getPosterConetent("#text-box-area"), userInfor.objUserNickname, userInfor.objUserId);
-    console.log(updateObj.postTitle);
     localContent[nowIndex].postTitle = updateObj.postTitle;
     localContent[nowIndex].postContent = updateObj.postContent;
-    console.log(localContent[nowIndex].postTitle);
-    console.log(localContent[nowIndex].postContent);
     localStorage.setItem(nowKategorie, JSON.stringify(localContent));
     
     switch (nowKategorie) {
