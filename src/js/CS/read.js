@@ -31,10 +31,9 @@ function render() { // render 함수 선언
         }
     }
 
-
     let view = document.getElementById("viewContent");
     if (view !== null) {
-        const title = document.getElementById
+        const title = document.getElementById("title");
     }
 }
 render();
