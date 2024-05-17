@@ -1,7 +1,8 @@
 const userLogin = true; 
-localStorage.setItem("lUserInfor", JSON.stringify({objUserNickname: "nick", objUserId: "id"}));
+localStorage.setItem("lUserInfor", JSON.stringify({userNickname: "nick", userId: "id", obj, userprofile: "src"}));
 // ↑ 테스트용 코드
 
+const user = localStorage.getItem("lUserInfor")
 // const userLoginStatus = new UserLoginStatus;
 // const userLoginManager = new UserLoginManager;
 

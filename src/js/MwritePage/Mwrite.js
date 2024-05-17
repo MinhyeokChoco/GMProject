@@ -22,7 +22,7 @@ postBtn.addEventListener('click', () => {
         return;
     }
     // 컨텐츠 내용 임시배열에 저장
-    const mateBoardManager = new MateBoardManager(new GetConetent().getTitleContent("#title-box-form-input"), new GetConetent().getPosterConetent("#text-box-area"), userInfor.objUserNickname, userInfor.objUserId);
+    const mateBoardManager = new MateBoardManager(new GetConetent().getTitleContent("#title-box-form-input"), new GetConetent().getPosterConetent("#text-box-area"), userInfor.userNickname, userInfor.userId);
     // 임시배열을 로컬 저장소에  저장
     storeBoard.setContentArray(mateBoardManager, nowKategorie);
 

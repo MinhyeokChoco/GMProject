@@ -12,7 +12,7 @@ window.onload = () => {
     document.querySelector("#midDiv-titleDiv-h").innerHTML = contentObj.postTitle;
     document.querySelector("#midDiv-contentDiv").innerHTML = contentObj.postContent;
 
-    if(userInfor.objUserId == contentObj.userId) {
+    if(userInfor.userId == contentObj.userId) {
         addUDbtn();
     }
 }

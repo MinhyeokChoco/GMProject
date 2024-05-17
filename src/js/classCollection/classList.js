@@ -17,7 +17,7 @@ class UserLoginStatus {
 }
 
 
-/* 유저 정보 (아이디, 닉네임, 프로필사진 로컬에 저장) */
+/* 유저 정보 (아이디, 닉네임, 프로필사진, 상태메세지 로컬에 저장) */
 class UserLoginManager {
     userInforBox = {}; // 
 
@@ -96,18 +96,41 @@ class GetConetent {
 }
 
 
-/* 프로필 사진 관리 클래스 */
-class UserProfileImg {
-    imgBox = [];
+/* 프사, 상메, 티어 관리 클래스 */
+class UserProfileManage {
+    userProfileArray = [];
 
-    setProfileImg(id, imgSrc) {
-        userImege = {[id]: imgSrc};
-        this.imgBox.push(userImege);
-        localStorage.setItem("lUserProfile", JSON.stringify(imgBox));
+    constructor(desiredLocal) {
+        if (this._getProfileLocal(desiredLocal) == null) {
+            this.userProfileArray = [];
+        } else {
+            this.userProfileArray = this._getProfileLocal(desiredLocal);
+        }
     }
 
-    getProfileImg(id) {
-        const profileImgObj = JSON.parse(localStorage.getItem("lUserProfile"));
-        return profileImgObj[id]; // 이미지 주소를 가져옴
+    setProfileImg(desiredLocal, id, value) {
+        const verificationArray = this._getProfileLocal(desiredLocal);
+        if (verificationArray.some(obj => obj.hasOwnProperty(id) == true)) { // 중복 저장 방지
+            return;
+        } else {
+            const userProfileInfor = { [id]: value };
+            this.userProfileArray.push(userProfileInfor);
+            localStorage.setItem(desiredLocal, JSON.stringify(this.userProfileArray));
+        }
+    }
+
+    getProfileImg(desiredLocal, id) {
+        const profileArray = JSON.parse(localStorage.getItem(desiredLocal));
+        return profileArray.map(key => {
+            if (key.hasOwnProperty(id)) {
+                return key[id] // 아이디에 저장된 값만 가져옴
+            }
+            return null;
+        });
+    }
+
+    // 현재 클래스에서만 쓰일 예정
+    _getProfileLocal(desiredLocal) {
+        return JSON.parse(localStorage.getItem(desiredLocal));
     }
 }
