@@ -35,7 +35,7 @@
     margin:10px 0 10px 0;
 }
 
-/* 프사 div 설정*/
+/* 프로필 사진 영역 설정*/
 #topDiv-profileDiv {
     width: 100px;
     height: 100px;
@@ -43,6 +43,7 @@
     border-radius: 50%;
     margin-right: 20px;
     margin-left: 20px;
+    cursor: pointer;
 }
 
 /* 즐겨하는 게임 영역 */

@@ -101,6 +101,7 @@ class UserProfileManage {
     userProfileArray = [];
     locateStorage = "";
 
+    // constructor에 변수명을 넣으면 해당하는 이름의 로컬스토리지가 생긴다.
     constructor(desiredLocal) {
         if (this._getProfileLocal(desiredLocal) == null) {
             this.userProfileArray = [];
@@ -124,14 +125,16 @@ class UserProfileManage {
 
     getProfileData(id) {
         const profileArray = JSON.parse(localStorage.getItem(this.locateStorage));
-        return profileArray.map(key => {
-            if (key.hasOwnProperty(id)) {
-                return key[id] // 아이디에 저장된 값만 가져옴
-            }
+        if (profileArray == null)
             return null;
-        });
+        return profileArray.find(key => {
+            if (key.hasOwnProperty(id)) {
+                return true // 아이디에 저장된 값만 가져옴
+            }
+            return false;
+        })[id];
     }
-
+// [{"id":"테스트용 계정입니다."},{user1: "asdasd"}, {user2:"Asd"]
     // 현재 클래스에서만 쓰일 예정
     _getProfileLocal() {
         return JSON.parse(localStorage.getItem(this.locateStorage));
