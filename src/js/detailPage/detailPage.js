@@ -54,7 +54,9 @@ function addUDbtn() {
     
     // 삭제 버튼 클릭
     document.querySelector("#midbottomDiv-deleteBtn").addEventListener('click', () => {
-        fnImplementation();
+        if (confirm("정말로 글을 삭제하시겠습니까?")) {
+            fnImplementation();
+        }
     })
 }
 

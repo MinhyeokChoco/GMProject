@@ -27,7 +27,7 @@ postBtn.addEventListener('click', () => {
         return;
     }
 
-    const updateObj = new MateBoardManager(new GetConetent().getTitleContent("#title-box-form-input"), new GetConetent().getPosterConetent("#text-box-area"), userInfor.userNickname, userInfor.objUserId);
+    const updateObj = new MateBoardManager(new GetConetent().getTitleContent("#title-box-form-input"), new GetConetent().getPosterConetent("#text-box-area"), userInfor.userNickname, userInfor.userId);
     localContent[nowIndex].postTitle = updateObj.postTitle; //로컬스토리지
     localContent[nowIndex].postContent = updateObj.postContent; // 내용 교체
     localStorage.setItem(nowKategorie, JSON.stringify(localContent)); // 로컬에 저장
