@@ -1,18 +1,18 @@
 /* 유저 로그인 유무를 가져오는 클래스 */
 class UserLoginStatus {
-    // 로그인 유무 로컬 저장
+    // 로그인 유무 세션 저장
     setUserStatus(binary) {
-        localStorage.setItem('lLoginStatus', binary);
+        sessionStorage.setItem('lLoginStatus', binary);
     }
 
     // 세션에서 로그인 유무 불러오기
     getUserStatus() {
-        return localStorage.getItem('lLoginStatus');
+        return sessionStorage.getItem('lLoginStatus');
     }
 
     // 로그아웃시 로컬 삭제
     removeUserStatus() {
-        localStorage.removeItem('lLoginStatus');
+        sessionStorage.removeItem('lLoginStatus');
     }
 }
 
@@ -96,31 +96,33 @@ class GetConetent {
 }
 
 
-/* 프사, 상메, 티어 관리 클래스 */
+/* 프사, 상메, 티어 관리, 클래스 */
 class UserProfileManage {
     userProfileArray = [];
+    locateLocalstorage = "";
 
     constructor(desiredLocal) {
         if (this._getProfileLocal(desiredLocal) == null) {
             this.userProfileArray = [];
         } else {
             this.userProfileArray = this._getProfileLocal(desiredLocal);
+            this.localStorage = desiredLocal;
         }
     }
 
-    setProfileImg(desiredLocal, id, value) {
-        const verificationArray = this._getProfileLocal(desiredLocal);
-        if (verificationArray.some(obj => obj.hasOwnProperty(id) == true)) { // 중복 저장 방지
+    setProfileData(id, value) {
+        const verificationArray = this._getProfileLocal(this.locateLocalstorage);
+        if (verificationArray !== null && verificationArray.some(obj => obj.hasOwnProperty(id) == true)) { // 중복 저장 방지
             return;
         } else {
             const userProfileInfor = { [id]: value };
             this.userProfileArray.push(userProfileInfor);
-            localStorage.setItem(desiredLocal, JSON.stringify(this.userProfileArray));
+            localStorage.setItem(this.locateLocalstorage, JSON.stringify(this.userProfileArray));
         }
     }
 
-    getProfileImg(desiredLocal, id) {
-        const profileArray = JSON.parse(localStorage.getItem(desiredLocal));
+    getProfileData(id) {
+        const profileArray = JSON.parse(localStorage.getItem(this.locateLocalstorage));
         return profileArray.map(key => {
             if (key.hasOwnProperty(id)) {
                 return key[id] // 아이디에 저장된 값만 가져옴
@@ -130,7 +132,7 @@ class UserProfileManage {
     }
 
     // 현재 클래스에서만 쓰일 예정
-    _getProfileLocal(desiredLocal) {
-        return JSON.parse(localStorage.getItem(desiredLocal));
+    _getProfileLocal() {
+        return JSON.parse(localStorage.getItem(this.locateLocalstorage));
     }
 }

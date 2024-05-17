@@ -16,6 +16,7 @@
     height: 200px;
     border: 1px solid lightgray;
     border-radius: 50%;
+    overflow: hidden;
 }
 
 
@@ -25,6 +26,9 @@
     border: 1px solid black;
     border-radius: 30px;
     margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #midDiv-favoritRegion {
@@ -40,9 +44,17 @@
     border: 1px solid gray;
     margin-top: 15px;
 }
+
+/* 별점주기, 정보수정 영역*/
 #addtionalBottmDiv {
     display: flex;
     flex-direction: row;
     margin-top: 15px;
 }
 
+/* 이미지 크기 조절*/
+#topDiv-imgRegion-img {
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+}

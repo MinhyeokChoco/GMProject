@@ -1,20 +1,22 @@
-const userLogin = true; 
-localStorage.setItem("lUserInfor", JSON.stringify({userNickname: "nick", userId: "id", userprofile: "src"}));
+localStorage.setItem("lUserInfor", JSON.stringify({userNickname: "nick", userId: "id", userprofile: "src", userLogOn: true}));
+const userNickname = "nick";
+const userTierSetting = new UserProfileManage("lUserTier");
+const userProfilSetting = new UserProfileManage("lUserProfile");
+
+userTierSetting.setProfileData(userNickname, 5);
+userTierSetting.setProfileData("바보", 5);
+userTierSetting.setProfileData("바보바보", 5);
+userProfilSetting.setProfileData(userNickname,`../../../img/anonymous icon.png`);
+
 // ↑ 테스트용 코드
 
-const user = localStorage.getItem("lUserInfor")
-// const userLoginStatus = new UserLoginStatus;
-// const userLoginManager = new UserLoginManager;
-
-// let userLogin = userLoginStatus.getUserStatus();
-// let userInforObj = userLoginManager.getUserInforBox();
-
-const postGmBtn = document.querySelector("#div-writeButton-box"); // 메이트 만들기 div id명 가져오기
+const user = JSON.parse(localStorage.getItem("lUserInfor"));
+const postGmBtn = document.querySelector("#div-writeButton-box"); // 글작성 HTML요소 가져오기
 
 
 // 메이트 만들기 버튼 클릭시 동작 함수
 postGmBtn.addEventListener('click', () => {
-    if (!userLogin) {
+    if (!user.userLogOn) {
         alert("로그인을 해주세요!");
     } else {
         new MemorizeKategorie().setSession(globalGameName) // 세션에 카테고리명 저장
