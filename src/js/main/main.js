@@ -117,7 +117,7 @@ event(){
         if(this.loginmodal.style.display == 'none')
             document.body.style.overflow = 'auto';
     });
-}   
+}
 };
 
 const loginmodal = new LoginModal();
@@ -154,4 +154,3 @@ event(){
 const signupmodal = new SignUpModal();
 
 // 회원가입 정보
-
