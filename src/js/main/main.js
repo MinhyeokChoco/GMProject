@@ -38,6 +38,8 @@ const categoryList = document.querySelector(".category_list");
 //     scrollTarget = null;
 // }
 
+
+//스크롤바 클라스
 class GameListScroll {
     constructor(root, categoryList){
         this.root = root;
@@ -91,32 +93,65 @@ class GameListScroll {
 }
 const gameListScroll = new GameListScroll(rec_category,categoryList)
 
-// window.addEventListener('DOMContentLoaded', function() {
-//     const scrollBtn = document.querySelector('nextBtn');
-//     console.log(scrollBtn);
+// 로그인모달 클라스
+class LoginModal{
+    constructor(){
+        this.loginmodal = document.querySelector('.modal_page')
+        this.modalOpen = document.querySelector('#login_modal_btn')
+        this.modalClose = document.querySelector('.login_modal > span')
 
-//     // 버튼 클릭 이벤트 핸들러
-//     scrollBtn.addEventListener('click', function() {
-//         // 현재 스크롤 위치
-//         var currentScroll = window.scrollX;
-
-//         // 뷰포트의 높이
-//         var viewportWidth = this.game_list_scroll.innerWidth;
-
-//         // 문서의 전체 높이
-//         var documentWidth = document.body.clientWidth;
-
-//         // 스크롤할 양을 계산 (문서 높이의 16%)
-//         var scrollAmount = documentWidth * 0.16;
-
-//         // 스크롤 위치를 현재 위치 + 16%로 이동
-//         window.scrollTo(currentScroll + scrollAmount,0);
-//         console.log(currentScroll)
-//     });
-// });
-const scrollBtn = document.querySelector('nextBtn');
-
-scrollBtn.onclick = (e) => {
-    const gamelistscroll = this.game_list_scroll.innerWidth;
-    const scrollAmount = this.scrollBarWidth * 0.16;
+        this.event()
 }
+
+event(){
+    this.modalOpen.addEventListener('click', (e) => {
+        this.loginmodal.style.display = 'block';
+        this.loginmodal.style.top = `${e.pageY - e.clientY}px`
+        if (this.loginmodal.style.display == 'block'){
+            document.body.style.overflow = 'hidden';
+        }
+    });
+
+    this.modalClose.addEventListener('click', () => {
+        this.loginmodal.style.display = 'none';
+        if(this.loginmodal.style.display == 'none')
+            document.body.style.overflow = 'auto';
+    });
+}   
+};
+
+const loginmodal = new LoginModal();
+
+// 회원가입모달 클라스
+class SignUpModal{
+    constructor(){
+        this.signupmodal = document.querySelector('.modal_signup_page')
+        this.modalOpen = document.querySelector('#signup_btn')
+        this.modalClose = document.querySelector('.signup_modal > span')
+        this.loginmodal = document.querySelector('.modal_page')
+
+        this.event()
+}
+
+event(){
+    this.modalOpen.addEventListener('click', (e) => {
+        this.signupmodal.style.display = 'block';
+        this.signupmodal.style.top = `${e.pageY - e.clientY}px`
+        if (this.signupmodal.style.display == 'block'){
+            document.body.style.overflow = 'hidden';
+            this.loginmodal.style.display = 'none';
+        }
+    });
+
+    this.modalClose.addEventListener('click', () => {
+        this.signupmodal.style.display = 'none';
+        if(this.signupmodal.style.display == 'none')
+            document.body.style.overflow = 'auto';
+    });
+}   
+};
+
+const signupmodal = new SignUpModal();
+
+// 회원가입 정보
+

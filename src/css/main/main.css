@@ -816,14 +816,30 @@ body {
     font-weight: 700;
 }
 
+.modal_page{
+    width:100%;
+    height:100%;
+    background-color: rgba(0,0,0,0.4);
+    display:none;
+    position:absolute;
+    top:0%;
+    z-index:10000;
+    transition: 0.3s;
+}
+
 .login_modal{
     width:380px;
     height:480px;
-    display:flex;
+    display:block;
     flex-direction: column;
     border-radius: 20px;
-    border:1px solid;
+    border:1px solid black;
     background-color: white;
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.9);
+    position:absolute;
+    transform: translate(-50%, -50%);
+    left:50%;
+    top:50%;
 }
 
 .login_modal > span{
@@ -846,7 +862,6 @@ body {
     width:100px;
     height:72px;
     margin:10px 0 0 140px;
-
 }
 
 .modal_text {
@@ -863,8 +878,8 @@ body {
 }
 
 
-.member-input > h2{
-    margin-bottom:20px;
+.member_input > h2{
+    margin-bottom:10px;
     text-align: center;
 }
 
@@ -881,7 +896,7 @@ body {
 }
 
 #loginID::placeholder{
-    color:#4D4D4D;
+    color:rgb(160, 160, 160);
 }
 
 #loginPW {
@@ -950,4 +965,117 @@ body {
     
 #signup_btn:hover{
     cursor:pointer;
+}
+
+
+.modal_signup_page{
+    width:100%;
+    height:100%;
+    background-color: rgba(0,0,0,0.4);
+    display:none;
+    position:absolute;
+    top:0%;
+    z-index:10000;
+    transition: 0.3s;
+}
+
+.signup_modal{
+    width:380px;
+    height:480px;
+    display:block;
+    flex-direction: column;
+    border-radius: 20px;
+    border:1px solid;
+    background-color: white;
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.9);
+    position:absolute;
+    transform: translate(-50%, -50%);
+    left:50%;
+    top:50%;
+    
+}
+
+.signup_modal > span{
+    display:flex;
+    width:56px;
+    height:56px;
+    font-size:20px;
+    font-weight: 700;
+    color:#00000073;
+    justify-content: center;
+    align-items: center;
+    margin-left:324px;
+}
+
+.signup_modal > span:hover{
+    cursor:pointer;
+}
+
+.modal_logo2 > img{
+    width:100px;
+    height:72px;
+    margin:10px 0 20px 140px;
+}
+
+.member_input2 > h2{
+    margin-bottom:20px;
+    text-align: center;
+}
+
+#signupID {
+    width:90%;
+    height:35px;
+    padding-left:5px;
+    margin:0 5% 5px 5%;
+    border-radius: 10px;
+    background-color: #4D4D4D;
+    border:none;
+    color:white;
+    outline:none;
+}
+
+#signupPW {
+    width:90%;
+    height:35px;
+    padding-left:5px;
+    margin:0 5% 5px 5%;
+    border-radius: 10px;
+    background-color: #4D4D4D;
+    border:none;
+    color:white;
+    outline:none;
+}
+
+#signupPW2 {
+    width:90%;
+    height:35px;
+    padding-left:5px;
+    margin:0 5% 5px 5%;
+    border-radius: 10px;
+    background-color: #4D4D4D;
+    border:none;
+    color:white;
+    outline:none;
+}
+
+#signupemail {
+    width:90%;
+    height:35px;
+    padding-left:5px;
+    margin:0 5% 5px 5%;
+    border-radius: 10px;
+    background-color: #4D4D4D;
+    border:none;
+    color:white;
+    outline:none;
+}
+
+#rec_mail_check{
+    margin:5px 5px 0 20px;
+    accent-color: #FFDC4D;
+}
+
+#rec_mail_text{
+    font-size:12px;
+    font-weight: 700;
 }
