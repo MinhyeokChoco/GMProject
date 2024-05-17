@@ -1,10 +1,10 @@
 const userId = "id";
+/*↑ 테스트용 */
+
 const nowAddress = location.search;
 const pageUserId = nowAddress.split("=")[1];
 const nowConnectUser = new UserLoginManager().getUserInforBox();
 
-/*↑ 테스트용 */
-const userInforObj = new UserLoginManager().getUserInforBox(); // 아이디 닉네임 등등...
 const userMessase = new UserProfileManage("lUserMessage").getProfileData(pageUserId); // 상메
 const userProfile = new UserProfileManage("lUserProfile").getProfileData(pageUserId); // 프사
 const userTier = new UserProfileManage("lUserTier").getProfileData(pageUserId); // 티어
@@ -12,7 +12,7 @@ const userFavorite = new UserProfileManage("lUserFavoritGame").getProfileData(pa
 console.log(userMessase);
 
 window.onload = () => {
-    document.querySelector("#topDiv-nicknameRegion-nick").innerHTML = userInforObj.userNickname;
+    document.querySelector("#topDiv-nicknameRegion-nick").innerHTML = nowConnectUser.userNickname;
     document.querySelector("#bottomDiv-messageRegion").innerHTML = userMessase;
     document.querySelector("#topDiv-nicknameRegion-tier").innerHTML += userTier;
     document.querySelector("#midDiv-favoritRegion").innerHTML = userFavorite;

@@ -9,6 +9,15 @@ const cancleBtn = document.querySelector("#itembox-cancle"); // 글 작성 취�
 
 document.querySelector("#title-box-form-input").value = contentObj.postTitle;
 document.querySelector("#text-box-area").innerHTML = contentObj.postContent;
+document.querySelector("#title-box-form").onsubmit = (e) => {
+    e.preventDefault();
+}
+document.querySelector("#title-box-form-input").onkeyup = (e) =>{
+    if(e.keyCode === 13){
+        document.querySelector("#text-box-area").focus();
+    }
+}
+
 
 postBtn.addEventListener('click', () => {
      // 제목 공백입력 방지

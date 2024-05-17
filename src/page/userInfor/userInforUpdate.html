@@ -12,13 +12,26 @@
             <div id = "topDiv-imgRegion"> <!-- 프사 -->
                 <img src ="../../../img/anonymous icon.png" id = "topDiv-imgRegion-img">
             </div>
+            <form id = "topDiv-form">
+                <input type = "file" name="userImg" accept="image/*" id = "topDiv-form-upload" style="display: none;">
+                <label for = "topDiv-form-upload" id = "topDiv-form-label"> 이미지 업로드 </label>
+            </form>
             <div id = "topDiv-nicknameRegion"> <!-- 닉네임 & 티어 -->
-                <p id = "topDiv-nicknameRegion-nick"></p>
-                <p id = "topDiv-nicknameRegion-tier">M.T: </p>
+                <p> 변경할 닉네임을 입력하세요. </p>
+                <form id = "topDiv-nicknameRegion-form">
+                    <input type = "text" id = "topDiv-nicknameRegion-input">
+                </form>
             </div>
         </div>
         <div id = "midDiv">
             <div id = "midDiv-favoritRegion"> <!-- 즐겨하는 게임 -->
+                <form id = "midDiv-favoritRegion-form">
+                    <p> 즐겨하는 게임을 골라주세요. </p>
+                    <select name = "gameList">
+                        <option value="LOL"> 리그오브레전드 </option>
+                        <option value="starrail"> 붕괴: 스타레일 </option>
+                    </select>
+                </form>
             </div>
         </div>
         <div id = "bottomDiv"> 
@@ -33,5 +46,5 @@
     </div>
 </body>
 <script src = "../../js/classCollection/classList.js"></script>
-<script src = "../../js/userInfor/userInfor.js"></script>
+<script src = "../../js/userInfor/userInforUpdate.js"></script>
 </html>
