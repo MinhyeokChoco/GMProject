@@ -6,7 +6,6 @@ const contentObj = new StoreBoard().getContentArray(nowKategorie)[nowIndex]; // 
 const userInfor = new UserLoginManager().getUserInforBox(); // 유저 정보를 가져옴
 const postBtn = document.querySelector("#itembox-make"); // 글 작성 HTML버튼 가져옴
 const cancleBtn = document.querySelector("#itembox-cancle"); // 글 작성 취소 HTML 버튼 가져옴
-console.log(localContent);
 
 document.querySelector("#title-box-form-input").value = contentObj.postTitle;
 document.querySelector("#text-box-area").innerHTML = contentObj.postContent;
@@ -35,7 +34,7 @@ postBtn.addEventListener('click', () => {
     
     switch (nowKategorie) {
         case "LOL":
-            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}"`
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}` // 내일확인!!
             break;
         case "StarRail":
             window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
@@ -50,6 +49,5 @@ postBtn.addEventListener('click', () => {
 
 
 cancleBtn.addEventListener('click', () => {
-    const beforeSrc = document.referrer;
-    window.location.href = beforeSrc;
+    window.location.href = document.referrer;;
 })

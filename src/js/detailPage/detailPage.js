@@ -4,6 +4,8 @@ const nowKategorie = new MemorizeKategorie().getSession(); // 세션에서 카�
 const contentObj = new StoreBoard().getContentArray(nowKategorie)[nowIndex]; // 로컬저장소에서 해당 인덱스 컨텐츠 불러오기
 const userInfor = new UserLoginManager().getUserInforBox();
 
+console.log(contentObj);
+
 window.onload = () => {
     document.querySelector("#topDiv-userInforDiv-nick").innerHTML = contentObj.userNicknameInfor;
     document.querySelector("#midDiv-titleDiv-h").innerHTML = contentObj.postTitle;
