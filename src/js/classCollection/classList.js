@@ -99,30 +99,31 @@ class GetConetent {
 /* 프사, 상메, 티어 관리, 클래스 */
 class UserProfileManage {
     userProfileArray = [];
-    locateLocalstorage = "";
+    locateStorage = "";
 
     constructor(desiredLocal) {
         if (this._getProfileLocal(desiredLocal) == null) {
             this.userProfileArray = [];
+            this.locateStorage = desiredLocal;
         } else {
             this.userProfileArray = this._getProfileLocal(desiredLocal);
-            this.localStorage = desiredLocal;
+            this.locateStorage = desiredLocal;
         }
     }
 
     setProfileData(id, value) {
-        const verificationArray = this._getProfileLocal(this.locateLocalstorage);
+        const verificationArray = this._getProfileLocal(this.locateStorage);
         if (verificationArray !== null && verificationArray.some(obj => obj.hasOwnProperty(id) == true)) { // 중복 저장 방지
             return;
         } else {
             const userProfileInfor = { [id]: value };
             this.userProfileArray.push(userProfileInfor);
-            localStorage.setItem(this.locateLocalstorage, JSON.stringify(this.userProfileArray));
+            localStorage.setItem(this.locateStorage, JSON.stringify(this.userProfileArray));
         }
     }
 
     getProfileData(id) {
-        const profileArray = JSON.parse(localStorage.getItem(this.locateLocalstorage));
+        const profileArray = JSON.parse(localStorage.getItem(this.locateStorage));
         return profileArray.map(key => {
             if (key.hasOwnProperty(id)) {
                 return key[id] // 아이디에 저장된 값만 가져옴
@@ -133,6 +134,6 @@ class UserProfileManage {
 
     // 현재 클래스에서만 쓰일 예정
     _getProfileLocal() {
-        return JSON.parse(localStorage.getItem(this.locateLocalstorage));
+        return JSON.parse(localStorage.getItem(this.locateStorage));
     }
 }

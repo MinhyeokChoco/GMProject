@@ -2,10 +2,7 @@ localStorage.setItem("lUserInfor", JSON.stringify({userNickname: "nick", userId:
 const userNickname = "nick";
 const userTierSetting = new UserProfileManage("lUserTier");
 const userProfilSetting = new UserProfileManage("lUserProfile");
-
 userTierSetting.setProfileData(userNickname, 5);
-userTierSetting.setProfileData("바보", 5);
-userTierSetting.setProfileData("바보바보", 5);
 userProfilSetting.setProfileData(userNickname,`../../../img/anonymous icon.png`);
 
 // ↑ 테스트용 코드
