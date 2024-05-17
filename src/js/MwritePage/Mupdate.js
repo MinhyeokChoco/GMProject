@@ -28,13 +28,13 @@ postBtn.addEventListener('click', () => {
     }
 
     const updateObj = new MateBoardManager(new GetConetent().getTitleContent("#title-box-form-input"), new GetConetent().getPosterConetent("#text-box-area"), userInfor.objUserNickname, userInfor.objUserId);
-    localContent[nowIndex].postTitle = updateObj.postTitle;
-    localContent[nowIndex].postContent = updateObj.postContent;
-    localStorage.setItem(nowKategorie, JSON.stringify(localContent));
+    localContent[nowIndex].postTitle = updateObj.postTitle; //로컬스토리지
+    localContent[nowIndex].postContent = updateObj.postContent; // 내용 교체
+    localStorage.setItem(nowKategorie, JSON.stringify(localContent)); // 로컬에 저장
     
     switch (nowKategorie) {
         case "LOL":
-            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}` // 내일확인!!
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
             break;
         case "StarRail":
             window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
