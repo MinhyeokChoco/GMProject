@@ -251,7 +251,7 @@
                     <div class="login_btn_box">
                         <button class="login_btn">로그인</button>
                     </div>
-                    <span id="signup_text">혹시 아직 회원이 아니신가요?<button id="signup_btn">회원가입</button></span>
+                    <span id="signup_text">혹시 아직 회원이 아니신가요?<button id="tosignup_btn">회원가입</button></span>
                 </div>
             </div>
         </div>
@@ -262,13 +262,14 @@
                     <img src="../../image/GM로고.png">
                 </div>
                 <div class="signup_form">
-                    <form id="signup_input">
+                    <form onsubmit="return false;" id="signup_input">
                         <span class="member_input2">
                             <h2>회원가입</h2>
                         </span>
                             <input required type="text" name="signID" id="signupID" placeholder="아이디를 입력해주세요.">
                             <input required type="password" name="signPW" id="signupPW" placeholder="비밀번호를 입력해주세요.">
                             <input required type="password" name="signPW2" id="signupPW2" placeholder="비밀번호를 한번 더 입력해주세요.">
+                            <input required type="text" name="signeNick" id="signupNick" placeholder="닉네임을 입력해주세요.">
                             <input required type="email" name="signemail" id="signupemail" placeholder="이메일을 입력해주세요.">
                             <input type="checkbox" id="rec_mail_check"><span id="rec_mail_text">이메일로 각종 이벤트/혜택 정보 수신 동의하시겠습니까?
                     </form>

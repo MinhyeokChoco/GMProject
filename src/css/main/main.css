@@ -839,7 +839,7 @@ body {
     position:absolute;
     transform: translate(-50%, -50%);
     left:50%;
-    top:50%;
+    top:50%
 }
 
 .login_modal > span{
@@ -860,8 +860,8 @@ body {
 
 .modal_logo > img{
     width:100px;
-    height:72px;
-    margin:10px 0 0 140px;
+    height:62px;
+    margin:0 0 0 140px;
 }
 
 .modal_text {
@@ -874,12 +874,12 @@ body {
 }
 
 #login_input{
-    margin-top:15px;
+    margin-top:20px;
 }
 
 
 .member_input > h2{
-    margin-bottom:10px;
+    margin-bottom:20px;
     text-align: center;
 }
 
@@ -887,16 +887,15 @@ body {
     width:90%;
     height:35px;
     padding-left:5px;
-    margin:0 5% 0 5%;
+    margin:0 5% 5px 5%;
     border-radius: 10px;
-    background-color: #4D4D4D;
+    background-color: #bbbbbb;
     border:none;
-    color:white;
     outline:none;
 }
 
 #loginID::placeholder{
-    color:rgb(160, 160, 160);
+    color:black;
 }
 
 #loginPW {
@@ -905,14 +904,13 @@ body {
     padding-left:5px;
     margin:10px 5% 0 5%;
     border-radius: 10px;
-    background-color: #4D4D4D;
+    background-color: #bbbbbb;
     border:none;
-    color:white;
     outline:none;
 }
 
 #loginPW::placeholder{
-    color:rgb(160, 160, 160);
+    color:black;
 }
 
 #auto_login{
@@ -930,6 +928,7 @@ body {
 .login_btn_box{
     width:380px;
     height:50px;
+    margin-top:10px;
     display:flex;
     align-items: flex-end;
     justify-content: center;
@@ -955,7 +954,7 @@ body {
     font-weight: 700;
 }
 
-#signup_btn{
+#tosignup_btn{
     margin-left:5px;
     border:none;
     background-color: white;
@@ -963,7 +962,7 @@ body {
     font-size:12px;
 }
     
-#signup_btn:hover{
+#tosignup_btn:hover{
     cursor:pointer;
 }
 
@@ -982,7 +981,7 @@ body {
 .signup_modal{
     width:380px;
     height:480px;
-    display:block;
+    display:hidden;
     flex-direction: column;
     border-radius: 20px;
     border:1px solid;
@@ -991,8 +990,7 @@ body {
     position:absolute;
     transform: translate(-50%, -50%);
     left:50%;
-    top:50%;
-    
+    top:50%
 }
 
 .signup_modal > span{
@@ -1013,12 +1011,12 @@ body {
 
 .modal_logo2 > img{
     width:100px;
-    height:72px;
-    margin:10px 0 20px 140px;
+    height:62px;
+    margin:0 0 5px 140px;
 }
 
 .member_input2 > h2{
-    margin-bottom:20px;
+    margin-bottom:10px;
     text-align: center;
 }
 
@@ -1026,48 +1024,75 @@ body {
     width:90%;
     height:35px;
     padding-left:5px;
-    margin:0 5% 5px 5%;
+    margin:0 5% 10px 5%;
     border-radius: 10px;
-    background-color: #4D4D4D;
+    background-color: #bbbbbb;
     border:none;
-    color:white;
     outline:none;
+}
+
+#signupID::placeholder{
+    color:black;
 }
 
 #signupPW {
     width:90%;
     height:35px;
     padding-left:5px;
-    margin:0 5% 5px 5%;
+    margin:0 5% 10px 5%;
     border-radius: 10px;
-    background-color: #4D4D4D;
+    background-color: #bbbbbb;
     border:none;
-    color:white;
     outline:none;
+}
+
+#signupPW::placeholder{
+    color:black;
 }
 
 #signupPW2 {
     width:90%;
     height:35px;
     padding-left:5px;
-    margin:0 5% 5px 5%;
+    margin:0 5% 10px 5%;
     border-radius: 10px;
-    background-color: #4D4D4D;
+    background-color: #bbbbbb;
     border:none;
-    color:white;
     outline:none;
+}
+
+#signupPW2::placeholder{
+    color:black;
+}
+
+#signupNick {
+    width:90%;
+    height:35px;
+    padding-left:5px;
+    margin:0 5% 10px 5%;
+    border-radius: 10px;
+    background-color: #bbbbbb;
+    border:none;
+    outline:none;
+}
+
+#signupNick::placeholder{
+    color:black;
 }
 
 #signupemail {
     width:90%;
     height:35px;
     padding-left:5px;
-    margin:0 5% 5px 5%;
+    margin:0 5% 0 5%;
     border-radius: 10px;
-    background-color: #4D4D4D;
+    background-color: #bbbbbb;
     border:none;
-    color:white;
     outline:none;
+}
+
+#signupemail::placeholder{
+    color:black;
 }
 
 #rec_mail_check{
@@ -1082,7 +1107,7 @@ body {
 
 .signup_btn_box{
     width:380px;
-    height:50px;
+    height:45px;
     display:flex;
     align-items: flex-end;
     justify-content: center;
@@ -1101,3 +1126,4 @@ body {
 .signup_btn:hover{
     cursor:pointer;
 }
+

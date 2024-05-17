@@ -119,14 +119,13 @@ event(){
     });
 }
 };
-
 const loginmodal = new LoginModal();
 
 // 회원가입모달 클라스
 class SignUpModal{
     constructor(){
         this.signupmodal = document.querySelector('.modal_signup_page')
-        this.modalOpen = document.querySelector('#signup_btn')
+        this.modalOpen = document.querySelector('#tosignup_btn')
         this.modalClose = document.querySelector('.signup_modal > span')
         this.loginmodal = document.querySelector('.modal_page')
 
@@ -150,7 +149,94 @@ event(){
     });
 }   
 };
-
 const signupmodal = new SignUpModal();
 
 // 회원가입 정보
+const signupArray = JSON.parse(localStorage.getItem("lUserDB")) || []; //빈 배열을 생성
+
+class SignUp{
+    constructor(userId, userPw, userNickName, userEmail){ // 회원가입시 필요한 정보들 정리
+        this.userId = userId
+        this.userPw = userPw
+        this.userNickName = userNickName
+        this.userEmail = userEmail
+    }
+}
+
+//회원가입 버튼 클릭시 생성될 이벤트
+document.querySelector('.signup_btn').addEventListener('click', () => {
+    const userId = document.querySelector('#signupID').value;
+    const userPw = document.querySelector('#signupPW').value;
+    const userNickName = document.querySelector('#signupNick').value;
+    const userEmail = document.querySelector('#signupemail').value;
+
+    if(userId === null||userId.trim()===''){
+        alert("아이디를 입력해주세요.")
+        return;
+    }else if(userPw === null||userPw.trim()===''){
+        alert("비밀번호를 입력해주세요.")
+        return; 
+    }else if(userPw !== document.querySelector('#signupPW2').value){
+        alert("비밀번호를 확인해주세요.")
+        return;
+    }else if(userNickName === null||userNickName.trim()===''){
+        alert("닉네임을 입력해주세요.")
+        return;
+    }else if(userEmail === null||userEmail.trim()===''){
+        alert("이메일을 입력해주세요.")
+        return;
+    }
+
+    for(i = 0; i < signupArray.length; i++){
+        if(userId === signupArray[i].userId){
+            alert("중복된 아이디가 존재합니다.")
+            return;
+        }else if(userNickName === signupArray[i].userNickName){
+            alert("중복된 닉네임이 존재합니다.")
+            return;
+        }
+    }
+
+    if((userPw === document.querySelector('#signupPW2').value) && (userId !==null) && (userPw !== null)&&(userEmail!==null)&&(userNickName!==null) ){
+        signupArray.push(new SignUp(userId, userPw, userNickName, userEmail));
+        localStorage.setItem("lUserDB",JSON.stringify(signupArray));
+        alert("회원가입이 완료되었습니다.")
+        document.querySelector(".modal_signup_page").style.display = 'none';
+    }else{
+        return;
+    }
+
+    userId.innerHTML = "";
+    userPw.innerHTML = "";
+    document.querySelector('#signupPW2').innerHTML="";
+    userEmail.innerHTML = "";
+    userNickName.innerHTML = "";
+    location.reload();
+})
+
+//로그인 실행 이벤트
+
+const loginID = document.querySelector('#loginID').value;
+const loginPW = document.querySelector('#loginPW').value;
+
+function login() {
+    console.log(signupArray[0].userId == loginID)
+    for (i = 0; i < signupArray.length; i++) {
+        if ((loginID == signupArray[i].userId.trim())) {
+            if (loginPW === signupArray[i].userPw) {
+                document.querySelector('#login_modal_btn').style.display = 'none';
+                break;
+            } else {
+                alert("비밀번호를 다시 입력해주세요.");
+                break;
+            }
+        } else {
+            alert("아이디가 존재하지 않습니다.");
+            break;
+        }
+    }
+}
+
+document.querySelector('.login_btn').addEventListener('click', () => {
+    login();
+})
