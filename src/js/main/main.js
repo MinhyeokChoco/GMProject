@@ -205,38 +205,113 @@ document.querySelector('.signup_btn').addEventListener('click', () => {
     }else{
         return;
     }
-
     userId.innerHTML = "";
     userPw.innerHTML = "";
     document.querySelector('#signupPW2').innerHTML="";
     userEmail.innerHTML = "";
     userNickName.innerHTML = "";
-    location.reload();
+    // location.reload();
 })
+
 
 //로그인 실행 이벤트
 
-const loginID = document.querySelector('#loginID').value;
-const loginPW = document.querySelector('#loginPW').value;
+// 값을 못불러오는 이유  교수님한테 물어볼것
+// const loginID = document.querySelector('#loginID').value;
+// const loginPW = document.querySelector('#loginPW').value;
 
 function login() {
-    console.log(signupArray[0].userId == loginID)
+    const loginID = document.querySelector('#loginID').value;
+    const loginPW = document.querySelector('#loginPW').value;
+    let i = 0;
     for (i = 0; i < signupArray.length; i++) {
-        if ((loginID == signupArray[i].userId.trim())) {
+        if (loginID === signupArray[i].userId) {
             if (loginPW === signupArray[i].userPw) {
+                alert("로그인에 성공하였습니다.");
                 document.querySelector('#login_modal_btn').style.display = 'none';
+                loginHeader(i); // 로그인 후 보여질 헤더 화면
                 break;
-            } else {
+            }else {
                 alert("비밀번호를 다시 입력해주세요.");
                 break;
             }
-        } else {
-            alert("아이디가 존재하지 않습니다.");
-            break;
+        }else{
+            continue;
         }
+    }
+    if (loginID !== signupArray[i].userId){
+        alert("아이디를 찾을수 없습니다.");
     }
 }
 
-document.querySelector('.login_btn').addEventListener('click', () => {
+// 로그인 버튼 클릭
+document.querySelector('.login_btn').addEventListener('click', (e) => {
+    document.querySelector(".modal_page").style.display= 'none';
+    e.preventDefault();
     login();
 })
+
+
+// 로그인 이후에 나올 div
+function loginHeader(i){
+    const onlogindiv = document.createElement("div")
+    onlogindiv.classList.add('after_login')
+    document.querySelector(".header").append(onlogindiv);
+    const onlogin = document.createElement("p")
+    const onbtn = document.createElement('button')
+    onbtn.id = 'mypage';
+    onbtn.innerHTML = "내 정보";
+    onbtn.addEventListener('click',() => {
+        mypage();
+    })
+    const onbtn2 = document.createElement('button')
+    onbtn2.id = 'logout';
+    onbtn2.addEventListener('click',() => {
+        logout();
+    });
+    onbtn2.innerHTML = "로그아웃";
+    onlogindiv.append(onlogin);
+    onlogindiv.append(onbtn);
+    onlogindiv.append(onbtn2);
+    onlogin.innerHTML =  signupArray[i].userNickName + "님 환영합니다."
+    // 로그인했을때 내용 수정 필요
+    
+    document.querySelector('.login_box').style.display= 'none';
+    document.body.style.overflow = 'auto';
+    onlogindiv.style.display = 'flex';
+}
+
+
+// 로그아웃 클릭시 로그아웃
+const logout = ()=>{
+    const afterLogin = document.querySelector('.after_login');
+    const loginBox = document.querySelector('.login_box');
+
+    if(confirm("로그아웃을 하시겠습니까?")){
+        alert("로그아웃 되었습니다.")
+        afterLogin.remove();
+        loginBox.style.display = 'flex';
+        location.reload();
+    }
+}
+
+
+// 마이페이지 클릭시 이동
+const mypage = () => {
+    if(confirm("마이페이지로 이동하시겠습니까?")){
+        location.href = "http://www.naver.com";
+    }
+}
+    // console.log(document.querySelector('#logout'))
+    // document.querySelector('#logout').addEventListener('click',() => {
+    //     console.log("찍힘")
+    //     const afterLogin = document.querySelector('.after_login');
+    //     const loginBox = document.querySelector('.login_box');
+
+    //     if(confirm("로그아웃을 하시겠습니까?") === true){
+    //         alert("로그아웃 되었습니다.")
+    //         afterLogin.remove();
+    //         loginBox.style.display = 'flex';
+    //         location.reload();
+    //     }
+    // });
