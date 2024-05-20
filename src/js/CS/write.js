@@ -28,7 +28,7 @@ function write() { // write라는 함수 생성
         }
         writeData.push(a); // writeData 배열에 a 객체를 넣어줌
         localStorage.setItem("csData", JSON.stringify(writeData)); // writeData 배열을 문자형으로 변환하여 csData라는 키를 가진 로컬스토리지에 저장
-        location.href = "./list.html"
+        location.href = "./list.html" // list.html로 이동
     }
 }
 write();

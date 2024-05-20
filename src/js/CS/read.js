@@ -14,20 +14,20 @@ function render() { // render 함수 선언
             const _views = document.createElement("span"); // 조회수 span
             const _view = document.createElement("span"); // 상세 페이지 들어가는 버튼 생성
             _view.onclick = () => { // 클릭 했을 때 발생되는 이벤트 작성
-                sessionStorage.setItem("viewIndex", i)
-                writeList[i].views++;
-                localStorage.setItem("csData", JSON.stringify(writeList));
-                location.href = "view.html"
+                sessionStorage.setItem("viewIndex", i) // 세션스토리지에 viewIndex 라는 키 안에 i의 값을 저장
+                writeList[i].views++; // writeList 배열의 i번째 요소의 views 속성을 1씩 증가 시킵니다.
+                localStorage.setItem("csData", JSON.stringify(writeList)); // writeList 배열을 JSON 문자형으로 변환해서 로컬스토리지에 csData라는 키 안에 값으로 저장 합니다.
+                location.href = "view.html" // 상세 페이지로 이동
             }
-            _list.append(_num, _title, _content, _nickname, _date, _views, _view);
-            _num.innerHTML = i + 1;
-            _title.innerHTML = writeList[i].title;
-            _content.innerHTML = writeList[i].content;
-            _nickname.innerHTML = writeList[i].nickname;
-            _date.innerHTML = writeList[i].date;
-            _views.innerHTML = writeList[i].views;
-            _view.innerHTML = "⭐️"
-            list.append(_list)
+            _list.append(_num, _title, _content, _nickname, _date, _views, _view); // _list 변수 안에 즉 div 요소 안에 생성시킨 span 하나하나 담는다.
+            _num.innerHTML = i + 1; // 번호는 0부터 시작하므로 1 증가 후 할당
+            _title.innerHTML = writeList[i].title; // writeList 배열 안에 i번째의 title 속성
+            _content.innerHTML = writeList[i].content; // 내용
+            _nickname.innerHTML = writeList[i].nickname; // 작성자
+            _date.innerHTML = writeList[i].date; // 작성일
+            _views.innerHTML = writeList[i].views; // 조회수
+            _view.innerHTML = "⭐️" // 보기 버튼
+            list.append(_list) // span을 담은 div를 다른 div list에 담는다.
         }
     }
 
