@@ -1,10 +1,10 @@
-class Post {
-    constructor(title, content, name, views) {
-        this.title = title,
-            this.content = content,
-            this.name = name;
-        this.date = new Date()
-        this.views = views
+class Post { // 클래스 생성
+    constructor(title, content, name, views) { // 생성자 함수로 제목, 내용, 작성자, 조회수 생성
+        this.title = title, // 제목
+            this.content = content, // 내용
+            this.name = name; // 작성자
+        this.date = new Date() // 작성일
+        this.views = views // 조회수
     }
 }
 
