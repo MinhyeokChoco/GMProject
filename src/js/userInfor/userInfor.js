@@ -30,7 +30,7 @@ function createUpdateBtn() {
 
     pTag.innerHTML = "정보수정";
     
-//     pTag.addEventListener('click', () => {
-//         window.location.href = ""       
-// })
+    pTag.addEventListener('click', () => {
+        window.location.href = `./userInforUpdate.html?user=${pageUserId}`
+})
 }

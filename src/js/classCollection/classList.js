@@ -103,7 +103,7 @@ class UserProfileManage {
 
     // constructor에 변수명을 넣으면 해당하는 이름의 로컬스토리지가 생긴다.
     constructor(desiredLocal) {
-        if (this._getProfileLocal(desiredLocal) == null) {
+        if (this._getProfileLocal(desiredLocal) === null) {
             this.userProfileArray = [];
             this.locateStorage = desiredLocal;
         } else {
@@ -113,10 +113,18 @@ class UserProfileManage {
     }
 
     setProfileData(id, value) {
-        const verificationArray = this._getProfileLocal(this.locateStorage);
-        if (verificationArray !== null && verificationArray.some(obj => obj.hasOwnProperty(id) == true)) { // 중복 저장 방지
-            return;
+        this.userProfileArray = this._getProfileLocal(this.locateStorage) ;
+        if (this.userProfileArray !== null && this.userProfileArray.some(obj => obj.hasOwnProperty(id) == true)) { // 중복 저장 방지
+           const localUserIndex = this.userProfileArray.findIndex(key => [id] == id); // 현재 유저 인덱스 찾음
+           console.log(this.userProfileArray);
+           console.log(localUserIndex);
+           this.userProfileArray.splice(localUserIndex, 1); 
+           const userProfileInfor = { [id]: value };
+           this.userProfileArray.push(userProfileInfor);
+           localStorage.setItem(this.locateStorage, JSON.stringify(this.userProfileArray));
+           
         } else {
+            console.log(this.userProfileArray);
             const userProfileInfor = { [id]: value };
             this.userProfileArray.push(userProfileInfor);
             localStorage.setItem(this.locateStorage, JSON.stringify(this.userProfileArray));
@@ -134,8 +142,7 @@ class UserProfileManage {
             return false;
         })[id];
     }
-// [{"id":"테스트용 계정입니다."},{user1: "asdasd"}, {user2:"Asd"]
-    // 현재 클래스에서만 쓰일 예정
+
     _getProfileLocal() {
         return JSON.parse(localStorage.getItem(this.locateStorage));
     }

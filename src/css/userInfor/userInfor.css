@@ -29,7 +29,7 @@
 }
 
 /* 이미지 크기 조절*/
-#topDiv-imgRegion-img {
+.topDiv-imgRegion-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -91,6 +91,7 @@
     justify-content: space-around;
     margin-top: 20px;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .addtionalBottmDiv-btn{
