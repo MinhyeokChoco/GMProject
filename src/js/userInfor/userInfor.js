@@ -9,13 +9,24 @@ const userMessase = new UserProfileManage("lUserMessage").getProfileData(pageUse
 const userProfile = new UserProfileManage("lUserProfile").getProfileData(pageUserId); // 프사
 const userTier = new UserProfileManage("lUserTier").getProfileData(pageUserId); // 티어
 const userFavorite = new UserProfileManage("lUserFavoriteGame").getProfileData(pageUserId); //즐겨하는 게임
-console.log(userMessase);
+let userFavorteGame = ""
+
+switch (userFavorite) {
+    case "LOL":
+        userFavorteGame = "리그 오브 레전드";
+        break;
+    case "starrail":
+        userFavorteGame = "붕괴: 스타레일";
+        break;
+    default:
+        userFavorteGame = "";
+}
 
 window.onload = () => {
     document.querySelector("#topDiv-nicknameRegion-nick").innerHTML = nowConnectUser.userNickname;
     document.querySelector("#bottomDiv-messageRegion").innerHTML = userMessase;
     document.querySelector("#topDiv-nicknameRegion-tier").innerHTML += userTier;
-    document.querySelector("#midDiv-favoritRegion").innerHTML = userFavorite;
+    document.querySelector("#midDiv-favoritRegion-p").innerHTML = userFavorteGame;
     document.querySelector(".topDiv-imgRegion-img").src = userProfile;
 
     if (nowConnectUser.userId === pageUserId) {

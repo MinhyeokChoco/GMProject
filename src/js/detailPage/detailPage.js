@@ -5,12 +5,24 @@ const contentObj = new StoreBoard().getContentArray(nowKategorie)[nowIndex]; // 
 const userInfor = new UserLoginManager().getUserInforBox(); // 지금 로그인 중인 유저의 정보를 가져옴
 const localConetArray = new StoreBoard().getContentArray(nowKategorie); // 로컬의 모든 정보 불러옴
 
+const userProfileImg = new UserProfileManage('lUserProfile')
+const userProfilemessage = new UserProfileManage('lUserMessage')
+const userProfileLikeGame = new UserProfileManage('lUserFavoriteGame');
+
 console.log(contentObj);
 
 window.onload = () => {
     document.querySelector("#topDiv-userInforDiv-nick").innerHTML = contentObj.userNicknameInfor;
     document.querySelector("#midDiv-titleDiv-h").innerHTML = contentObj.postTitle;
     document.querySelector("#midDiv-contentDiv").innerHTML = contentObj.postContent;
+    const imgSrc = userProfileImg.getProfileData(contentObj.userId);
+    document.querySelector("#topDiv-profileDiv-img").src = imgSrc;
+    const userMessage = userProfilemessage.getProfileData(contentObj.userId);
+    console.log(userMessage);
+    document.querySelector("#topDiv-userInforDiv-message").innerHTML = userMessage;
+    const userLikeGmae = userProfileLikeGame.getProfileData(contentObj.userId);
+    document.querySelector ("#midTopDiv-playList-p").innerHTML = userLikeGmae;
+
 
     if(userInfor.userId == contentObj.userId) {
         addUDbtn();

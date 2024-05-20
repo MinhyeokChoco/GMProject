@@ -5,9 +5,9 @@ const userProfilSetting = new UserProfileManage("lUserProfile");
 const userMessageSetting = new UserProfileManage("lUserMessage");
 const userFavoriteSetting = new UserProfileManage("lUserFavoriteGame");
 userTierSetting.setProfileData(userId, 5);
-userProfilSetting.setProfileData(userId,`../../../img/anonymous icon.png`);
+// userProfilSetting.setProfileData(userId,`../../../img/anonymous icon.png`);
 userMessageSetting.setProfileData(userId, "테스트용 계정입니다.");
-userFavoriteSetting.setProfileData(userId, "");
+// userFavoriteSetting.setProfileData(userId, "");
 // ↑ 테스트용 코드
 
 const user = JSON.parse(localStorage.getItem("lUserInfor"));

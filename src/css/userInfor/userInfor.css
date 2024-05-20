@@ -52,6 +52,10 @@
     height: 80px;
     border: 5px solid cyan;
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* 한줄 메세지 영역*/

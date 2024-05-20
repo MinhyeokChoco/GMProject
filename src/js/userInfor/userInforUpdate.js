@@ -10,7 +10,7 @@ const userLoginManager = new UserLoginManager(); // 유저 정보 가져옴
 const imgRegionHTML = document.querySelector(".topDiv-imgRegion-img"); // 이미지영역 div 클래스
 const nicknameInputHTML = document.querySelector("#topDiv-nicknameRegion-input"); // 닉네임창 input 클래스
 const textArea = document.querySelector("#bottomDiv-messageRegion-textarea"); // 텍스트에리어
-let imgURLdata = "";
+let imgURLdata = userProfileImgManager.getProfileData(pageUserId);
 
 console.log(pageUserId);
 
