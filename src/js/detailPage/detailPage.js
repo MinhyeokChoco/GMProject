@@ -5,9 +5,6 @@ const contentObj = new StoreBoard().getContentArray(nowKategorie)[nowIndex]; // 
 const userInfor = new UserLoginManager().getUserInforBox(); // 지금 로그인 중인 유저의 정보를 가져옴
 const localConetArray = new StoreBoard().getContentArray(nowKategorie); // 로컬의 모든 정보 불러옴
 
-console.log(contentObj);
-
-
 
 const userProfileImg = new UserProfileManage('lUserProfile')
 const userProfilemessage = new UserProfileManage('lUserMessage')
