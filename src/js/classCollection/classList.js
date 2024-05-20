@@ -113,18 +113,14 @@ class UserProfileManage {
     }
 
     setProfileData(id, value) {
-        this.userProfileArray = this._getProfileLocal(this.locateStorage) ;
-        if (this.userProfileArray !== null && this.userProfileArray.some(obj => obj.hasOwnProperty(id) == true)) { // 중복 저장 방지
-           const localUserIndex = this.userProfileArray.findIndex(key => [id] == id); // 현재 유저 인덱스 찾음
-           console.log(this.userProfileArray);
-           console.log(localUserIndex);
+        if (this.userProfileArray !== null && this.userProfileArray.some(obj => obj.hasOwnProperty(id) === true)) { // 중복 저장 방지
+           const localUserIndex = this.userProfileArray.findIndex(key => key.hasOwnProperty(id)); // 현재 유저 인덱스 찾음
            this.userProfileArray.splice(localUserIndex, 1); 
            const userProfileInfor = { [id]: value };
            this.userProfileArray.push(userProfileInfor);
            localStorage.setItem(this.locateStorage, JSON.stringify(this.userProfileArray));
            
         } else {
-            console.log(this.userProfileArray);
             const userProfileInfor = { [id]: value };
             this.userProfileArray.push(userProfileInfor);
             localStorage.setItem(this.locateStorage, JSON.stringify(this.userProfileArray));
@@ -132,18 +128,14 @@ class UserProfileManage {
     }
 
     getProfileData(id) {
-        const profileArray = JSON.parse(localStorage.getItem(this.locateStorage));
-        if (profileArray == null)
-            return null;
-        return profileArray.find(key => {
-            if (key.hasOwnProperty(id)) {
-                return true // 아이디에 저장된 값만 가져옴
-            }
-            return false;
-        })[id];
+        const profileArray = this._getProfileLocal(this.locateStorage);
+        if (profileArray === null)
+            return "../../../img/anonymous icon.png";
+        const userProfile = profileArray.find(key => key.hasOwnProperty(id));
+        return userProfile ? userProfile[id] : null;
     }
 
-    _getProfileLocal() {
-        return JSON.parse(localStorage.getItem(this.locateStorage));
+    _getProfileLocal(desiredLocal) {
+        return JSON.parse(localStorage.getItem(desiredLocal));
     }
 }
