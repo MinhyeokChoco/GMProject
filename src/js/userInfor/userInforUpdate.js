@@ -10,6 +10,7 @@ const userLoginManager = new UserLoginManager(); // 유저 정보 가져옴
 const imgRegionHTML = document.querySelector(".topDiv-imgRegion-img"); // 이미지영역 div 클래스
 const nicknameInputHTML = document.querySelector("#topDiv-nicknameRegion-input"); // 닉네임창 input 클래스
 const textArea = document.querySelector("#bottomDiv-messageRegion-textarea"); // 텍스트에리어
+const userFavoritGame = document.querySelector('#midDiv-favoritRegion-select'); // 셀렉트창
 let imgURLdata = userProfileImgManager.getProfileData(pageUserId);
 
 console.log(pageUserId);
@@ -19,6 +20,9 @@ window.onload = () => {
     imgRegionHTML.src = nowUserImg;
     nicknameInputHTML.value = userLoginManager.getUserInforBox().userNickname;
     textArea.value = userMessage.getProfileData(pageUserId);
+    const defaultSelect = userlikeGame.getProfileData(pageUserId);
+    userFavoritGame.value = defaultSelect;
+    
 }
 
 
@@ -54,7 +58,6 @@ document.querySelector("#addtionalBottmDiv-update").addEventListener('click', ()
         window.location.href = "https://www.naver.com";
         /* ↑ 테스트용 수정 필수*/
     }
-    const userFavoritGame = document.querySelector('#midDiv-favoritRegion-select');
     const userFavoritGameIndex = userFavoritGame.options[userFavoritGame.selectedIndex].value; // 선호 게임 가져오기
     const userDB = JSON.parse(localStorage.getItem('lUserDB')); // 전체 DB 가져옴
     const userDBManager = new UserDBManager('lUserDB'); // 회원 인덱스를 가져온다..
