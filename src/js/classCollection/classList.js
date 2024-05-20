@@ -129,8 +129,14 @@ class UserProfileManage {
 
     getProfileData(id) {
         const profileArray = this._getProfileLocal(this.locateStorage);
-        if (profileArray === null)
-            return "../../../img/anonymous icon.png";
+        if (profileArray === null) {
+            if (this.locateStorage === "lUserProfile") {
+                return "../../../img/anonymous icon.png"
+            }
+            else {
+                return null;
+            }
+        }
         const userProfile = profileArray.find(key => key.hasOwnProperty(id));
         return userProfile ? userProfile[id] : null;
     }

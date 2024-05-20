@@ -72,6 +72,10 @@
     margin-top: 15px;
 }
 
+#addtionalBottmDiv > p {
+    cursor: pointer;
+}
+
 /* ↓ 이 아래부터는 업데이트 페이지 CSS */
 
 /* 한줄 메세지 텍스트에리어*/
