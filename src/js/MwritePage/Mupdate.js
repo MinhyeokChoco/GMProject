@@ -48,11 +48,19 @@ postBtn.addEventListener('click', () => {
         case "StarRail":
             window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
             break;
+        case "PUBG":
+            window.location.href = "../kategoriePage/PUBG.html";
+            break;
+        case "eternalreturn":
+            window.location.href = "../kategoriePage/eternalreturn.html";
+            break;
+        case "valorant":
+            window.location.href = "../kategoriePage/valorant.html"
         default:
-            alert("잘못된 접근입니다."); 
+            alert("잘못된 접근입니다.");
             /* ↓ 임시 코드입니다 수정 필요 ↓*/
             window.location.href = "https://www.naver.com"
-            /* ↑ 임시 코드입니다 수정필요 ↑*/
+        /* ↑ 임시 코드입니다 수정필요 ↑*/
     }
 })
 

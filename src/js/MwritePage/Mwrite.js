@@ -34,6 +34,17 @@ postBtn.addEventListener('click', () => {
         case "StarRail":
             window.location.href = "../kategoriePage/StarRail.html"
             break;
+        case "StarRail":
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
+            break;
+        case "PUBG":
+            window.location.href = "../kategoriePage/PUBG.html";
+            break;
+        case "eternalreturn":
+            window.location.href = "../kategoriePage/eternalreturn.html";
+            break;
+        case "valorant":
+            window.location.href = "../kategoriePage/valorant.html"
         default:
             alert("잘못된 접근입니다."); 
             /* ↓ 임시 코드입니다 수정 필요 ↓*/
@@ -45,18 +56,28 @@ postBtn.addEventListener('click', () => {
 
 /* 취소버튼 이벤트 */
 cancleBtn.addEventListener('click', () => {
-    switch(nowKategorie) {
+    switch (nowKategorie) {
         case "LOL":
             window.location.href = "../kategoriePage/LoLPage.html";
             break;
-         case "StarRail":
+        case "StarRail":
             window.location.href = "../kategoriePage/StarRail.html"
             break;
-            
+        case "StarRail":
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
+            break;
+        case "PUBG":
+            window.location.href = "../kategoriePage/PUBG.html";
+            break;
+        case "eternalreturn":
+            window.location.href = "../kategoriePage/eternalreturn.html";
+            break;
+        case "valorant":
+            window.location.href = "../kategoriePage/valorant.html"
         default:
             alert("잘못된 접근입니다.");
             /* ↓ 임시 코드입니다 수정 필요 ↓*/
             window.location.href = "https://www.naver.com"
-            /* ↑ 임시 코드입니다 수정필요 ↑*/
+        /* ↑ 임시 코드입니다 수정필요 ↑*/
     }
 })

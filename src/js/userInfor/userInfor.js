@@ -10,6 +10,7 @@ const userProfile = new UserProfileManage("lUserProfile").getProfileData(pageUse
 const userTier = new UserProfileManage("lUserTier").getProfileData(pageUserId); // 티어
 const userFavorite = new UserProfileManage("lUserFavoriteGame").getProfileData(pageUserId); //즐겨하는 게임
 let userFavorteGame = ""
+console.log(userFavorite);
 
 switch (userFavorite) {
     case "LOL":
@@ -17,6 +18,15 @@ switch (userFavorite) {
         break;
     case "starrail":
         userFavorteGame = "붕괴: 스타레일";
+        break;
+    case "eternalreturn":
+        userFavorteGame = "이터널 리턴";
+        break;
+    case "PUBG":
+        userFavorteGame = "배틀그라운드";
+        break;
+    case "valorant":
+        userFavorteGame = "발로란트";
         break;
     default:
         userFavorteGame = "";
