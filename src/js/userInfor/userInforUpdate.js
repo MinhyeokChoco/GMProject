@@ -1,4 +1,4 @@
-localStorage.setItem('lUserDB', JSON.stringify([{userId: "id", userNickname: "testNcik"}, {userId: "test", userNickname:"computer"}]))
+// localStorage.setItem('lUserDB', JSON.stringify([{userId: "id", userNickname: "testNcik"}, {userId: "test", userNickname:"computer"}]))
 //테스트코드
 
 const nowAddress = location.search;

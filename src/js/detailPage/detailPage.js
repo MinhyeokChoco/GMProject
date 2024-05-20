@@ -5,23 +5,45 @@ const contentObj = new StoreBoard().getContentArray(nowKategorie)[nowIndex]; // 
 const userInfor = new UserLoginManager().getUserInforBox(); // 지금 로그인 중인 유저의 정보를 가져옴
 const localConetArray = new StoreBoard().getContentArray(nowKategorie); // 로컬의 모든 정보 불러옴
 
+
+
+
 const userProfileImg = new UserProfileManage('lUserProfile')
 const userProfilemessage = new UserProfileManage('lUserMessage')
 const userProfileLikeGame = new UserProfileManage('lUserFavoriteGame');
+const userLikeGmae = userProfileLikeGame.getProfileData(contentObj.userId);
+let userLikeGameToText = ""
 
-console.log(nowKategorie);
+switch (userLikeGmae) {
+    case "LOL":
+        userLikeGameToText = "리그 오브 레전드";
+        break;
+    case "starrail":
+        userLikeGameToText = "붕괴: 스타레일";
+        break;
+    case "eternalreturn":
+        userLikeGameToText = "이터널 리턴";
+        break;
+    case "PUBG":
+        userLikeGameToText = "배틀그라운드";
+        break;
+    case "valorant":
+        userLikeGameToText = "발로란트";
+        break;
+    default:
+        userLikeGameToText = "";
+}
+
 
 window.onload = () => {
-    document.querySelector("#topDiv-userInforDiv-nick").innerHTML = contentObj.userNicknameInfor;
+    document.querySelector("#topDiv-userInforDiv-nick").innerHTML = userInfor.userNickname;
     document.querySelector("#midDiv-titleDiv-h").innerHTML = contentObj.postTitle;
     document.querySelector("#midDiv-contentDiv").innerHTML = contentObj.postContent;
     const imgSrc = userProfileImg.getProfileData(contentObj.userId);
     document.querySelector("#topDiv-profileDiv-img").src = imgSrc;
-    const userMessage = userProfilemessage.getProfileData(contentObj.userId);
-    console.log(userMessage);
+    const userMessage = userProfilemessage.getProfileData(contentObj.userId); // 
     document.querySelector("#topDiv-userInforDiv-message").innerHTML = userMessage;
-    const userLikeGmae = userProfileLikeGame.getProfileData(contentObj.userId);
-    document.querySelector ("#midTopDiv-playList-p").innerHTML = userLikeGmae;
+    document.querySelector ("#midTopDiv-playList-p").innerHTML = userLikeGameToText;
 
 
     if(userInfor.userId == contentObj.userId) {

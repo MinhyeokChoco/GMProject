@@ -1,12 +1,12 @@
-localStorage.setItem("lUserInfor", JSON.stringify({userNickname: "nick", userId: "id", userprofile: "src", userLogOn: true}));
-const userId = "id";
-const userTierSetting = new UserProfileManage("lUserTier");
-const userProfilSetting = new UserProfileManage("lUserProfile");
-const userMessageSetting = new UserProfileManage("lUserMessage");
-const userFavoriteSetting = new UserProfileManage("lUserFavoriteGame");
-userTierSetting.setProfileData(userId, 5);
+// localStorage.setItem("lUserInfor", JSON.stringify({userNickname: "nick", userId: "id", userLogOn: true}));
+// const userId = "id";
+// const userTierSetting = new UserProfileManage("lUserTier");
+// const userProfilSetting = new UserProfileManage("lUserProfile");
+// const userMessageSetting = new UserProfileManage("lUserMessage");
+// const userFavoriteSetting = new UserProfileManage("lUserFavoriteGame");
+// userTierSetting.setProfileData(userId, 5);
 // userProfilSetting.setProfileData(userId,`../../../img/anonymous icon.png`);
-userMessageSetting.setProfileData(userId, "테스트용 계정입니다.");
+// userMessageSetting.setProfileData(userId, "테스트용 계정입니다.");
 // userFavoriteSetting.setProfileData(userId, "");
 // ↑ 테스트용 코드
 
