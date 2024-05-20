@@ -129,19 +129,37 @@ class UserProfileManage {
 
     getProfileData(id) {
         const profileArray = this._getProfileLocal(this.locateStorage);
-        if (profileArray === null) {
-            if (this.locateStorage === "lUserProfile") {
-                return "../../../img/anonymous icon.png"
-            }
-            else {
-                return null;
-            }
+        if (this.locateStorage === "lUserProfile") {
+            const userProfile = profileArray.find(key => key.hasOwnProperty(id));
+            return userProfile[id] ? userProfile[id] : "../../../img/anonymous icon.png";
         }
-        const userProfile = profileArray.find(key => key.hasOwnProperty(id));
-        return userProfile ? userProfile[id] : null;
+        else {
+            const userProfile = profileArray.find(key => key.hasOwnProperty(id));
+            return userProfile ? userProfile[id] : null;
+        }
     }
 
     _getProfileLocal(desiredLocal) {
         return JSON.parse(localStorage.getItem(desiredLocal));
+    }
+}
+
+
+// DB에서 유저 정보가 있는 인덱스 번호를 가져오는 클래스 (쓸데가 있나...?)
+class UserDBManager {
+    wholeUserDBbox = [];
+    
+    constructor(wantedLocalStorage) {
+        this.wholeUserDBbox = JSON.parse(localStorage.getItem(wantedLocalStorage));
+    }
+    
+    getWantedUserDBIndex(id) {
+        const userDBboxIndex = this.wholeUserDBbox.findIndex(key => key.userId === id);
+        return userDBboxIndex;
+    }
+    
+    // 다시 저장하자...
+    setUserDB(wantedLocalStorage, DBarray) {
+        localStorage.setItem(wantedLocalStorage, JSON.stringify(DBarray));
     }
 }

@@ -8,7 +8,7 @@ const nowConnectUser = new UserLoginManager().getUserInforBox();
 const userMessase = new UserProfileManage("lUserMessage").getProfileData(pageUserId); // 상메
 const userProfile = new UserProfileManage("lUserProfile").getProfileData(pageUserId); // 프사
 const userTier = new UserProfileManage("lUserTier").getProfileData(pageUserId); // 티어
-const userFavorite = new UserProfileManage("lUserFavoritGame").getProfileData(pageUserId); //즐겨하는 게임
+const userFavorite = new UserProfileManage("lUserFavoriteGame").getProfileData(pageUserId); //즐겨하는 게임
 console.log(userMessase);
 
 window.onload = () => {
@@ -16,6 +16,7 @@ window.onload = () => {
     document.querySelector("#bottomDiv-messageRegion").innerHTML = userMessase;
     document.querySelector("#topDiv-nicknameRegion-tier").innerHTML += userTier;
     document.querySelector("#midDiv-favoritRegion").innerHTML = userFavorite;
+    document.querySelector(".topDiv-imgRegion-img").src = userProfile;
 
     if (nowConnectUser.userId === pageUserId) {
         createUpdateBtn();

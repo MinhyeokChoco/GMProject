@@ -41,7 +41,7 @@ function addUDbtn() {
     const pTag = document.createElement("p"); // 수정버튼
     const pTag02 = document.createElement("p"); // 삭제버튼
     pTag.id = "midbottomDiv-updateBtn";
-    pTag02.id = "midbottomDiv-deleteBtn"; // 교수님한테 물어볼 거
+    pTag02.id = "midbottomDiv-deleteBtn";
 
     document.querySelector("#midbottomDiv").prepend(pTag, pTag02);
     pTag.innerHTML = "수정"
