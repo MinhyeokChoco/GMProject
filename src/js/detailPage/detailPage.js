@@ -5,6 +5,7 @@ const contentObj = new StoreBoard().getContentArray(nowKategorie)[nowIndex]; // 
 const userInfor = new UserLoginManager().getUserInforBox(); // 지금 로그인 중인 유저의 정보를 가져옴
 const localConetArray = new StoreBoard().getContentArray(nowKategorie); // 로컬의 모든 정보 불러옴
 
+console.log(contentObj);
 
 
 
@@ -36,7 +37,7 @@ switch (userLikeGmae) {
 
 
 window.onload = () => {
-    document.querySelector("#topDiv-userInforDiv-nick").innerHTML = userInfor.userNickname;
+    document.querySelector("#topDiv-userInforDiv-nick").innerHTML = contentObj.userNicknameInfor;
     document.querySelector("#midDiv-titleDiv-h").innerHTML = contentObj.postTitle;
     document.querySelector("#midDiv-contentDiv").innerHTML = contentObj.postContent;
     const imgSrc = userProfileImg.getProfileData(contentObj.userId);
@@ -131,5 +132,5 @@ function fnImplementation() {
 
 // 프사 누르면 해당 유저 정보창으로 이동(추후 버튼은 수정 가능)
 document.querySelector("#topDiv-profileDiv").addEventListener('click', () => {
-    window.location.href = `../userInfor/userInformation.html?user=${userInfor.userId}`
+    window.location.href = `../userInfor/userInformation.html?user=${contentObj.userId}`
 })

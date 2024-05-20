@@ -22,7 +22,6 @@ window.onload = () => {
     textArea.value = userMessage.getProfileData(pageUserId);
     const defaultSelect = userlikeGame.getProfileData(pageUserId);
     userFavoritGame.value = defaultSelect;
-    
 }
 
 
@@ -58,6 +57,11 @@ document.querySelector("#addtionalBottmDiv-update").addEventListener('click', ()
         window.location.href = "https://www.naver.com";
         /* ↑ 테스트용 수정 필수*/
     }
+    if(textArea.value.length > 25) {
+        alert("글자수는 최대 25자까지 가능합니다.")
+        return;
+    }
+
     const userFavoritGameIndex = userFavoritGame.options[userFavoritGame.selectedIndex].value; // 선호 게임 가져오기
     const userDB = JSON.parse(localStorage.getItem('lUserDB')); // 전체 DB 가져옴
     const userDBManager = new UserDBManager('lUserDB'); // 회원 인덱스를 가져온다..
