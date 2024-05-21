@@ -158,6 +158,8 @@ document.querySelector("#bottomDiv-replyDiv-form").addEventListener('submit', (e
     location.reload();
 })
 
+
+// 댓글 그리기
 function lenderReply() {
     console.dir(replyObj);
     for(let i = 0; i < replyObj.length; i++) {
