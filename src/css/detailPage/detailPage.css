@@ -47,7 +47,7 @@
     overflow: hidden;
 }
 
-#topDiv-profileDiv-img {
+.topDiv-profileDiv-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -110,19 +110,59 @@
     margin-top: 15px;
 }
 
+/* 댓글 폼영역 */
 #bottomDiv-replyDiv-form{
     display: flex;
     justify-content: center;
 }
 
+/* 댓글 텍스트에리어 */
 #bottomDiv-replyDiv-area {
     width: 500px;
     height: 50px;
     margin-top: 15px;
 }
 
+/* 댓글 입력 버튼 (submit) */
 #bottomDiv-replyDiv-button {
     width: 80px;
     height: 50px;
     margin-top: 15px;
+}
+
+
+/* 프사 영역 */
+.contentDiv-profile{
+    width: 80px;
+    height: 80px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+#bottomDiv-replyDiv-contentDiv{
+    display: flex;
+    flex-direction: column;
+}
+
+/* 댓글 그리는 영역 */
+.bottomDiv-replyDiv-contentDiv-replyBox {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+/* 닉네임, 댓글 영역*/
+.contentDiv-reple{
+    width: 460px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* 댓글창 닉네임*/
+.contentDiv-reple-nickName {
+    font-weight: bold;
+    color: violet;
 }

@@ -29,10 +29,12 @@ postGmBtn.addEventListener('click', () => {
 // 게시물 그리기 시작
 window.onload = () => {
     const mContentList = new StoreBoard().getContentArray(globalGameName);
-    console.log(mContentList);
 
     for (let i = 0; i < mContentList.length; i++)
         {
+            if (mContentList[i] === null) {
+                continue;
+            }
             const pTag_03 = document.createElement("p"); // 글번호
             const divTag = document.createElement("div");
             const hTag = document.createElement("h3"); // 제목

@@ -4,9 +4,11 @@ const nowKategorie = new MemorizeKategorie().getSession(); // 세션에서 카�
 const contentObj = new StoreBoard().getContentArray(nowKategorie)[nowIndex]; // 로컬저장소에서 해당 인덱스 컨텐츠 불러오기
 const userInfor = new UserLoginManager().getUserInforBox(); // 지금 로그인 중인 유저의 정보를 가져옴
 const localConetArray = new StoreBoard().getContentArray(nowKategorie); // 로컬의 모든 정보 불러옴
+const postingNumber = nowKategorie + nowIndex; // 댓글 구현을 위한 현재 카테고리와 게시물 인덱스 정보
+const replyObj = new StoreBoard().getContentArray(postingNumber); // 현재페이지 댓글 가져옴
 
 
-const userProfileImg = new UserProfileManage('lUserProfile')
+const userProfileImg = new UserProfileManage('lUserProfile');
 const userProfilemessage = new UserProfileManage('lUserMessage')
 const userProfileLikeGame = new UserProfileManage('lUserFavoriteGame');
 const userLikeGmae = userProfileLikeGame.getProfileData(contentObj.userId);
@@ -34,18 +36,27 @@ switch (userLikeGmae) {
 
 
 window.onload = () => {
+    
+    const imgSrc = userProfileImg.getProfileData(contentObj.userId);
+    const userMessage = userProfilemessage.getProfileData(contentObj.userId);
+
+    //최상단 영역
     document.querySelector("#topDiv-userInforDiv-nick").innerHTML = contentObj.userNicknameInfor;
+    document.querySelector("#topDiv-userInforDiv-message").innerHTML = userMessage;
+    document.querySelector(".topDiv-profileDiv-img").src = imgSrc; // 프사
+    //즐겨하는 게임
+    document.querySelector ("#midTopDiv-playList-p").innerHTML = userLikeGameToText;
+    //제목 및 본문
     document.querySelector("#midDiv-titleDiv-h").innerHTML = contentObj.postTitle;
     document.querySelector("#midDiv-contentDiv").innerHTML = contentObj.postContent;
-    const imgSrc = userProfileImg.getProfileData(contentObj.userId);
-    document.querySelector("#topDiv-profileDiv-img").src = imgSrc;
-    const userMessage = userProfilemessage.getProfileData(contentObj.userId); // 
-    document.querySelector("#topDiv-userInforDiv-message").innerHTML = userMessage;
-    document.querySelector ("#midTopDiv-playList-p").innerHTML = userLikeGameToText;
 
 
     if(userInfor.userId == contentObj.userId) {
         addUDbtn();
+    }
+
+    if(replyObj) {
+        lenderReply();
     }
 }
 
@@ -101,7 +112,7 @@ function addUDbtn() {
 
 // 삭제 구현
 function fnImplementation() {
-    localConetArray.splice(nowIndex, 1); // 로컬스토리지에서 해당 인덱스 부분 삭제
+    localConetArray[nowIndex] = null; // 로컬스토리지에서 해당 인덱스 부분 삭제
     localStorage.setItem(nowKategorie, JSON.stringify(localConetArray)); // 다시 저장
     
     switch (nowKategorie) {
@@ -132,6 +143,56 @@ document.querySelector("#topDiv-profileDiv").addEventListener('click', () => {
     window.location.href = `../userInfor/userInformation.html?user=${contentObj.userId}`
 })
 
-document.querySelector("#bottomDiv-replyDiv-form").addEventListener('click', () => {
-    
+
+// 댓글 달기
+document.querySelector("#bottomDiv-replyDiv-form").addEventListener('submit', (e) => {
+    e.preventDefault(e);
+    if (document.querySelector("#bottomDiv-replyDiv-area").value.trim() === "")
+        {
+            alert("내용을 입력해주세요");
+            return;
+        }
+    const replyContent = new ReplyManager(new GetConetent().getPosterConetent("#bottomDiv-replyDiv-area"), userInfor.userNickname, userInfor.userId)
+    const replyStore = new StoreBoard(postingNumber);
+    replyStore.setContentArray(replyContent, postingNumber);
+    location.reload();
 })
+
+function lenderReply() {
+    console.dir(replyObj);
+    for(let i = 0; i < replyObj.length; i++) {
+        if(replyObj[i] === null) {
+            continue;
+        }
+
+        const replyTag = document.createElement('div'); // 댓글 전체 박스
+        replyTag.classList.add("bottomDiv-replyDiv-contentDiv-replyBox");
+
+        const profileDivTag = document.createElement('div'); // 프사 영역
+        profileDivTag.classList.add("contentDiv-profile");
+
+        const profileImg = document.createElement('img'); // 프사 이미지태그
+        profileImg.classList.add('topDiv-profileDiv-img');
+
+        const contentDivTag = document.createElement('div'); // 닉네임 댓글 내용 담는 박스
+        contentDivTag.classList.add("contentDiv-reple");
+
+        const nickPTag = document.createElement('p'); // 닉네임
+        nickPTag.id = "nickNamePtag";
+        nickPTag.classList.add('contentDiv-reple-nickName');
+
+        const contentPTag = document.createElement('p'); // 댓글 내용
+        contentPTag.id = "contentPtag";
+        contentPTag.classList.add('contentDiv-reple-p');
+
+        document.querySelector("#bottomDiv-replyDiv-contentDiv").append(replyTag);
+        replyTag.append(profileDivTag, contentDivTag);
+        profileDivTag.append(profileImg);
+        contentDivTag.append(nickPTag, contentPTag);
+
+        profileImg.src = userProfileImg.getProfileData(replyObj[i].userId);
+        nickPTag.innerHTML = replyObj[i].nickname
+        contentPTag.innerHTML = replyObj[i].content;
+
+    }
+}

@@ -7,41 +7,43 @@
     <link rel = "styleSheet" href = "../../css/detailPage/detailPage.css">
 </head>
 <body>
-    <div id = "mainDiv">
-        <div id = "topDiv">
-            <div id = "topDiv-profileDiv"> <!-- 유저 사진-->
-                <img src = "" id = "topDiv-profileDiv-img">
+    <div id="mainDiv">
+        <div id="topDiv">
+            <div id="topDiv-profileDiv"> <!-- 유저 사진-->
+                <img src="" class="topDiv-profileDiv-img">
             </div>
-            <div id = "topDiv-userInforDiv"> <!-- 유저 정보 -->
-                <p id = "topDiv-userInforDiv-nick"> </p> <!-- 닉네임 -->
-                <p id = "topDiv-userInforDiv-message"> </p> <!-- 한 줄 메세지-->
-                <p id = "topDiv-userInforDiv-tier"> M.T: </p> <!-- 티어 -->
+            <div id="topDiv-userInforDiv"> <!-- 유저 정보 -->
+                <p id="topDiv-userInforDiv-nick"> </p> <!-- 닉네임 -->
+                <p id="topDiv-userInforDiv-message"> </p> <!-- 한 줄 메세지-->
+                <p id="topDiv-userInforDiv-tier"> M.T: </p> <!-- 티어 -->
             </div>
         </div>
-        <div id = "midTopDiv">
-            <div id = "midTopDiv-playList"> <!-- 즐겨하는 게임 -->
+        <div id="midTopDiv">
+            <div id="midTopDiv-playList"> <!-- 즐겨하는 게임 -->
                 <p><b> Most Favorite Game </b></p>
-                <p id = "midTopDiv-playList-p"> </p>
+                <p id="midTopDiv-playList-p"> </p>
             </div>
         </div>
-        <div id = "midDiv">
-            <div id = "midDiv-titleDiv">
-                <h3 id = "midDiv-titleDiv-h"> </h3> <!-- 제목 -->
+        <div id="midDiv">
+            <div id="midDiv-titleDiv">
+                <h3 id="midDiv-titleDiv-h"> </h3> <!-- 제목 -->
             </div>
-            <div id = "midDiv-contentDiv"> <!-- 본문 -->
+            <div id="midDiv-contentDiv"> <!-- 본문 -->
             </div>
         </div>
-        <div id = "midbottomDiv">
+        <div id="midbottomDiv">
             <!-- JS로 수정/삭제 추가-->
-            <p id = "midbottomDiv-listBtn"> 목록으로 </p>
+            <p id="midbottomDiv-listBtn"> 목록으로 </p>
         </div>
-        <div id = "bottomDiv">
-            <div id = "bottomDiv-replyDiv"> <!-- 댓글 -->
+        <div id="bottomDiv">
+            <div id="bottomDiv-replyDiv"> <!-- 댓글 -->
                 <p> 댓글 </p>
-                <form id = "bottomDiv-replyDiv-form">
-                    <textarea id = "bottomDiv-replyDiv-area" placeholder="바르고 고운말 작성해주세요"></textarea>
-                    <input type="button" id ="bottomDiv-replyDiv-button" value="입력">
+                <form id="bottomDiv-replyDiv-form">
+                    <textarea id="bottomDiv-replyDiv-area" placeholder="바르고 고운말 작성해주세요"></textarea>
+                    <input type="submit" id="bottomDiv-replyDiv-button" value="입력" name="replySubmit">
                 </form>
+                <div id="bottomDiv-replyDiv-contentDiv">
+                </div>
             </div>
         </div>
 

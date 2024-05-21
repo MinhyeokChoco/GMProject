@@ -51,6 +51,17 @@ class MateBoardManager {
     }
 }
 
+/* 댓글을 객체로 만드는 클래스 */
+class ReplyManager {
+    constructor (_content, _nickname, _userID) {
+        this.content = _content;
+        this.nickname = _nickname;
+        this.userId = _userID;
+        this.repleDate = new Date().getFullYear() + "-"+ (new Date().getMonth() + 1) +"-"+ new Date().getDate()
+    }
+}
+
+
 /* 작성한 글을 배열에 넣고 로컬저장소에 넣거나 가져오는 클래스 */
 class StoreBoard {
     contentArray = []; // 작성글을 임시로 넣을 배열
@@ -93,7 +104,7 @@ class GetConetent {
     getPosterConetent(HTMLid) {
         return document.querySelector(HTMLid).value;
     }
-}
+} // 굳이 두개??
 
 
 /* 프사, 상메, 티어 관리, 클래스 */
@@ -129,7 +140,6 @@ class UserProfileManage {
 
     getProfileData(id) {
         const profileArray = this._getProfileLocal(this.locateStorage);
-        console.log(profileArray);
         if (this.locateStorage === "lUserProfile") {
             const userProfile = profileArray.find(key => key.hasOwnProperty(id));
             if (userProfile) {
