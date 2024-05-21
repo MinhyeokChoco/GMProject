@@ -1,7 +1,8 @@
 const modifyContent = document.getElementById("modifyContent"); // 수정할 내용을 담은 div 요소
 const modifyBtn = document.getElementById("modifyBtn"); // 수정 버튼
+const backBtn = document.getElementById("backBtn"); // 뒤로 가기 버튼
 const csData = JSON.parse(localStorage.getItem("csData")); // 로컬 스토리지에 저장되어 있는 csData 
-const viewIndex = sessionStorage.getItem("viewIndex") // 세션 스토리지에 저장되어 있는 viewIndex
+const viewIndex = JSON.parse(sessionStorage.getItem("viewIndex")); // 세션 스토리지에 저장되어 있는 viewIndex
 
 modifyBtn.addEventListener("click", () => { // 수정 버튼을 눌렀을 때의 이벤트 추가
     const index = parseInt(sessionStorage.getItem("viewIndex")); // 세션 스토리지에 저장되어 있는 viewIndex 키의 값을 정수형으로 변환 후 index의 할당
@@ -18,6 +19,10 @@ modifyBtn.addEventListener("click", () => { // 수정 버튼을 눌렀을 때의
     } else {
         alert("새 제목과 내용을 모두 입력해주세요.")
     }
+});
+
+backBtn.addEventListener("click", () => {
+    location.href = `view.html?index=${viewIndex}`;
 });
 
 // 검색창, 페이지네이션, 댓글 (대댓글)
