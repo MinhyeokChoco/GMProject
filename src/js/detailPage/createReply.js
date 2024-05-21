@@ -52,6 +52,11 @@ function renderReply() {
         nickPTag.innerHTML = replyObj[i].nickName
         contentPTag.innerHTML = replyObj[i].content;
 
+        // 프사 클릭시 정보창으로
+        profileDivTag.addEventListener('click', () => {
+            window.location.href = `../userInfor/userInformation.html?user=${replyObj[i].userId}`
+        })
+
         // 아이디가 댓글 작성자랑 같으면 수정/삭제 버튼 생성
         if(replyObj[i].userId === userInfor.userId) {
             const bottomContentDiv = document.createElement('div');
@@ -73,6 +78,8 @@ function renderReply() {
             document.querySelector(`#identfyUpdateP-${i}`).addEventListener('click', () => {
                 createUpdateBtn(i);
             })
+
+
         }
     }
 }
