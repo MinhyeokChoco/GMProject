@@ -1,3 +1,6 @@
+
+
+
 // 댓글 달기
 document.querySelector("#bottomDiv-replyDiv-form").addEventListener('submit', (e) => {
     e.preventDefault(e);
@@ -6,15 +9,18 @@ document.querySelector("#bottomDiv-replyDiv-form").addEventListener('submit', (e
             alert("내용을 입력해주세요");
             return;
         }
-    const replyContent = new ReplyManager(new GetConetent().getPosterConetent("#bottomDiv-replyDiv-area"), userInfor.userNickname, userInfor.userId)
     const replyStore = new StoreBoard(postingNumber);
+    let replyIndex = replyStore.getThisArray();
+    console.log("길이: ", replyIndex.length);
+    const replyContent = new ReplyManager(new GetConetent().getPosterConetent("#bottomDiv-replyDiv-area"), userInfor.userNickname, userInfor.userId, replyIndex.length)
+    console.log(replyContent);
     replyStore.setContentArray(replyContent, postingNumber);
     location.reload();
 })
 
 
 // 댓글 그리기
-function lenderReply() {
+function renderReply() {
     console.dir(replyObj);
     for(let i = 0; i < replyObj.length; i++) {
         if(replyObj[i] === null) {
@@ -50,5 +56,10 @@ function lenderReply() {
         nickPTag.innerHTML = replyObj[i].nickname
         contentPTag.innerHTML = replyObj[i].content;
 
+        if(replyObj[i].nick) {
+
+        }
     }
 }
+
+// 댓글 삭제 및 수정 기능

@@ -53,11 +53,12 @@ class MateBoardManager {
 
 /* 댓글을 객체로 만드는 클래스 */
 class ReplyManager {
-    constructor (_content, _nickname, _userID) {
+    constructor (_content, _nickname, _userID, _i) {
         this.content = _content;
         this.nickname = _nickname;
         this.userId = _userID;
-        this.repleDate = new Date().getFullYear() + "-"+ (new Date().getMonth() + 1) +"-"+ new Date().getDate()
+        this.repleDate = new Date().getFullYear() + "-"+ (new Date().getMonth() + 1) +"-"+ new Date().getDate();
+        this.index = _i;
     }
 }
 
@@ -83,6 +84,10 @@ class StoreBoard {
     // 로컬스토리지에서 작성글을 불러오는 함수
     getContentArray(kategorieName) {
         return JSON.parse(localStorage.getItem(kategorieName)); // 스토리지에 있는 글을 가져옴
+    }
+
+    getThisArray() {
+        return this.contentArray;
     }
 }
 

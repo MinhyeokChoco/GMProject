@@ -7,7 +7,6 @@ const localConetArray = new StoreBoard().getContentArray(nowKategorie); // 로�
 const postingNumber = nowKategorie + nowIndex; // 댓글 구현을 위한 현재 카테고리와 게시물 인덱스 정보
 const replyObj = new StoreBoard().getContentArray(postingNumber); // 현재페이지 댓글 가져옴
 
-
 const userProfileImg = new UserProfileManage('lUserProfile');
 const userProfilemessage = new UserProfileManage('lUserMessage')
 const userProfileLikeGame = new UserProfileManage('lUserFavoriteGame');
@@ -51,12 +50,14 @@ window.onload = () => {
     document.querySelector("#midDiv-contentDiv").innerHTML = contentObj.postContent;
 
 
+    // 업데이트 삭제 버튼 생성
     if(userInfor.userId == contentObj.userId) {
         addUDbtn();
     }
 
+    // 댓글 생성
     if(replyObj) {
-        lenderReply();
+        renderReply();
     }
 }
 
