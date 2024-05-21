@@ -1,0 +1,121 @@
+.listTitle {
+    font-size: 50px;
+    color: lightcoral;
+}
+
+
+.guide {
+    width: 80%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 60px;
+    background-color: pink;
+    border-radius: 10px;
+}
+
+.guide>span:nth-child(1) {
+    width: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+.guide>span:nth-child(2) {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.guide>span:nth-child(3) {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+}
+
+.guide>span:nth-child(4) {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.guide>span:nth-child(5) {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.guide>span:nth-child(6) {
+    width: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.guide>span:nth-child(7) {
+    width: 7%;
+    display: flex;
+    justify-content: center;
+}
+
+#List {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#List>div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#List>div>span:nth-child(1) {
+    width: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+#List>div>span:nth-child(2) {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#List>div>span:nth-child(3) {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#List>div>span:nth-child(4) {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+#List>div>span:nth-child(5) {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+#List>div>span:nth-child(6) {
+    width: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+#List>div>span:nth-child(7) {
+    width: 7%;
+    display: flex;
+    justify-content: center;
+}
