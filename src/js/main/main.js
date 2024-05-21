@@ -38,7 +38,6 @@ const categoryList = document.querySelector(".category_list");
 //     scrollTarget = null;
 // }
 
-
 //스크롤바 클라스
 class GameListScroll {
     constructor(root, categoryList){
@@ -92,6 +91,18 @@ class GameListScroll {
     }
 }
 const gameListScroll = new GameListScroll(rec_category,categoryList)
+
+//로그인 세션 유지
+let SUser = null
+if(sessionStorage.getItem('SUserInfor')){
+    SUser = JSON.parse(sessionStorage.getItem('SUserInfor'))
+}
+
+if(SUser !== null){
+    document.querySelector('.login_box').style.display= 'none';
+    loginHeader(SUser)
+}
+
 
 // 로그인모달 클라스
 class LoginModal{
@@ -155,10 +166,10 @@ const signupmodal = new SignUpModal();
 const signupArray = JSON.parse(localStorage.getItem("lUserDB")) || []; //빈 배열을 생성
 
 class SignUp{
-    constructor(userId, userPw, userNickName, userEmail){ // 회원가입시 필요한 정보들 정리
+    constructor(userId, userPw, userNickname, userEmail){ // 회원가입시 필요한 정보들 정리
         this.userId = userId
         this.userPw = userPw
-        this.userNickName = userNickName
+        this.userNickname = userNickname
         this.userEmail = userEmail
     }
 }
@@ -167,22 +178,25 @@ class SignUp{
 document.querySelector('.signup_btn').addEventListener('click', () => {
     const userId = document.querySelector('#signupID').value;
     const userPw = document.querySelector('#signupPW').value;
-    const userNickName = document.querySelector('#signupNick').value;
+    const userNickname = document.querySelector('#signupNick').value;
     const userEmail = document.querySelector('#signupemail').value;
+    const IdCheck = /^[a-zA-Z0-9][a-zA-Z0-9]{3,11}$/; // 영문자로 시작하는 영문자 또는 숫자 6~20자
+    const PwCheck = /(?=.*\d)(?=.*[a-zA-ZS]).{6,}/; // 문자, 숫자 1개이상 포함, 8자리 이상
+    const EmailCheck = /^[A-Za-z-0-9\-\.]+@[A-Ja-z-0-9\-\.]+\.[A-Ja-z-0-9]+$/; // 영문 대문자 또는 소문자 또는 숫자로 시작하고 @포함 .포함
 
-    if(userId === null||userId.trim()===''){
+    if((userId === null) || (userId.trim()==='')){
         alert("아이디를 입력해주세요.")
         return;
-    }else if(userPw === null||userPw.trim()===''){
+    }else if((userPw === null) || (userPw.trim()==='')){
         alert("비밀번호를 입력해주세요.")
         return; 
     }else if(userPw !== document.querySelector('#signupPW2').value){
         alert("비밀번호를 확인해주세요.")
         return;
-    }else if(userNickName === null||userNickName.trim()===''){
+    }else if((userNickname === null)||(userNickname.trim()==='')){
         alert("닉네임을 입력해주세요.")
         return;
-    }else if(userEmail === null||userEmail.trim()===''){
+    }else if((userEmail === null)||(userEmail.trim()==='')){
         alert("이메일을 입력해주세요.")
         return;
     }
@@ -191,69 +205,81 @@ document.querySelector('.signup_btn').addEventListener('click', () => {
         if(userId === signupArray[i].userId){
             alert("중복된 아이디가 존재합니다.")
             return;
-        }else if(userNickName === signupArray[i].userNickName){
+        }else if(userNickname === signupArray[i].userNickname){
             alert("중복된 닉네임이 존재합니다.")
             return;
         }
     }
 
-    if((userPw === document.querySelector('#signupPW2').value) && (userId !==null) && (userPw !== null)&&(userEmail!==null)&&(userNickName!==null) ){
-        signupArray.push(new SignUp(userId, userPw, userNickName, userEmail));
+    if(!IdCheck.test(userId)){
+        alert("아이디는 영문자로 시작하는 영문자 또는 숫자 4~12자로 입력해주세요.")
+        return;
+    }else if(!PwCheck.test(userPw)){
+        alert("비밀번호는 문자, 숫자 1개이상 포함, 6자리 이상로 입력해주세요.")
+        return;
+    }else if(!EmailCheck.test(userEmail)){
+        alert("이메일을 다시 확인해주세요")
+        return;
+    }else if((userPw === document.querySelector('#signupPW2').value) && (userId !==null) && (userPw !== null)&&(userEmail!==null)&&(userNickname!==null)){
+        signupArray.push(new SignUp(userId, userPw, userNickname, userEmail));
         localStorage.setItem("lUserDB",JSON.stringify(signupArray));
         alert("회원가입이 완료되었습니다.")
         document.querySelector(".modal_signup_page").style.display = 'none';
-    }else{
-        return;
     }
     userId.innerHTML = "";
     userPw.innerHTML = "";
     document.querySelector('#signupPW2').innerHTML="";
     userEmail.innerHTML = "";
-    userNickName.innerHTML = "";
+    userNickname.innerHTML = "";
     // location.reload();
 })
 
 
 //로그인 실행 이벤트
-
-// 값을 못불러오는 이유  교수님한테 물어볼것
-// const loginID = document.querySelector('#loginID').value;
-// const loginPW = document.querySelector('#loginPW').value;
-
 function login() {
     const loginID = document.querySelector('#loginID').value;
     const loginPW = document.querySelector('#loginPW').value;
     let i = 0;
+    if(signupArray.length == 0){
+        alert("아이디가 존재하지 않습니다.")
+        return; 
+    }
+
+    let islogin = false
     for (i = 0; i < signupArray.length; i++) {
         if (loginID === signupArray[i].userId) {
             if (loginPW === signupArray[i].userPw) {
-                alert("로그인에 성공하였습니다.");
+                islogin = true
+                const OnloginArray = {"userId": signupArray[i].userId,"userPw":signupArray[i].userPw,"userNickname":signupArray[i].usernickname};
+                localStorage.setItem('lUserInfor', JSON.stringify(OnloginArray));
+                window.sessionStorage.setItem("SUserInfor", JSON.stringify(signupArray[i]));
                 document.querySelector('#login_modal_btn').style.display = 'none';
-                loginHeader(i); // 로그인 후 보여질 헤더 화면
-                break;
-            }else {
-                alert("비밀번호를 다시 입력해주세요.");
+                loginHeader(signupArray[i]); // 로그인 후 보여질 헤더 화면
                 break;
             }
-        }else{
-            continue;
         }
     }
-    if (loginID !== signupArray[i].userId){
-        alert("아이디를 찾을수 없습니다.");
+    
+    if(islogin){
+        alert("로그인에 성공하였습니다.")
+        document.querySelector(".modal_page").style.display= 'none';
+    }else{
+        alert("로그인 정보가 일치하지 않습니다.")
+        document.querySelector("#loginID").value = "";
+        document.querySelector("#loginPW").value = "";
     }
 }
 
 // 로그인 버튼 클릭
 document.querySelector('.login_btn').addEventListener('click', (e) => {
-    document.querySelector(".modal_page").style.display= 'none';
     e.preventDefault();
     login();
+
 })
 
 
 // 로그인 이후에 나올 div
-function loginHeader(i){
+function loginHeader(el){
     const onlogindiv = document.createElement("div")
     onlogindiv.classList.add('after_login')
     document.querySelector(".header").append(onlogindiv);
@@ -273,7 +299,7 @@ function loginHeader(i){
     onlogindiv.append(onlogin);
     onlogindiv.append(onbtn);
     onlogindiv.append(onbtn2);
-    onlogin.innerHTML =  signupArray[i].userNickName + "님 환영합니다."
+    onlogin.innerHTML =  el.userNickname + "님 환영합니다."
     // 로그인했을때 내용 수정 필요
     
     document.querySelector('.login_box').style.display= 'none';
@@ -291,6 +317,7 @@ const logout = ()=>{
         alert("로그아웃 되었습니다.")
         afterLogin.remove();
         loginBox.style.display = 'flex';
+        window.sessionStorage.setItem('SUserInfor', '');
         location.reload();
     }
 }
@@ -298,20 +325,37 @@ const logout = ()=>{
 
 // 마이페이지 클릭시 이동
 const mypage = () => {
-    if(confirm("마이페이지로 이동하시겠습니까?")){
         location.href = "http://www.naver.com";
     }
-}
-    // console.log(document.querySelector('#logout'))
-    // document.querySelector('#logout').addEventListener('click',() => {
-    //     console.log("찍힘")
-    //     const afterLogin = document.querySelector('.after_login');
-    //     const loginBox = document.querySelector('.login_box');
 
-    //     if(confirm("로그아웃을 하시겠습니까?") === true){
-    //         alert("로그아웃 되었습니다.")
-    //         afterLogin.remove();
-    //         loginBox.style.display = 'flex';
-    //         location.reload();
-    //     }
-    // });
+
+const allService = document.querySelector(".service")
+const serviceDiv = document.createElement("div")
+allService.addEventListener('mouseover',() =>{
+    const headerBox = document.querySelector(".header")
+    const categoryBox = document.createElement("a")
+    const categoryImg = document.createElement("img")
+    const categoryText = document.createElement("div")
+    
+    serviceDiv.classList.add('service_wrap')
+    categoryBox.classList.add('service_category')
+    categoryImg.classList.add('service_img')
+    categoryText.classList.add('category_text')
+
+    categoryBox.append(categoryImg , categoryText);
+    serviceDiv.append(categoryBox);
+    headerBox.append(serviceDiv);
+    serviceDiv.style.display = 'block'
+
+    
+})
+serviceDiv.addEventListener('mouseover', () => {
+    serviceDiv.classList.add('is-active')});
+
+serviceDiv.addEventListener('mouseover',() =>{
+    serviceDiv.style.display= 'block';
+})
+
+allService.addEventListener('mouseout',() =>{
+    serviceDiv.remove();
+})

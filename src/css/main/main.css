@@ -1157,3 +1157,20 @@ body {
     cursor:pointer;
 }
 
+.service_wrap{
+    width:300px;
+    height:300px;
+    background-color: beige;
+    display:none;
+    position:absolute;
+    border: black;
+    border-radius: 30px;
+    left:285px;
+    top:45px;
+}
+
+.service_wrap.is-active{
+    display:block;
+    transition:1s;
+    z-index:11111;
+}
