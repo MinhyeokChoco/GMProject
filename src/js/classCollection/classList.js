@@ -55,7 +55,7 @@ class MateBoardManager {
 class ReplyManager {
     constructor (_content, _nickname, _userID, _i) {
         this.content = _content;
-        this.nickname = _nickname;
+        this.nickName = _nickname;
         this.userId = _userID;
         this.repleDate = new Date().getFullYear() + "-"+ (new Date().getMonth() + 1) +"-"+ new Date().getDate();
         this.index = _i;

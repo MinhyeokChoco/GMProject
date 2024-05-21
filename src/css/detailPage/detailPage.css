@@ -166,3 +166,44 @@
     font-weight: bold;
     color: violet;
 }
+
+/* 수정, 삭제버튼 영역 */
+.bottomContentDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: 5px;
+}
+
+.updateP{
+    cursor: pointer;
+}
+
+.updateP:hover {
+    text-decoration: underline;
+}
+
+.deleteP {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.deleteP:hover {
+    text-decoration: underline;
+}
+
+.updateTextArea {
+    width: 460px;
+    height: 110px;
+    resize: none;
+}
+
+.updateCCBtn {
+    width: 50px;
+    height: 30px;
+    border: 1px solid gray;
+    background-color: white;
+    cursor: pointer;
+    margin-left: 5px;
+    border-radius: 5px;
+}

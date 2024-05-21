@@ -11,9 +11,7 @@ document.querySelector("#bottomDiv-replyDiv-form").addEventListener('submit', (e
         }
     const replyStore = new StoreBoard(postingNumber);
     let replyIndex = replyStore.getThisArray();
-    console.log("길이: ", replyIndex.length);
-    const replyContent = new ReplyManager(new GetConetent().getPosterConetent("#bottomDiv-replyDiv-area"), userInfor.userNickname, userInfor.userId, replyIndex.length)
-    console.log(replyContent);
+    const replyContent = new ReplyManager(new GetConetent().getPosterConetent("#bottomDiv-replyDiv-area"), userInfor.userNickname, userInfor.userId, replyIndex.length);
     replyStore.setContentArray(replyContent, postingNumber);
     location.reload();
 })
@@ -21,7 +19,6 @@ document.querySelector("#bottomDiv-replyDiv-form").addEventListener('submit', (e
 
 // 댓글 그리기
 function renderReply() {
-    console.dir(replyObj);
     for(let i = 0; i < replyObj.length; i++) {
         if(replyObj[i] === null) {
             continue;
@@ -38,13 +35,14 @@ function renderReply() {
 
         const contentDivTag = document.createElement('div'); // 닉네임 댓글 내용 담는 박스
         contentDivTag.classList.add("contentDiv-reple");
+        contentDivTag.id = (`contentDiv-reple-index${i}`);
 
         const nickPTag = document.createElement('p'); // 닉네임
-        nickPTag.id = "nickNamePtag";
+        nickPTag.id = `nickNamePtag-${i}`;
         nickPTag.classList.add('contentDiv-reple-nickName');
 
         const contentPTag = document.createElement('p'); // 댓글 내용
-        contentPTag.id = "contentPtag";
+        contentPTag.id = `contentPtag-${i}`;
         contentPTag.classList.add('contentDiv-reple-p');
 
         document.querySelector("#bottomDiv-replyDiv-contentDiv").append(replyTag);
@@ -53,13 +51,62 @@ function renderReply() {
         contentDivTag.append(nickPTag, contentPTag);
 
         profileImg.src = userProfileImg.getProfileData(replyObj[i].userId);
-        nickPTag.innerHTML = replyObj[i].nickname
+        nickPTag.innerHTML = replyObj[i].nickName
         contentPTag.innerHTML = replyObj[i].content;
 
-        if(replyObj[i].nick) {
+        // 아이디가 댓글 작성자랑 같으면 수정/삭제 버튼 생성
+        if(replyObj[i].userId === userInfor.userId) {
+            const bottomContentDiv = document.createElement('div');
+            bottomContentDiv.classList.add('bottomContentDiv');
 
+            const updateP = document.createElement('p');
+            updateP.classList.add('updateP');
+            updateP.id = `identfyUpdateP-${i}`
+
+            const deleteP = document.createElement('p');
+            deleteP.classList.add('deleteP');
+            deleteP.id = `identfyDeleteP-${i}`
+
+            contentDivTag.append(bottomContentDiv);
+            bottomContentDiv.append(updateP, deleteP);
+            updateP.innerHTML = "수정";
+            deleteP.innerHTML = "삭제";
+
+            document.querySelector(`#identfyUpdateP-${i}`).addEventListener('click', () => {
+                realizeUDbtn(i);
+            })
         }
     }
 }
 
-// 댓글 삭제 및 수정 기능
+
+// 댓글 수정 기능
+function realizeUDbtn(i) {
+    // 완료버튼
+    const complitebutton = document.createElement("button"); 
+    complitebutton.classList.add('updateCCBtn');
+    complitebutton.innerHTML = "작성";
+
+    // 취소버튼
+    const canclebutton = document.createElement("button"); // 취소버튼
+    canclebutton.classList.add('updateCCBtn');
+    canclebutton.innerHTML = "취소";
+
+    const content = document.querySelector(`#contentPtag-${i}`);
+    const updateBtn = document.querySelector(`#identfyUpdateP-${i}`);
+    const deleteBtn = document.querySelector(`#identfyDeleteP-${i}`);
+
+    content.style.display ="none" // 기존 댓글 내용 안보이게
+    updateBtn.style.display ="none" // 수정버튼 안보이게
+    deleteBtn.style.display ="none" // 삭제버튼 안보이게
+
+    const area = document.createElement('textarea');
+    area.classList.add("updateTextArea");
+
+    if(area.style.display == "none") { 
+        area.style.display == "flex"; // 텍스트에리어 안보이는 거 방지
+    }
+    area.value = replyObj[i].content;
+
+    document.querySelector(`#contentDiv-reple-index${i}`).append(area, complitebutton, canclebutton);
+}
