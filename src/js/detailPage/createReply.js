@@ -1,6 +1,5 @@
 
 
-
 // 댓글 달기
 document.querySelector("#bottomDiv-replyDiv-form").addEventListener('submit', (e) => {
     e.preventDefault(e);
@@ -9,7 +8,6 @@ document.querySelector("#bottomDiv-replyDiv-form").addEventListener('submit', (e
             alert("내용을 입력해주세요");
             return;
         }
-    const replyStore = new StoreBoard(postingNumber);
     let replyIndex = replyStore.getThisArray();
     const replyContent = new ReplyManager(new GetConetent().getPosterConetent("#bottomDiv-replyDiv-area"), userInfor.userNickname, userInfor.userId, replyIndex.length);
     replyStore.setContentArray(replyContent, postingNumber);
@@ -73,7 +71,7 @@ function renderReply() {
             deleteP.innerHTML = "삭제";
 
             document.querySelector(`#identfyUpdateP-${i}`).addEventListener('click', () => {
-                realizeUDbtn(i);
+                createUpdateBtn(i);
             })
         }
     }
@@ -81,15 +79,17 @@ function renderReply() {
 
 
 // 댓글 수정 기능
-function realizeUDbtn(i) {
-    // 완료버튼
-    const complitebutton = document.createElement("button"); 
+function createUpdateBtn(i) {
+
+    const complitebutton = document.createElement("button"); // 완료버튼
     complitebutton.classList.add('updateCCBtn');
+    complitebutton.id = (`updateBtnid${i}`);
     complitebutton.innerHTML = "작성";
 
-    // 취소버튼
+    
     const canclebutton = document.createElement("button"); // 취소버튼
     canclebutton.classList.add('updateCCBtn');
+    canclebutton.id = (`cancelBtnid${i}`);
     canclebutton.innerHTML = "취소";
 
     const content = document.querySelector(`#contentPtag-${i}`);
@@ -109,4 +109,24 @@ function realizeUDbtn(i) {
     area.value = replyObj[i].content;
 
     document.querySelector(`#contentDiv-reple-index${i}`).append(area, complitebutton, canclebutton);
+
+    // 댓글 작성
+    complitebutton.addEventListener('click', () => {
+        replyObj[i].content = area.value;
+        localStorage.setItem(postingNumber, JSON.stringify(replyObj));
+        location.reload();
+    })
+
+    // 취소
+    canclebutton.addEventListener('click', () => {
+        area.style.display = "none"; // 에리아 안보이게
+        complitebutton.style.display = "none"; // 작성버튼 안보이게
+        canclebutton.style.display = "none"; // 취소버튼 안보이게
+
+        content.style.display = "flex" // 기존 댓글 내용 보이게
+        updateBtn.style.display = "flex" // 수정버튼 보이게
+        deleteBtn.style.display = "flex" // 삭제버튼 보이게
+
+
+    })
 }
