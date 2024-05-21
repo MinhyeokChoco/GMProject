@@ -1,4 +1,4 @@
-const modifyContent = document.getElementById("modifyContent"); // 수정할 내용을 담은 div 요소
+const modifyContent = document.getElementById("modifyContent"); // 기존 내용을 수정할 수 있는 입력창
 const modifyBtn = document.getElementById("modifyBtn"); // 수정 버튼
 const backBtn = document.getElementById("backBtn"); // 뒤로 가기 버튼
 const csData = JSON.parse(localStorage.getItem("csData")); // 로컬 스토리지에 저장되어 있는 csData 
@@ -15,14 +15,12 @@ modifyBtn.addEventListener("click", () => { // 수정 버튼을 눌렀을 때의
         csData[index].content = newContent; // 로컬 스토리지의 배열에 수정된 내용 할당
         localStorage.setItem("csData", JSON.stringify(csData)); // 로컬스토리지에 다시 저장
         alert("수정되었습니다.")
-        location.href = `view.html?index=${viewIndex}`;
+        location.href = `view.html?index=${viewIndex}`; // 수정 후 상세페이지로 이동
     } else {
-        alert("새 제목과 내용을 모두 입력해주세요.")
+        alert("새 제목과 내용을 모두 입력해주세요.") // 제목이나 내용 중 입력 값이 없으면 다시 입력해달라는 알림창
     }
 });
 
-backBtn.addEventListener("click", () => {
-    location.href = `view.html?index=${viewIndex}`;
+backBtn.addEventListener("click", () => { // 뒤로 가기 버튼을 눌렀을 때의 이벤트 추가
+    location.href = `view.html?index=${viewIndex}`; // 수정 전 상세 페이지로 이동
 });
-
-// 검색창, 페이지네이션, 댓글 (대댓글)
