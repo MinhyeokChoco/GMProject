@@ -12,7 +12,7 @@ const writeData = JSON.parse(localStorage.getItem("csData")) || []; // 상수 �
 function write() { // write라는 함수 생성
     const titleValue = document.getElementById("_title"); // 제목값이라는 변수에 _title 요소의 값을 가져옴
     const contentValue = document.getElementById("_content"); // 내용값이라는 변수에 _content 요소의 값을 가져옴
-    const writeBtn = document.getElementById("_writebtn"); // 작성버튼이라는 변수에 _writebtn 요소의 값을 가져옴
+    const writeBtn = document.getElementById("_writeBtn"); // 작성버튼이라는 변수에 _writebtn 요소의 값을 가져옴
     // const localData = JSON.parse(localStorage.getItem(""));
     const date = new Date(); // 생성 순간의 날짜와 시간을 가져옴
     const year = date.getFullYear(); // 현재 연도를 반환함
