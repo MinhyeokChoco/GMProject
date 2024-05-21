@@ -75,7 +75,7 @@ document.querySelector("#midbottomDiv-listBtn").addEventListener('click', () => 
     }
 })
 
-// 수정 및 삭제버튼 구현 함수
+// 수정 및 삭제버튼 생성 함수
 function addUDbtn() {
     const pTag = document.createElement("p"); // 수정버튼
     const pTag02 = document.createElement("p"); // 삭제버튼
@@ -130,4 +130,8 @@ function fnImplementation() {
 // 프사 누르면 해당 유저 정보창으로 이동(추후 버튼은 수정 가능)
 document.querySelector("#topDiv-profileDiv").addEventListener('click', () => {
     window.location.href = `../userInfor/userInformation.html?user=${contentObj.userId}`
+})
+
+document.querySelector("#bottomDiv-replyDiv-form").addEventListener('click', () => {
+    
 })
