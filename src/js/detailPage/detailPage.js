@@ -89,7 +89,7 @@ document.querySelector("#midbottomDiv-listBtn").addEventListener('click', () => 
 })
 
 
-// 프사 누르면 해당 유저 정보창으로 이동(추후 버튼은 수정 가능)
+// 프사 누르면 해당 유저 정보창으로 이동
 document.querySelector("#topDiv-profileDiv").addEventListener('click', () => {
     window.location.href = `../userInfor/userInformation.html?user=${contentObj.userId}`
 })

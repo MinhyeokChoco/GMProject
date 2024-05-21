@@ -59,6 +59,7 @@ class ReplyManager {
         this.userId = _userID;
         this.repleDate = new Date().getFullYear() + "-"+ (new Date().getMonth() + 1) +"-"+ new Date().getDate();
         this.index = _i;
+        this.being = true;
     }
 }
 

@@ -43,6 +43,11 @@ function renderReply() {
         contentPTag.id = `contentPtag-${i}`;
         contentPTag.classList.add('contentDiv-reple-p');
 
+        // 삭제된 댓글이면 색 변경
+        if(!replyObj[i].being) {
+            contentPTag.style.color = "lightgray";
+        }
+
         document.querySelector("#bottomDiv-replyDiv-contentDiv").append(replyTag);
         replyTag.append(profileDivTag, contentDivTag);
         profileDivTag.append(profileImg);
@@ -58,7 +63,7 @@ function renderReply() {
         })
 
         // 아이디가 댓글 작성자랑 같으면 수정/삭제 버튼 생성
-        if(replyObj[i].userId === userInfor.userId) {
+        if(replyObj[i].userId === userInfor.userId && replyObj[i].being) {
             const bottomContentDiv = document.createElement('div');
             bottomContentDiv.classList.add('bottomContentDiv');
 
@@ -78,6 +83,11 @@ function renderReply() {
             document.querySelector(`#identfyUpdateP-${i}`).addEventListener('click', () => {
                 createUpdateBtn(i);
             })
+
+            deleteP.addEventListener('click', () => {
+                if(confirm("정말로 댓글을 삭제하시겠습니까?")) {
+                    deleteAction(i); 
+            }})
 
 
         }
@@ -111,20 +121,20 @@ function createUpdateBtn(i) {
     area.classList.add("updateTextArea");
 
     if(area.style.display == "none") { 
-        area.style.display == "flex"; // 텍스트에리어 안보이는 거 방지
+        area.style.display = "flex"; // 텍스트에리어 안보이는 거 방지
     }
     area.value = replyObj[i].content;
 
     document.querySelector(`#contentDiv-reple-index${i}`).append(area, complitebutton, canclebutton);
 
-    // 댓글 작성
+    // 댓글 수정
     complitebutton.addEventListener('click', () => {
         replyObj[i].content = area.value;
         localStorage.setItem(postingNumber, JSON.stringify(replyObj));
         location.reload();
     })
 
-    // 취소
+    // 수정 취소
     canclebutton.addEventListener('click', () => {
         area.style.display = "none"; // 에리아 안보이게
         complitebutton.style.display = "none"; // 작성버튼 안보이게
@@ -136,4 +146,12 @@ function createUpdateBtn(i) {
 
 
     })
+}
+
+// 댓글 삭제
+function deleteAction(i) {
+    replyObj[i].content = "삭제된 댓글입니다.";
+    replyObj[i].being = false;
+    localStorage.setItem(postingNumber, JSON.stringify(replyObj));
+    location.reload();
 }
