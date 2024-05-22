@@ -69,7 +69,7 @@ body {
     width:116px;
     height:30px;
     position:relative;
-    left:165px;
+    left:160px;
     top:19px;
 }
 
@@ -128,6 +128,56 @@ body {
     top: 14.5px;
     left:103.5px;
     transform: rotate(132deg);
+}
+
+.service_wrap{
+    width:870px;
+    height:353px;
+    background-color: white;
+    visibility:hidden;
+    opacity: 0;
+    flex-wrap:wrap;
+    position:absolute;
+    border: black;
+    border-radius: 10px;
+    left:277px;
+    top:55px;
+}
+
+.service_wrap > a{
+    width:253px;
+    height:63px;
+    margin:9px 18px 0px 18px;
+    display:flex;
+    align-items: center;
+}
+
+.service_wrap > a:hover{
+    cursor:pointer;
+}
+
+.service_wrap > a:hover > .category_text{
+    background-color: #4D4D4D;
+    color:white;
+    font-weight: 700;
+}
+
+.service_img{
+    width:54px;
+    height:68px;
+    border-radius: 5px;
+}
+
+.category_text{
+    width:200px;
+    height:58px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:0px 12px 12px 0;
+    background-color: #F5F7F8;
+    color:black;
+    
 }
 
 .header_search {
@@ -419,11 +469,6 @@ body {
     height:2px;
     background-color: black;
     transform: rotate(45deg);
-}
-
-.game_list_scroll > .prevBtn::after:hover,
-.game_list_scroll > .prevBtn::before:hover{
-    
 }
 
     .game_list_scroll > .prevBtn:hover{
@@ -1173,22 +1218,4 @@ body {
 
 .signup_btn:hover{
     cursor:pointer;
-}
-
-.service_wrap{
-    width:300px;
-    height:300px;
-    background-color: beige;
-    display:none;
-    position:absolute;
-    border: black;
-    border-radius: 30px;
-    left:285px;
-    top:45px;
-}
-
-.service_wrap.is-active{
-    display:block;
-    transition:1s;
-    z-index:11111;
 }

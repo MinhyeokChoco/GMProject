@@ -47,6 +47,7 @@ class GameListScroll {
         this.event();
     }
 
+    // 스크롤바 생성
     init() {
         this.game_list_scroll = document.createElement("div")
         this.prev = document.createElement("div")
@@ -70,8 +71,8 @@ class GameListScroll {
         this.scrollBarWidth = this.scroll_bar.clientWidth;
     }
 
-
     event(){
+        // 마우스를 누를 때
         this.scrollBtn.onmousedown = (e) => {
             this.scrollTarget = e.target;
             // console.dir(this.scrollBtn)
@@ -81,8 +82,9 @@ class GameListScroll {
             this.startPosX = e.clientX - this.scrollBtn.offsetLeft;
             this.scrollBtn.classList.add('active'); 
             this.scrollBtn.style.cursor = 'grabbing'
-
         }
+
+        //마우스가 움직일 때
         window.addEventListener("mousemove", (e) => {
             if(this.scrollTarget){
                 //this.scrollBarWidth == 400 스크롤바 크기
@@ -98,28 +100,14 @@ class GameListScroll {
             
         })
         
+        //마우스가 떨어졋을 때
         window.addEventListener("mouseup",() => {
             this.scrollTarget = null;
             this.scrollBtn.classList.remove('active');
             this.scrollBtn.style.cursor = 'grab'
         })
-        
-        // this.prev.addEventListener('click', () =>{
-        //     this.category_list = document.querySelector('.category_list')
-        //     this.scrollPercentage = 16.6666666;
-        //     const category_list = this.category_list.offsetWidth * (this.scrollPercentage / 100);
-        //     const scrollBtn_list = (this.scrollBarWidth - this.scrollBtn.clientWidth +5) * (this.scrollPercentage / 100);
-        //     if(`${parseInt(this.scrollBarWidth - scrollBtn_list)}px` < '20px'){
-        //         this.scrollBtn.style.left = `${parseInt(this.scrollBtn.style.left) + scrollBtn_list}px`
-        //     }
-        //     this.category_list.scrollLeft -= category_list;
-        //     this.scrollBtn.style.left = `${parseInt(this.scrollBtn.style.left) - scrollBtn_list}px`;
-        //     //this.scrollBtn.style.left 스크롤버튼의 X축 위치 px
-        //     console.log(`${parseInt(this.scrollBarWidth - scrollBtn_list)}px`)
-        //     console.log(scrollBtn_list)
-        //     console.log(this.scrollBtn.style.left)
-        // });
 
+        //스크롤바 왼쪽 버튼
         this.prev.addEventListener('click', () => {
             // 필요한 요소와 변수를 초기화합니다.
             this.category_list = document.querySelector('.category_list');
@@ -149,49 +137,8 @@ class GameListScroll {
             this.category_list.scrollLeft -= category_list_scroll;
         })
 
-
-//         this.next.addEventListener('click', () =>{
-//             this.category_list = document.querySelector('.category_list')
-//             this.scrollPercentage = 16.6;
-//             const category_list = this.category_list.offsetWidth * (this.scrollPercentage / 100); // 카테고리리스트의 16.6퍼
-//             const scrollBtn_list = (this.scrollBarWidth - this.scrollBtn.clientWidth +5) * (this.scrollPercentage / 100); // 스크롤길이의 16.6퍼
-//             this.category_list.scrollLeft += category_list; // 카테고리리스트의 16.6퍼씩 증가
-//             this.scrollBtn.style.left = `${parseInt(this.scrollBtn.style.left) + scrollBtn_list}px`;
-//             if(this.scrollBtn.style.left >= this.scrollBarWidth - this.scrollBtn.clientWidth +5); return
-//         })
-//     }
-// }
-
-// this.next.addEventListener('click', () => {
-//     // 필요한 요소와 변수를 초기화합니다.
-//     this.category_list = document.querySelector('.category_list');
-//     this.scrollPercentage = 16.6666666;
-
-//     // 카테고리 리스트의 스크롤 거리를 계산합니다.
-//     const category_list_scroll = this.category_list.offsetWidth * (this.scrollPercentage / 100);
-
-//     // 스크롤 버튼의 스크롤 거리를 계산합니다.
-//     const scrollBtn_scroll = (this.scrollBarWidth - this.scrollBtn.clientWidth) * (this.scrollPercentage / 100);
-
-//     // 스크롤 버튼의 현재 왼쪽 위치
-//     let currentScrollBtnLeft = parseInt(this.scrollBtn.style.left, 10) || 0;
-
-//     // 버튼 클릭 후 새 위치
-//     let newScrollBtnLeft = currentScrollBtnLeft + scrollBtn_scroll;
-
-//     // 새 위치가 오른쪽 경계를 넘지 않도록 합니다.
-//     if (newScrollBtnLeft < this.scrollBarWidth - this.scrollBtn.clientWidth) {
-//         newScrollBtnLeft = this.scrollBarWidth - this.scrollBtn.clientWidth;
-//     }
-
-//     // 스크롤 버튼 위치를 업데이트합니다.
-//     this.scrollBtn.style.left = `${newScrollBtnLeft}px`;
-
-//     // 카테고리 리스트를 오른쪽으로 스크롤합니다.
-//     this.category_list.scrollLeft += category_list_scroll;
-// })
-
-this.next.addEventListener('click', () => {
+        //스크롤바 오른쪽 버튼
+        this.next.addEventListener('click', () => {
     // 필요한 요소와 변수를 초기화
     this.category_list = document.querySelector('.category_list');
     this.scrollPercentage = 16.6666666;
@@ -216,15 +163,16 @@ this.next.addEventListener('click', () => {
     // 스크롤 버튼 위치 업데이트
     this.scrollBtn.style.left = `${newScrollBtnLeft}px`;
 
-    // 카테고리 리스트를 오른쪽으로 스크롤
-    this.category_list.scrollLeft += category_list_scroll;
-    });
+        // 카테고리 리스트를 오른쪽으로 스크롤
+        this.category_list.scrollLeft += category_list_scroll;
+        });
     }
 }
 
-
 const gameListScroll = new GameListScroll(rec_category,categoryList)
 
+
+//header
 //로그인 세션 유지
 let SUser = null
 if(sessionStorage.getItem('SUserInfor')){
@@ -235,7 +183,6 @@ if(SUser !== null){
     document.querySelector('.login_box').style.display= 'none';
     loginHeader(SUser)
 }
-
 
 // 로그인모달 클라스
 class LoginModal{
@@ -367,7 +314,6 @@ document.querySelector('.signup_btn').addEventListener('click', () => {
     // location.reload();
 })
 
-
 //로그인 실행 이벤트
 function login() {
     const loginID = document.querySelector('#loginID').value;
@@ -410,7 +356,6 @@ document.querySelector('.login_btn').addEventListener('click', (e) => {
 
 })
 
-
 // 로그인 이후에 나올 div
 function loginHeader(el){
     const onlogindiv = document.createElement("div")
@@ -440,7 +385,6 @@ function loginHeader(el){
     onlogindiv.style.display = 'flex';
 }
 
-
 // 로그아웃 클릭시 로그아웃
 const logout = ()=>{
     const afterLogin = document.querySelector('.after_login');
@@ -455,40 +399,35 @@ const logout = ()=>{
     }
 }
 
-
 // 마이페이지 클릭시 이동
 const mypage = () => {
         location.href = "http://www.naver.com";
     }
 
+// 모든 서비스 hover 시 나오는 창
+const service = document.querySelector('.service')
+const serviceWrap = document.querySelector('.service_wrap')
 
-const allService = document.querySelector(".service")
-const serviceDiv = document.createElement("div")
-allService.addEventListener('mouseover',() =>{
-    const headerBox = document.querySelector(".header")
-    const categoryBox = document.createElement("a")
-    const categoryImg = document.createElement("img")
-    const categoryText = document.createElement("div")
-    
-    serviceDiv.classList.add('service_wrap')
-    categoryBox.classList.add('service_category')
-    categoryImg.classList.add('service_img')
-    categoryText.classList.add('category_text')
+service.addEventListener('mouseover', () =>{
+    serviceWrap.style.display = 'flex' 
+    serviceWrap.style.visibility = 'visible'
+    serviceWrap.style.opacity = '1'
+    serviceWrap.style.transition = '0.3s'
+});
 
-    categoryBox.append(categoryImg , categoryText);
-    serviceDiv.append(categoryBox);
-    headerBox.append(serviceDiv);
-    serviceDiv.style.display = 'block'
-
-    
-})
-serviceDiv.addEventListener('mouseover', () => {
-    serviceDiv.classList.add('is-active')});
-
-serviceDiv.addEventListener('mouseover',() =>{
-    serviceDiv.style.display= 'block';
+service.addEventListener('mouseout', () =>{
+    serviceWrap.style.opacity = '0'
+    serviceWrap.style.visibility = 'hidden'
 })
 
-allService.addEventListener('mouseout',() =>{
-    serviceDiv.remove();
+serviceWrap.addEventListener('mouseover', () =>{
+    serviceWrap.style.display = 'flex'
+    serviceWrap.style.visibility = 'visible'
+    serviceWrap.style.opacity = '1'
+    serviceWrap.style.transition = '0.3s'
+})
+
+serviceWrap.addEventListener('mouseout', () =>{
+    serviceWrap.style.opacity = '0'
+    serviceWrap.style.visibility = 'hidden'
 })
