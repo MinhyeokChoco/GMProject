@@ -184,3 +184,25 @@ class UserDBManager {
         localStorage.setItem(wantedLocalStorage, JSON.stringify(DBarray));
     }
 }
+
+// HTML 요소를 만들어 주는 클래스
+class createHTMLElement {
+    getElement_all(desireElement, _className, _id) {
+        const HTMLElemnt = document.createElement(desireElement);
+        HTMLElemnt.id = _id
+        HTMLElemnt.className = _className
+        return HTMLElemnt;
+    }
+    // id 없이 만들기
+    getElement_class(desireElement, _className) {
+        const HTMLElemnt = document.createElement(desireElement);
+        HTMLElemnt.classList.add(_className)
+        return HTMLElemnt;
+    }
+    // class 이름 없이 만들기
+    getElement_id(desireElement, _id) {
+        const HTMLElemnt = document.createElement(desireElement);
+        HTMLElemnt.id = _id
+        return HTMLElemnt;
+    }
+}

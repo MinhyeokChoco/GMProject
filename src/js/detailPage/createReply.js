@@ -19,7 +19,7 @@ function renderReply() {
         if(replyObj[i] === null) {
             continue;
         }
-        
+
         const wholeRepleDiv = document.createElement('div'); // 댓글영역만 감싸는 div
         wholeRepleDiv.classList.add("wholeRepleDiv");
         wholeRepleDiv.id = `wholeRepleDiv-id${i}`
@@ -69,10 +69,11 @@ function renderReply() {
         })
 
         const bottomContentDiv = document.createElement('div'); //답글, 수정, 삭제 영역 Div
+        bottomContentDiv.classList.add('bottomContentDiv');
+        contentDivTag.append(bottomContentDiv);
 
         // 아이디가 댓글 작성자랑 같으면 수정/삭제 버튼 생성
         if(replyObj[i].userId === userInfor.userId && replyObj[i].being) {
-            bottomContentDiv.classList.add('bottomContentDiv');
 
             const updateP = document.createElement('p');
             updateP.classList.add('updateP');
@@ -82,7 +83,6 @@ function renderReply() {
             deleteP.classList.add('deleteP');
             deleteP.id = `identfyDeleteP-${i}`
 
-            contentDivTag.append(bottomContentDiv);
             bottomContentDiv.append(updateP, deleteP);
             updateP.innerHTML = "수정";
             deleteP.innerHTML = "삭제";
@@ -111,6 +111,7 @@ function renderReply() {
                     
             }
     }
+    commentRenderStart();
 }
 
 

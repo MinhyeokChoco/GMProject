@@ -5,8 +5,10 @@ const contentObj = new StoreBoard().getContentArray(nowKategorie)[nowIndex]; // 
 const userInfor = new UserLoginManager().getUserInforBox(); // 지금 로그인 중인 유저의 정보를 가져옴
 const localConetArray = new StoreBoard().getContentArray(nowKategorie); // 로컬의 모든 정보 불러옴
 const postingNumber = nowKategorie + nowIndex; // 댓글 구현을 위한 현재 카테고리와 게시물 인덱스 정보
-const replyStore = new StoreBoard(postingNumber);
+const replyStore = new StoreBoard(postingNumber); // 댓글 담을 객체 생성
 const replyObj = new StoreBoard().getContentArray(postingNumber); // 현재페이지 댓글 가져옴
+const elementMaker = new createHTMLElement(); // html 요소 만들어주는 클래스 불러옴
+
 
 const userProfileImg = new UserProfileManage('lUserProfile');
 const userProfilemessage = new UserProfileManage('lUserMessage')

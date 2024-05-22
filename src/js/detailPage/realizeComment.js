@@ -1,7 +1,7 @@
+// 대댓글 시작 - 답글 버튼 누르면 문서 실행
 
 function implementCommnet(i) {
-    selectedReplyIndex = `${postingNumber}_${i}`; //ex) starrail2_0
-    console.log(selectedReplyIndex);
+    const selectedReplyIndex = `${postingNumber}_${i}`; //ex) starrail2_0
     const commentStore = new StoreBoard(selectedReplyIndex); // 카테고리명에 해당하는 배열 생성
     createCommentBox(i); /// div 생성
     realizeCommentBtn(i); //텍스트에리어 생성
@@ -25,7 +25,7 @@ function realizeCommentBtn(i) {
     if(document.querySelector(`#commentTextArea-Id${i}`)) {
         document.querySelector(`#commentTextArea-Id${i}`).style.display = "flex";
         document.querySelector(`#commentTextArea-Id${i}`).value = "";
-        return; // 이미 에리어가 보여주고 리턴
+        return; // 이미 에리어가 존재하면 보여주고 리턴
     }
     const commentArea = document.createElement('textarea'); // 텍스트에리어 생성
     commentArea.classList.add('commentTextArea');
@@ -42,6 +42,9 @@ function removeCommentAear(i) {
 
 // 수정 취소 답글 토글
 function toggleBtn(i) {
+    if(replyObj[i].userId !== userInfor.userId && replyObj[i].being) {
+        return;
+    }
     let updateDisplay = document.querySelector(`#identfyUpdateP-${i}`)
     let deleteDisplay = document.querySelector(`#identfyDeleteP-${i}`)
     let commentDisplay = document.querySelector(`#commentP-${i}`)

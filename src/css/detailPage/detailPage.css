@@ -239,3 +239,24 @@
     height: 110px;
     margin-top: 5px;
 }
+
+.wholeCommentDiv{
+    margin-top: 10px;
+}
+
+.onlyCommentDiv {
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+}
+
+/* 대댓글 수정, 삭제 영역 */
+.commentBtnDiv{
+    display: flex;
+    justify-content: right;
+}
+
+/* 대댓글 삭제버튼 */
+.commentDeleteBtn {
+    margin-left: 5px;
+}
