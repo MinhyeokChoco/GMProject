@@ -22,7 +22,6 @@ function newEditCommentStart() {
 
 // 버튼 그리기
 function newEditComment(index, commentList) {
-    console.log(commentList);
     // 버튼 요소들을 만들자
     for(let i = 0; i < commentList.length; i++) {
         const commentBtnDiv = elementMaker.getElement_all('div', 'commentBtnDiv', `commentBtnDiv-id${index}-${i}`);
@@ -37,7 +36,7 @@ function newEditComment(index, commentList) {
 
         commentUpdatePtag.addEventListener('click', () => {
             // 수정 버튼 눌렀을 때
-            implementUpdate(index, i, commentList);  
+            implementUpdate(index, i);  
         })
         commentDeletePtag.addEventListener('click', () => {
             // 삭제 버튼 누르기
@@ -54,6 +53,10 @@ function implementUpdate(index, i) {
 
 // 텍스트 에리어 생성
 function createCommentEditer(index, i) {
+    if(document.querySelector(`#commentUpdateTextarea-id${index}-${i}`)) {
+        document.querySelector(`#commentUpdateTextarea-id${index}-${i}`).style.display = "flex";
+        return;
+    }
         const commentUpdateTextarea = elementMaker.getElement_all("textarea", "commentUpdateTextarea", `commentUpdateTextarea-id${index}-${i}`);
         document.querySelector(`#letterDiv-id${index}-${i}`).append(commentUpdateTextarea);
         
@@ -100,7 +103,7 @@ function createCompletionBtn(index, i) {
     })
 
     commentTextareaCancle.addEventListener('click', () => {
-        commentEditCancleEvent(i);
+        commentEditCancleEvent(index, i);
     })
 }
 
