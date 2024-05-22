@@ -358,7 +358,7 @@ body {
     position:relative;
 }
 
-.game_list_scroll > div > span{
+.scroll_bar > span{
     display: inline-block;
     width: 40px;
     height: 12px;
@@ -369,79 +369,97 @@ body {
     position: absolute;
 }
 
-.game_list_scroll > div > span:hover{
+.scroll_bar > span:hover,
+.scroll_bar > span.active{
     cursor:grab;
     position: absolute;
-    top:-50%;
-    transform:scale(1.1);
+    transform: translateY(-50%) scale(1.2);
+    transition :transform 0.2s;
 }
 
 
-.game_list_scroll > div{
+.scroll_bar{
     width: 400px;
     height: 6px;
     border-radius: 80px;
     background-color: #B0AB99;
     position:relative;
+    margin-left:15px;
+    margin-right:15px;
 }
 
-.game_list_scroll > div:hover{
+.scroll_bar:hover{
     cursor:pointer;
 }
 
-.game_list_scroll > button:nth-child(1){
+.game_list_scroll > .prevBtn{
+    width:20px;
+    height:20px;
+    background-color: #F5F7F8;
     border:none;
 }
 
-.game_list_scroll > button:nth-child(1)::after{
+.game_list_scroll > .prevBtn::after{
     content:"";
     position:absolute;
-    left:330px;
-    bottom:5px;
+    left: 320px;
+    bottom: 12px;
     width:10px;
     height:2px;
     background-color: black;
     transform: rotate(-45deg);
 }
 
-.game_list_scroll > button:nth-child(1)::before{
+.game_list_scroll > .prevBtn::before{
     content:"";
     position:absolute;
-    left:330px;
-    top:5px;
+    left: 320px;
+    top: 12px;
     width:10px;
     height:2px;
     background-color: black;
     transform: rotate(45deg);
 }
 
-.game_list_scroll > button:nth-child(3){
-    border: none;
+.game_list_scroll > .prevBtn::after:hover,
+.game_list_scroll > .prevBtn::before:hover{
+    
 }
 
-.game_list_scroll > button:nth-child(3)::after{
+    .game_list_scroll > .prevBtn:hover{
+    cursor: pointer;
+}
+
+.game_list_scroll > .nextBtn{
+    width:20px;
+    height:20px;
+    background-color: #F5F7F8;
+    border:none;
+}
+
+.game_list_scroll > .nextBtn::after{
     content:"";
     position:absolute;
-    left:760px;
-    bottom:5px;
+    left: 769px;
+    bottom: 12px;
     width:10px;
     height:2px;
     background-color: black;
     transform: rotate(-135deg);
 }
 
-.game_list_scroll > button:nth-child(3)::before{
+.game_list_scroll > .nextBtn::before{
     content:"";
     position:absolute;
-    left:760px;
-    top:5px;
+    left: 769px;
+    top: 12px;
     width:10px;
     height:2px;
     background-color: black;
     transform: rotate(135deg);
 }
 
-.game_list_scroll > button:hover{
+.game_list_scroll > .nextBtn:hover{
     cursor: pointer;
 }
 

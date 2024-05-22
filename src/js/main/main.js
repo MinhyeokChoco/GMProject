@@ -49,14 +49,14 @@ class GameListScroll {
 
     init() {
         this.game_list_scroll = document.createElement("div")
-        this.prev = document.createElement("button")
-        this.prev.className = "prevBtn";
+        this.prev = document.createElement("div")
         this.scroll_bar = document.createElement("div")
         this.scrollBtn = document.createElement("span")
-        this.next = document.createElement("button")
-        this.next.className = "nextBtn";
+        this.next = document.createElement("div")
         this.game_list_scroll.className = "game_list_scroll";
         this.scroll_bar.className = "scroll_bar";
+        this.prev.className = "prevBtn";
+        this.next.className = "nextBtn";
         this.prev.innerHTML = "";
         this.next.innerHTML = "";
 
@@ -74,22 +74,155 @@ class GameListScroll {
     event(){
         this.scrollBtn.onmousedown = (e) => {
             this.scrollTarget = e.target;
+            // console.dir(this.scrollBtn)
+            // console.log(e.offsetX)
+            // console.log(this.scrollBarWidth - e.offsetX)
+            // console.log((e.x - this.startPosX) - e.offsetX)
+            this.startPosX = e.clientX - this.scrollBtn.offsetLeft;
+            this.scrollBtn.classList.add('active'); 
+            this.scrollBtn.style.cursor = 'grabbing'
+
         }
         window.addEventListener("mousemove", (e) => {
             if(this.scrollTarget){
-                const _left = (e.x - this.startPosX) - this.click ;
-                if((_left <= 0) || (_left >= (this.scrollBarWidth - this.scrollBtn.clientWidth))) return
-                this.scrollTarget.style.left = `${_left}px`
-                const a = Math.round(_left/(this.scrollBarWidth - this.scrollBtn.clientWidth) * 100);
+                //this.scrollBarWidth == 400 스크롤바 크기
+                //e.offsetX == span 클릭 위치
+                //startPosX == 481 고정
+                //e.x == 클릭한 위치 X 좌표
+                const _left = (e.clientX - this.startPosX);
+                if((_left <= -5) || (_left >= this.scrollBarWidth - this.scrollBtn.clientWidth +5)) return
+                this.scrollBtn.style.left = `${_left}px`
+                const a = (_left/(this.scrollBarWidth - this.scrollBtn.clientWidth) * 100);
                 this.categoryList.scrollLeft =(this.categoryList.scrollWidth - this.categoryList.offsetWidth ) * a / 100;
             }
+            
         })
         
-        window.addEventListener("mouseup",(e) => {
+        window.addEventListener("mouseup",() => {
             this.scrollTarget = null;
+            this.scrollBtn.classList.remove('active');
+            this.scrollBtn.style.cursor = 'grab'
         })
+        
+        // this.prev.addEventListener('click', () =>{
+        //     this.category_list = document.querySelector('.category_list')
+        //     this.scrollPercentage = 16.6666666;
+        //     const category_list = this.category_list.offsetWidth * (this.scrollPercentage / 100);
+        //     const scrollBtn_list = (this.scrollBarWidth - this.scrollBtn.clientWidth +5) * (this.scrollPercentage / 100);
+        //     if(`${parseInt(this.scrollBarWidth - scrollBtn_list)}px` < '20px'){
+        //         this.scrollBtn.style.left = `${parseInt(this.scrollBtn.style.left) + scrollBtn_list}px`
+        //     }
+        //     this.category_list.scrollLeft -= category_list;
+        //     this.scrollBtn.style.left = `${parseInt(this.scrollBtn.style.left) - scrollBtn_list}px`;
+        //     //this.scrollBtn.style.left 스크롤버튼의 X축 위치 px
+        //     console.log(`${parseInt(this.scrollBarWidth - scrollBtn_list)}px`)
+        //     console.log(scrollBtn_list)
+        //     console.log(this.scrollBtn.style.left)
+        // });
+
+        this.prev.addEventListener('click', () => {
+            // 필요한 요소와 변수를 초기화합니다.
+            this.category_list = document.querySelector('.category_list');
+            this.scrollPercentage = 16.6666666;
+        
+            // 카테고리 리스트의 스크롤 거리를 계산합니다.
+            const category_list_scroll = this.category_list.offsetWidth * (this.scrollPercentage / 100);
+        
+            // 스크롤 버튼의 스크롤 거리를 계산합니다.
+            const scrollBtn_scroll = (this.scrollBarWidth - this.scrollBtn.clientWidth) * (this.scrollPercentage / 100);
+        
+            // 스크롤 버튼의 현재 왼쪽 위치
+            let currentScrollBtnLeft = parseInt(this.scrollBtn.style.left, 10) || 0;
+        
+            // 버튼 클릭 후 새 위치
+            let newScrollBtnLeft = currentScrollBtnLeft - scrollBtn_scroll;
+        
+            // 새 위치가 왼쪽 경계를 넘지 않도록 합니다.
+            if (newScrollBtnLeft < 0) {
+                newScrollBtnLeft = 0;
+            }
+        
+            // 스크롤 버튼 위치를 업데이트합니다.
+            this.scrollBtn.style.left = `${newScrollBtnLeft}px`;
+        
+            // 카테고리 리스트를 왼쪽으로 스크롤합니다.
+            this.category_list.scrollLeft -= category_list_scroll;
+        })
+
+
+//         this.next.addEventListener('click', () =>{
+//             this.category_list = document.querySelector('.category_list')
+//             this.scrollPercentage = 16.6;
+//             const category_list = this.category_list.offsetWidth * (this.scrollPercentage / 100); // 카테고리리스트의 16.6퍼
+//             const scrollBtn_list = (this.scrollBarWidth - this.scrollBtn.clientWidth +5) * (this.scrollPercentage / 100); // 스크롤길이의 16.6퍼
+//             this.category_list.scrollLeft += category_list; // 카테고리리스트의 16.6퍼씩 증가
+//             this.scrollBtn.style.left = `${parseInt(this.scrollBtn.style.left) + scrollBtn_list}px`;
+//             if(this.scrollBtn.style.left >= this.scrollBarWidth - this.scrollBtn.clientWidth +5); return
+//         })
+//     }
+// }
+
+// this.next.addEventListener('click', () => {
+//     // 필요한 요소와 변수를 초기화합니다.
+//     this.category_list = document.querySelector('.category_list');
+//     this.scrollPercentage = 16.6666666;
+
+//     // 카테고리 리스트의 스크롤 거리를 계산합니다.
+//     const category_list_scroll = this.category_list.offsetWidth * (this.scrollPercentage / 100);
+
+//     // 스크롤 버튼의 스크롤 거리를 계산합니다.
+//     const scrollBtn_scroll = (this.scrollBarWidth - this.scrollBtn.clientWidth) * (this.scrollPercentage / 100);
+
+//     // 스크롤 버튼의 현재 왼쪽 위치
+//     let currentScrollBtnLeft = parseInt(this.scrollBtn.style.left, 10) || 0;
+
+//     // 버튼 클릭 후 새 위치
+//     let newScrollBtnLeft = currentScrollBtnLeft + scrollBtn_scroll;
+
+//     // 새 위치가 오른쪽 경계를 넘지 않도록 합니다.
+//     if (newScrollBtnLeft < this.scrollBarWidth - this.scrollBtn.clientWidth) {
+//         newScrollBtnLeft = this.scrollBarWidth - this.scrollBtn.clientWidth;
+//     }
+
+//     // 스크롤 버튼 위치를 업데이트합니다.
+//     this.scrollBtn.style.left = `${newScrollBtnLeft}px`;
+
+//     // 카테고리 리스트를 오른쪽으로 스크롤합니다.
+//     this.category_list.scrollLeft += category_list_scroll;
+// })
+
+this.next.addEventListener('click', () => {
+    // 필요한 요소와 변수를 초기화
+    this.category_list = document.querySelector('.category_list');
+    this.scrollPercentage = 16.6666666;
+
+    // 카테고리 리스트의 스크롤 거리 계산
+    const category_list_scroll = this.category_list.offsetWidth * (this.scrollPercentage / 100);
+
+    // 스크롤 버튼의 스크롤 거리 계산
+    const scrollBtn_scroll = (this.scrollBarWidth - this.scrollBtn.clientWidth) * (this.scrollPercentage / 100);
+
+    // 현재 스크롤 버튼의 왼쪽 위치
+    let currentScrollBtnLeft = parseInt(this.scrollBtn.style.left, 10) || 0; // 교수님께 뭔지 물어볼것 10? 0?
+
+    // 버튼 클릭 후의 새로운 위치
+    let newScrollBtnLeft = currentScrollBtnLeft + scrollBtn_scroll;
+
+    // 새로운 위치가 오른쪽 경계를 넘지 않도록 조정
+    if (newScrollBtnLeft > (this.scrollBarWidth - this.scrollBtn.clientWidth)) {
+        newScrollBtnLeft = this.scrollBarWidth - this.scrollBtn.clientWidth;
+    }
+
+    // 스크롤 버튼 위치 업데이트
+    this.scrollBtn.style.left = `${newScrollBtnLeft}px`;
+
+    // 카테고리 리스트를 오른쪽으로 스크롤
+    this.category_list.scrollLeft += category_list_scroll;
+    });
     }
 }
+
+
 const gameListScroll = new GameListScroll(rec_category,categoryList)
 
 //로그인 세션 유지
