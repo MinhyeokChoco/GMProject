@@ -1,7 +1,6 @@
 /*↑ 테스트용 */
 const nowAddress = location.search;
 const pageUserId = nowAddress.split("=")[1]; // 페이지 유저 정보
-console.log(pageUserId);
 
 const userDB = JSON.parse(localStorage.getItem('lUserDB')); // 전체 유저 정보 가져옴
 const pageuserIndex = new UserDBManager('lUserDB').getWantedUserDBIndex(pageUserId); // 페이지 유저의 인덱스 번호 찾기
@@ -45,7 +44,7 @@ window.onload = () => {
     if (nowConnectUser.userId === pageUserId) {
         createUpdateBtn(); // 아이디랑 페이지 유저가 같으면 정보수정 버튼이 뜬다.
     } else if (nowConnectUser.userId !== pageUserId && nowConnectUser.userLogOn) {
-        // createReview(); 별점주기 창 만들기 위한 함수 (추가 예정)
+        createReviewBtn(); // 별점주기 창 만들기 위한 함수
     }
 }
 
@@ -60,3 +59,32 @@ function createUpdateBtn() {
         window.location.href = `./userInforUpdate.html?user=${pageUserId}`
 })
 }
+
+function createReviewBtn() {
+    const pTag = document.createElement('p');
+    document.querySelector("#addtionalBottmDiv").append(pTag);
+    pTag.id = "mateAssessP";
+
+    pTag.innerHTML = "메이트 평가";
+    
+    pTag.addEventListener('click', () => {
+        assessMate();
+    })
+}
+
+function assessMate() {
+    document.querySelector("#mateAssessP").addEventListener('click', () => {
+        document.querySelector("#mateTier-background").style.display = "flex";
+    })
+}
+
+document.querySelector("#mateTier-background").addEventListener('click', (e) => {
+    const modalBackground = document.querySelector("#mateTier-background");
+    if (e.target === modalBackground) {
+        modalBackground.style.display = "none"
+    }
+})
+
+document.querySelector("#meteTier-modal").addEventListener('click', (e) => {
+    e.stopPropagation();
+});

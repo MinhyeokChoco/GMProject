@@ -13,8 +13,6 @@ const textArea = document.querySelector("#bottomDiv-messageRegion-textarea"); //
 const userFavoritGame = document.querySelector('#midDiv-favoritRegion-select'); // 셀렉트창
 let imgURLdata = userProfileImgManager.getProfileData(pageUserId);
 
-console.log(pageUserId);
-
 window.onload = () => {
     const nowUserImg = userProfileImgManager.getProfileData(pageUserId);
     imgRegionHTML.src = nowUserImg;
