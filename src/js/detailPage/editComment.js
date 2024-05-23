@@ -7,14 +7,12 @@ function newEditCommentStart() {
     } else {
         repleyLength = replyObj.length
     }
-    console.log("repleObj: ", repleyLength);
     for (let i = 0; i < repleyLength; i++) {
         const wantedCommentLocal = `${postingNumber}_${i}`;
         const commentList = new StoreBoard().getContentArray(wantedCommentLocal);
         if(commentList === null) {
             continue;
         }
-        console.log("co ", commentList)
         newEditComment(i, commentList)
     }
 }
@@ -23,6 +21,10 @@ function newEditCommentStart() {
 function newEditComment(index, commentList) {
     // 버튼 요소들을 만들자
     for(let i = 0; i < commentList.length; i++) {
+        console.log(commentList[i])
+        if (commentList[i].userId !== userInfor.userId || commentList[i].being === false) {
+            continue;
+        }
         const commentBtnDiv = elementMaker.getElement_all('div', 'commentBtnDiv', `commentBtnDiv-id${index}-${i}`);
         const commentUpdatePtag = elementMaker.getElement_all('p', 'commentUpdateBtn', `commentUpdateBtn-id${index}-${i}`);
         commentUpdatePtag.innerHTML = "수정";
@@ -35,32 +37,31 @@ function newEditComment(index, commentList) {
 
         commentUpdatePtag.addEventListener('click', () => {
             // 수정 버튼 눌렀을 때
-            implementUpdate(index, i);  
+            implementUpdate(index, i, commentList);  
         })
         commentDeletePtag.addEventListener('click', () => {
-            // 삭제 버튼 누르기
+            // 삭제 버튼
+            implementDelete(index, i, commentList);
         })
     }
 }
 
 // 수정 버튼
-function implementUpdate(index, i) {
+function implementUpdate(index, i, commentList) {
     toggleUpdateDeleteBtn(index, i); // 기존 수정 삭제 버튼 가리기
-    createCommentEditer(index, i);  // 기존 댓글 가리고 텍스트 에리어 보여주기
+    createCommentEditer(index, i, commentList);  // 기존 댓글 가리고 텍스트 에리어 보여주기
     createCompletionBtn(index, i);  // 작성, 취소 버튼 만들기
 }
 
 // 텍스트 에리어 생성
-function createCommentEditer(index, i) {
+function createCommentEditer(index, i, commentList) {
     if(document.querySelector(`#commentUpdateTextarea-id${index}-${i}`)) {
         document.querySelector(`#commentUpdateTextarea-id${index}-${i}`).style.display = "flex";
         return;
     }
-    
-
         const commentUpdateTextarea = elementMaker.getElement_all("textarea", "commentUpdateTextarea", `commentUpdateTextarea-id${index}-${i}`);
+        commentUpdateTextarea.value = commentList[i].content;
         document.querySelector(`#letterDiv-id${index}-${i}`).append(commentUpdateTextarea);
-        
 }
 
 
@@ -114,7 +115,7 @@ function commentEditCancleEvent(index, i) {
 }
 
 
-// 저장 기능
+// 수정한 댓글 저장
 function commentEditCarryOutEvent(index, i) {
     console.log("index= ", index,"i: ", i)
     const wantedCommentLocal = `${postingNumber}_${index}`;
@@ -124,5 +125,15 @@ function commentEditCarryOutEvent(index, i) {
     existingComment[i].content = document.querySelector(`#commentUpdateTextarea-id${index}-${i}`).value;
     console.log(existingComment);
     localStorage.setItem(wantedCommentLocal, JSON.stringify(existingComment));
+    location.reload();
+}
+
+
+// 삭제 기능
+function implementDelete(index, i, commentList) {
+    commentList[i].content = "삭제된 댓글입니다."
+    commentList[i].being = false;
+    const wantedCommentLocal = `${postingNumber}_${index}`;
+    localStorage.setItem(wantedCommentLocal, JSON.stringify(commentList))
     location.reload();
 }

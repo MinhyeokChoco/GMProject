@@ -226,6 +226,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+
+}
+
+/* 답글영역 컨텐트, 댓글 감싸는 div */
+.letterDiv {
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 /* 답글 작성, 취소 감싸는 div */
@@ -238,6 +245,12 @@
     width: 480px;
     height: 110px;
     margin-top: 5px;
+}
+
+/* 답글 닉네임 p태그 */
+.pforNickname {
+    color: violet;
+    font-weight: bold;
 }
 
 .wholeCommentDiv{
@@ -259,4 +272,11 @@
 /* 대댓글 삭제버튼 */
 .commentDeleteBtn {
     margin-left: 5px;
+}
+
+/* 대댓글 수정할때 나오는 텍스트 에리어 */
+.commentUpdateTextarea {
+    width: 400px;
+    height: 110px;
+    resize: none;
 }
