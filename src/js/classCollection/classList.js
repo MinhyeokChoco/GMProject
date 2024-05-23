@@ -165,6 +165,17 @@ class UserProfileManage {
     }
 }
 
+// 별점 하루에 한번 주기위한 클래스
+class checkeGiveAScore {
+    timeBox = [];
+    constructor(id) {
+        
+    }
+    getLastGiveTime() {
+        return JSON.parse(localStorage.getItem("lastGiveAScoreTime"))
+    }
+}
+
 
 // DB에서 유저 정보가 있는 인덱스 번호를 가져오는 클래스 (쓸데가 있나...?)
 class UserDBManager {

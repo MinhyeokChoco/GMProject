@@ -60,6 +60,7 @@ function createUpdateBtn() {
 })
 }
 
+// 메이트 평가 버튼 생성
 function createReviewBtn() {
     const pTag = document.createElement('p');
     document.querySelector("#addtionalBottmDiv").append(pTag);
@@ -72,12 +73,14 @@ function createReviewBtn() {
     })
 }
 
+// 평가버튼 누르면 모달창이 뜨게
 function assessMate() {
     document.querySelector("#mateAssessP").addEventListener('click', () => {
         document.querySelector("#mateTier-background").style.display = "flex";
     })
 }
 
+// 배경 누르면 모달창 닫히게
 document.querySelector("#mateTier-background").addEventListener('click', (e) => {
     const modalBackground = document.querySelector("#mateTier-background");
     if (e.target === modalBackground) {
@@ -85,6 +88,37 @@ document.querySelector("#mateTier-background").addEventListener('click', (e) => 
     }
 })
 
+// 이벤트 버블링 방지
 document.querySelector("#meteTier-modal").addEventListener('click', (e) => {
     e.stopPropagation();
 });
+
+// 별점 제출
+document.querySelector("#modal-form-submit").addEventListener('click', (e) => {
+    e.preventDefault();
+    executeTheAssesment();
+});
+
+// 별점 주는 함수
+function executeTheAssesment() {
+    const selectedRadio = document.querySelector("input[type = radio][name='evluation']:checked"); // 레디오 값 가져옴
+    if(selectedRadio) {
+        markInMT = selectedRadio.value;
+    } else {
+        return; // 선택 안되있으면 리턴
+    }
+    markInMT = Number(markInMT);
+    const userTierImgManager = new UserProfileManage('lUserTier');
+    let nowTier = userTierImgManager.getProfileData(pageUserId); // 로컬에서 티어 가져옴
+    let sumTier = 0;
+    if (nowTier) {
+        nowTier = Number(nowTier);
+        sumTier = (markInMT + nowTier)/2;
+    } else {
+        nowTier = 5; // 티어점수 없으면 5점으로 설정
+        sumTier = (markInMT + nowTier)/2;
+    }
+    console.log(sumTier);
+    userTierImgManager.setProfileData(pageUserId, sumTier);
+    document.querySelector("#mateTier-background").style.display = "none";
+}

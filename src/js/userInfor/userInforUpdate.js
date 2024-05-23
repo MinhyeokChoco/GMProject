@@ -1,6 +1,5 @@
 // localStorage.setItem('lUserDB', JSON.stringify([{userId: "id", userNickname: "testNcik"}, {userId: "test", userNickname:"computer"}]))
 //테스트코드
-
 const nowAddress = location.search;
 const pageUserId = nowAddress.split("=")[1]; // 현재 접속중인 유저 아이디
 const userProfileImgManager = new UserProfileManage('lUserProfile');
