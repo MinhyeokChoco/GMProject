@@ -1,6 +1,7 @@
 /*↑ 테스트용 */
 const nowAddress = location.search;
 const pageUserId = nowAddress.split("=")[1]; // 페이지 유저 정보
+console.log(pageUserId);
 
 const userDB = JSON.parse(localStorage.getItem('lUserDB')); // 전체 유저 정보 가져옴
 const pageuserIndex = new UserDBManager('lUserDB').getWantedUserDBIndex(pageUserId); // 페이지 유저의 인덱스 번호 찾기

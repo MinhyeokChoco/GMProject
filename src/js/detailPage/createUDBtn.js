@@ -26,7 +26,11 @@ function addUDbtn() {
 function fnImplementation() {
     localConetArray[nowIndex] = null; // 로컬스토리지에서 해당 인덱스의 내용 전부 null로 변경
     localStorage.setItem(nowKategorie, JSON.stringify(localConetArray)); // 다시 저장
+    for(let i = 0; i < localConetArray.length; i++) {
+        localStorage.removeItem(`${postingNumber}_${i}`); // 대댓글도 삭제
+    }
     localStorage.removeItem(postingNumber); // 게시물 삭제하면 댓글도 전부 삭제
+    
     
     switch (nowKategorie) {
         case "LOL":

@@ -245,12 +245,13 @@
     width: 480px;
     height: 110px;
     margin-top: 5px;
+    resize: none;
 }
 
 /* 답글 닉네임 p태그 */
 .pforNickname {
     color: violet;
-    font-weight: bold;
+    font-weight: b;
 }
 
 .wholeCommentDiv{
@@ -269,9 +270,23 @@
     justify-content: right;
 }
 
+/* 대댓글 수정 버튼 */
+.commentUpdateBtn {
+    cursor: pointer;
+}
+
+.commentUpdateBtn:hover {
+    text-decoration: underline;
+}
+
 /* 대댓글 삭제버튼 */
 .commentDeleteBtn {
     margin-left: 5px;
+    cursor: pointer;
+}
+
+.commentDeleteBtn:hover {
+    text-decoration: underline;
 }
 
 /* 대댓글 수정할때 나오는 텍스트 에리어 */

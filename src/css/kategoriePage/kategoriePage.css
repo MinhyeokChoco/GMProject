@@ -49,6 +49,7 @@
     margin-right: 30px;
     cursor: pointer;
     padding: 10px;
+    position: relative;
 }
 
 /* 제목 영역 말줄임표(...) 표시 */
@@ -65,4 +66,17 @@
     display: -webkit-box;
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
+    margin-top: 5px;
+}
+
+/* 닉네임 */
+.div-item-object > p:nth-child(4) {
+    position: absolute;
+    bottom: 15%;
+    font-weight: bold;
+}
+/* 댓글 수 */
+.div-item-object > p:nth-child(5) {
+    position: absolute;
+    bottom: 5%;
 }

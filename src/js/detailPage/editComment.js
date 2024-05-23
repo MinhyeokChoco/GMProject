@@ -131,6 +131,9 @@ function commentEditCarryOutEvent(index, i) {
 
 // 삭제 기능
 function implementDelete(index, i, commentList) {
+    if(!confirm("정말로 삭제하시겠습니까?")){
+        return;
+    }
     commentList[i].content = "삭제된 댓글입니다."
     commentList[i].being = false;
     const wantedCommentLocal = `${postingNumber}_${index}`;
