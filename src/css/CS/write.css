@@ -6,25 +6,23 @@ body {
     height: 100%;
 }
 
-.container {
-    width: 100%;
+.writeContainer>.writeContent>.writeTitle {
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 50px;
+    color: yellow;
+}
+
+.writeContainer {
     height: 100%;
     background-image: url(https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2019%2F12%2Fleague-of-legends-10th-anniversary-riot-games-faker-kda-true-damage-skt1-ahri-2.jpg?q=90&w=2180&format=jpeg&cbr=1&fit=max);
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
 }
 
-.container>div:nth-child(1) {
-    width: 100%;
+.writeContainer>.writeContent {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    position: absolute;
-}
-
-.writeTitle {
-    font-size: 50px;
-    color: lightcoral;
 }
 
 .writeWrap {
@@ -32,17 +30,14 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    align-content: center;
     width: 100%;
-    height: auto;
     margin-top: 40px;
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 .writeWrap>#_title {
     width: 60%;
     height: 25px;
-    display: flex;
     font-size: 18px;
 }
 
@@ -53,9 +48,15 @@ body {
     margin-top: 40px;
 }
 
+.btnContainer {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .btnWrap {
-    margin-top: 40px;
-    margin-left: 25%;
     width: 50%;
     display: flex;
     justify-content: space-between;
@@ -65,32 +66,33 @@ body {
 .btnWrap>#_writeBtn {
     width: 100px;
     height: 60px;
-    border: 0px;
+    border: none;
     cursor: pointer;
-    background-color: transparent;
+    background-color: #F08080;
+    opacity: 0.5;
     color: white;
     font-size: large;
+    border-radius: 12px;
 }
 
 .btnWrap>#_writeBtn:hover {
-    background-color: lightcoral;
+    background-color: #F08080;
+    opacity: 1;
 }
 
 .btnWrap>#_listBtn {
     width: 100px;
     height: 60px;
-    border: 0px;
+    border: none;
     cursor: pointer;
-    background-color: transparent;
+    background-color: #F08080;
+    opacity: 0.5;
     color: white;
     font-size: large;
-}
-
-.btnWrap>#_listBtn a {
-    text-decoration-line: none;
-    color: white;
+    border-radius: 12px;
 }
 
 .btnWrap>#_listBtn:hover {
-    background-color: lightcoral;
+    background-color: #F08080;
+    opacity: 1;
 }
