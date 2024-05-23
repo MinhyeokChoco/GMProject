@@ -11,7 +11,7 @@ body {
     user-select:none;
 }
 
-/* header 끝 */
+/* header 시작 */
 .header{
     display:flex;
     width:100%;
@@ -56,15 +56,15 @@ body {
     left:176px;
     top:19px;
     color:#4D4D4D;
-    font-weight:700;
     font-size:18px;
     text-decoration-line: none;
     transition: 0.1s;
 }
 
 .header-box > a:hover{
-    color:bluevi
+    font-weight: 700;
 }
+
 
 .service{
     width:116px;
@@ -151,6 +151,7 @@ body {
     margin:9px 18px 0px 18px;
     display:flex;
     align-items: center;
+    text-decoration-line:none;
 }
 
 .service_wrap > a:hover{
@@ -418,6 +419,7 @@ body {
     color : rgb(25, 25, 25);
     font-size:14px;
     margin-bottom:10px;
+    text-decoration-line:none;
 }
 
 .footer_start > a:hover{
@@ -439,6 +441,10 @@ body {
     position:absolute;
     left:56%;
     margin-top:25px;
+}
+
+.footer_company > a{
+    text-decoration-line: none;
 }
 
 .footer_company > a:hover{

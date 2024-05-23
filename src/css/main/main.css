@@ -62,8 +62,9 @@ body {
 }
 
 .header-box > a:hover{
-    color:bluevi
+    font-weight: 700;
 }
+
 
 .service{
     width:116px;
@@ -150,6 +151,7 @@ body {
     margin:9px 18px 0px 18px;
     display:flex;
     align-items: center;
+    text-decoration-line:none;
 }
 
 .service_wrap > a:hover{
@@ -394,6 +396,7 @@ body {
     position:absolute;
     bottom:0px;
     right:0px;
+    color:black;
 }
 
 
@@ -726,6 +729,7 @@ body {
     color : rgb(25, 25, 25);
     font-size:14px;
     margin-bottom:10px;
+    text-decoration-line:none;
 }
 
 .footer_start > a:hover{
@@ -749,6 +753,10 @@ body {
     margin-top:25px;
 }
 
+.footer_company > a{
+    text-decoration-line: none;
+}
+
 .footer_company > a:hover{
     font-weight: 700;
     cursor:pointer;
@@ -761,6 +769,7 @@ body {
     font-weight: 700;
     margin-bottom:15px;
 }
+
 
 .footer_company > a:nth-child(2){
     color : rgb(25, 25, 25);
