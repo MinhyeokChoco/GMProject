@@ -63,9 +63,6 @@ function createCommentEditer(index, i) {
 }
 
 
-///////////////////////// 여기까지 완성 ///////////////////////////////////////////
-
-
 // 원래 답글에 있는 수정, 삭제 버튼 보였다 안보였다.
 function toggleUpdateDeleteBtn(index, i) {
     const nowCommentUpdateBtn = document.querySelector(`#commentUpdateBtn-id${index}-${i}`);
@@ -83,6 +80,7 @@ function toggleUpdateDeleteBtn(index, i) {
     }
 }
 
+
 // 답글 수정 할 때 작성, 취소 버튼 만들기
 function createCompletionBtn(index, i) {
     if (document.querySelector(`#commentTextareaBtnDiv-id${index}-${i}`)) {
@@ -99,7 +97,7 @@ function createCompletionBtn(index, i) {
     commentTextareaBtnDiv.append(commentTextareaUpdate, commentTextareaCancle);
 
     commentTextareaUpdate.addEventListener('click', () => {
-        commentEditCarryOutEvent(i);
+        commentEditCarryOutEvent(index, i);
     })
 
     commentTextareaCancle.addEventListener('click', () => {
