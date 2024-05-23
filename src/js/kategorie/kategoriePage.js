@@ -1,4 +1,4 @@
-// localStorage.setItem("lUserInfor", JSON.stringify({userNickname: "Mar. 7th", userId: "March7th", userLogOn: true}));
+// localStorage.setItem("lUserInfor", JSON.stringify({userNickname: "이리사랑단", userId: "test", userLogOn: true}));
 // localStorage.setItem("lUserDB", JSON.stringify([{userId: "March7th", userNickname: "Mar. 7th"}, {userId:"test", userNickname: "이리사랑단"},{userId:"id",userNickname: "TEST"},{userId: "test2",userNickname:"computer"}]))
 // const userTierSetting = new UserProfileManage("lUserTier");
 // const userProfilSetting = new UserProfileManage("lUserProfile");

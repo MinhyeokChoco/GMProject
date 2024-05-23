@@ -63,6 +63,7 @@ function toggleBtn(i) {
 
 // 작성 취소 버튼 생성
 function createUCBtn(i, _commentStore, _selectedReplyIndex) {
+    
     const commentBtnDiv = document.createElement('div'); // 버튼들 담을 박스
     commentBtnDiv.classList.add('commentBtnDiv');
     commentBtnDiv.id = `commentBtnDiv-id${i}`;

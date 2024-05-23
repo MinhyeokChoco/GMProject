@@ -1,0 +1,48 @@
+#mateTier-background {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(165, 165, 165, 0.1);
+    display:none;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: absolute;
+}
+
+#meteTier-modal {
+    width:400px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightgray;
+    background-color: lavender;
+    border-radius: 30px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+#modal-header {
+    margin-bottom: 15px;
+}
+
+#modal-form > input,
+#modal-form > label {
+    cursor: pointer;
+}
+
+#modal-form-submit{
+    width: 100px;
+    height: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+#modal-p {
+    padding: 15px;
+    font-size: 14px;
+}

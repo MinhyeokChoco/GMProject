@@ -8,37 +8,40 @@ const postingNumber = nowKategorie + nowIndex; // 댓글 구현을 위한 현재
 const replyStore = new StoreBoard(postingNumber); // 댓글 담을 객체 생성
 const replyObj = new StoreBoard().getContentArray(postingNumber); // 현재페이지 댓글 가져옴
 const elementMaker = new createHTMLElement(); // html 요소 만들어주는 클래스 불러옴
-
-
 const userProfileImg = new UserProfileManage('lUserProfile');
-const userProfilemessage = new UserProfileManage('lUserMessage')
-const userProfileLikeGame = new UserProfileManage('lUserFavoriteGame');
-const userLikeGmae = userProfileLikeGame.getProfileData(contentObj.userId);
-let userLikeGameToText = ""
-
-switch (userLikeGmae) {
-    case "LOL":
-        userLikeGameToText = "리그 오브 레전드";
-        break;
-    case "starrail":
-        userLikeGameToText = "붕괴: 스타레일";
-        break;
-    case "eternalreturn":
-        userLikeGameToText = "이터널 리턴";
-        break;
-    case "PUBG":
-        userLikeGameToText = "배틀그라운드";
-        break;
-    case "valorant":
-        userLikeGameToText = "발로란트";
-        break;
-    default:
-        userLikeGameToText = "";
-}
 
 
 window.onload = () => {
+    lenderDetailPage();
+}
     
+
+function lenderDetailPage() {
+    const userProfilemessage = new UserProfileManage('lUserMessage')
+    const userLikeGmae = new UserProfileManage('lUserFavoriteGame').getProfileData(contentObj.userId);
+    let userLikeGameToText = ""
+    
+    switch (userLikeGmae) {
+        case "LOL":
+            userLikeGameToText = "리그 오브 레전드";
+            break;
+        case "starrail":
+            userLikeGameToText = "붕괴: 스타레일";
+            break;
+        case "eternalreturn":
+            userLikeGameToText = "이터널 리턴";
+            break;
+        case "PUBG":
+            userLikeGameToText = "배틀그라운드";
+            break;
+        case "valorant":
+            userLikeGameToText = "발로란트";
+            break;
+        default:
+            userLikeGameToText = "";
+    }
+    
+
     const imgSrc = userProfileImg.getProfileData(contentObj.userId);
     const userMessage = userProfilemessage.getProfileData(contentObj.userId);
 
@@ -63,7 +66,6 @@ window.onload = () => {
         renderReply();
     }
 }
-
 
 // 목록으로 기능 구현
 document.querySelector("#midbottomDiv-listBtn").addEventListener('click', () => {

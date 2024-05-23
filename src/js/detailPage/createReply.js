@@ -19,32 +19,13 @@ function renderReply() {
         if(replyObj[i] === null) {
             continue;
         }
-
-        const wholeRepleDiv = document.createElement('div'); // 댓글영역만 감싸는 div
-        wholeRepleDiv.classList.add("wholeRepleDiv");
-        wholeRepleDiv.id = `wholeRepleDiv-id${i}`
-
-        const replyTag = document.createElement('div'); // 댓글 전체 박스
-        replyTag.classList.add("bottomDiv-replyDiv-contentDiv-replyBox");
-        replyTag.id = `replyBox-${i}`;
-
-        const profileDivTag = document.createElement('div'); // 프사 영역
-        profileDivTag.classList.add("contentDiv-profile");
-
-        const profileImg = document.createElement('img'); // 프사 이미지태그
-        profileImg.classList.add('topDiv-profileDiv-img');
-
-        const contentDivTag = document.createElement('div'); // 닉네임 댓글 내용 담는 박스
-        contentDivTag.classList.add("contentDiv-reple");
-        contentDivTag.id = (`contentDiv-reple-index${i}`);
-
-        const nickPTag = document.createElement('p'); // 닉네임
-        nickPTag.id = `nickNamePtag-${i}`;
-        nickPTag.classList.add('contentDiv-reple-nickName');
-
-        const contentPTag = document.createElement('p'); // 댓글 내용
-        contentPTag.id = `contentPtag-${i}`;
-        contentPTag.classList.add('contentDiv-reple-p');
+        const wholeRepleDiv = elementMaker.getElement_all("div", "wholeRepleDiv", `wholeRepleDiv-id${i}`); // 댓글 영역만 감싸는 div
+        const replyTag = elementMaker.getElement_all("div", "bottomDiv-replyDiv-contentDiv-replyBox", `replyBox-${i}`); // 댓글 전체 감싸는 div 
+        const profileDivTag = elementMaker.getElement_class('div', 'contentDiv-profile'); // 프사 div
+        const profileImg = elementMaker.getElement_class('img', 'topDiv-profileDiv-img'); // 프사 img 태그
+        const contentDivTag = elementMaker.getElement_all('div', 'contentDiv-reple' ,`contentDiv-reple-index${i}`); // 닉네임 댓글 담는 div
+        const nickPTag = elementMaker.getElement_all('p', 'contentDiv-reple-nickName', `nickNamePtag-${i}`); // 닉네임 p
+        const contentPTag = elementMaker.getElement_all('p', 'contentDiv-reple-p', `contentPtag-${i}`); // 댓글 p
 
         // 삭제된 댓글이면 색 변경
         if(!replyObj[i].being) {
@@ -75,25 +56,21 @@ function renderReply() {
         // 아이디가 댓글 작성자랑 같으면 수정/삭제 버튼 생성
         if(replyObj[i].userId === userInfor.userId && replyObj[i].being) {
 
-            const updateP = document.createElement('p');
-            updateP.classList.add('updateP');
-            updateP.id = `identfyUpdateP-${i}`
-
-            const deleteP = document.createElement('p');
-            deleteP.classList.add('deleteP');
-            deleteP.id = `identfyDeleteP-${i}`
-
-            bottomContentDiv.append(updateP, deleteP);
+            const updateP = elementMaker.getElement_all('p', 'updateP', `identfyUpdateP-${i}`); // 수정 버튼
             updateP.innerHTML = "수정";
+
+            const deleteP = elementMaker.getElement_all('p', 'deleteP', `identfyDeleteP-${i}`); // 삭제
             deleteP.innerHTML = "삭제";
 
+            bottomContentDiv.append(updateP, deleteP);
+
             document.querySelector(`#identfyUpdateP-${i}`).addEventListener('click', () => {
-                createUpdateBtn(i);
+                createUpdateBtn(i); // 수정 버튼 클릭
             })
 
             deleteP.addEventListener('click', () => {
                 if(confirm("정말로 댓글을 삭제하시겠습니까?")) {
-                    deleteAction(i); 
+                    deleteAction(i); // 삭제버튼 클릭
             }})
         }
 

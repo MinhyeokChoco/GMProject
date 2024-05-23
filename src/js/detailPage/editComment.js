@@ -23,7 +23,7 @@ function newEditComment(index, commentList) {
     for(let i = 0; i < commentList.length; i++) {
         console.log(commentList[i])
         if (commentList[i].userId !== userInfor.userId || commentList[i].being === false) {
-            continue;
+            continue; // 삭제된 댓글인지 아닌지 체크
         }
         const commentBtnDiv = elementMaker.getElement_all('div', 'commentBtnDiv', `commentBtnDiv-id${index}-${i}`);
         const commentUpdatePtag = elementMaker.getElement_all('p', 'commentUpdateBtn', `commentUpdateBtn-id${index}-${i}`);
@@ -120,10 +120,7 @@ function commentEditCarryOutEvent(index, i) {
     console.log("index= ", index,"i: ", i)
     const wantedCommentLocal = `${postingNumber}_${index}`;
     const existingComment = new StoreBoard().getContentArray(wantedCommentLocal);
-    console.log("원하는로컬: ", new StoreBoard().getContentArray(`${postingNumber}_${index}`));
-    console.log(existingComment[i]);
     existingComment[i].content = document.querySelector(`#commentUpdateTextarea-id${index}-${i}`).value;
-    console.log(existingComment);
     localStorage.setItem(wantedCommentLocal, JSON.stringify(existingComment));
     location.reload();
 }
