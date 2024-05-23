@@ -1,6 +1,5 @@
-// localStorage.setItem("lUserInfor", JSON.stringify({userNickname: "세번째테스트계정", userId: "test", userLogOn: true}));
-// localStorage.setItem("lUserDB", JSON.stringify([{userId:"test"},{userId:"id",userNickname: "TEST"},{userId: "test2",userNickname:"computer"}]))
-// const userId = "id";
+// localStorage.setItem("lUserInfor", JSON.stringify({userNickname: "Mar. 7th", userId: "March7th", userLogOn: true}));
+// localStorage.setItem("lUserDB", JSON.stringify([{userId: "March7th", userNickname: "Mar. 7th"}, {userId:"test", userNickname: "이리사랑단"},{userId:"id",userNickname: "TEST"},{userId: "test2",userNickname:"computer"}]))
 // const userTierSetting = new UserProfileManage("lUserTier");
 // const userProfilSetting = new UserProfileManage("lUserProfile");
 // const userMessageSetting = new UserProfileManage("lUserMessage");
@@ -10,7 +9,6 @@
 // userMessageSetting.setProfileData(userId, "테스트용 계정입니다.");
 // userFavoriteSetting.setProfileData(userId, "");
 // ↑ 테스트용 코드
-
 const user = JSON.parse(localStorage.getItem("lUserInfor"));
 const postGmBtn = document.querySelector("#div-writeButton-box"); // 글작성 HTML요소 가져오기
 
@@ -28,8 +26,7 @@ postGmBtn.addEventListener('click', () => {
 
 // 게시물 그리기 시작
 window.onload = () => {
-    const mContentList = new StoreBoard().getContentArray(globalGameName);
-
+    const mContentList = new StoreBoard().getContentArray(globalGameName) || [];
     for (let i = 0; i < mContentList.length; i++)
         {
             if (mContentList[i] === null) {
@@ -49,7 +46,7 @@ window.onload = () => {
             hTag.innerHTML = mContentList[i].postTitle; // 제목
             spanTag.innerHTML = mContentList[i].postContent; // 본문
             pTag.innerHTML = mContentList[i].userNicknameInfor; // 닉네임
-            pTag_02.innerHTML = `댓글 수 0`; // 댓글수
+            pTag_02.innerHTML = `댓글 수 ${replyCount(i)}`; // 댓글수
 
             //div 태그에 링크 기능 추가
             divTag.addEventListener("click", () => {
@@ -57,4 +54,25 @@ window.onload = () => {
                 window.location.href = `../detailPage/detailPage.html?index=${i}`
             })
         }
+}
+
+function replyCount(index) {
+    let replyOfContent = JSON.parse(localStorage.getItem(`${globalGameName}${index}`));
+    let replyOfContentLength = 0;
+    let totalRepleNumber = 0;
+    if (replyOfContent !== null) {
+        replyOfContentLength = replyOfContent.length;
+    } else {
+        replyOfContentLength = 0;
+    }
+    totalRepleNumber += replyOfContentLength;
+    for(let i = 0; i < replyOfContentLength; i++) {
+        let commentOfReply = JSON.parse(localStorage.getItem(`${globalGameName}${index}_${i}`));
+        if (commentOfReply === null) {
+            continue;
+        }
+        totalRepleNumber += commentOfReply.length;
+    }
+    console.log("1: ", totalRepleNumber);
+    return totalRepleNumber;
 }
