@@ -11,11 +11,10 @@ function newEditCommentStart() {
     for (let i = 0; i < repleyLength; i++) {
         const wantedCommentLocal = `${postingNumber}_${i}`;
         const commentList = new StoreBoard().getContentArray(wantedCommentLocal);
-        
         if(commentList === null) {
             continue;
         }
-        console.log(i, " ", commentList);
+        console.log("co ", commentList)
         newEditComment(i, commentList)
     }
 }
@@ -57,6 +56,8 @@ function createCommentEditer(index, i) {
         document.querySelector(`#commentUpdateTextarea-id${index}-${i}`).style.display = "flex";
         return;
     }
+    
+
         const commentUpdateTextarea = elementMaker.getElement_all("textarea", "commentUpdateTextarea", `commentUpdateTextarea-id${index}-${i}`);
         document.querySelector(`#letterDiv-id${index}-${i}`).append(commentUpdateTextarea);
         
@@ -109,11 +110,19 @@ function createCompletionBtn(index, i) {
 function commentEditCancleEvent(index, i) {
     toggleUpdateDeleteBtn(index, i);
     document.querySelector(`#commentUpdateTextarea-id${index}-${i}`).style.display = "none"; // 텍스트에리어 안보이게
-    document.querySelector(`#commentTextareaBtnDiv-id${index}-${i}`).style.display = "none"; // 수정, 취소 버튼 안보이게
+    document.querySelector(`#commentTextareaBtnDiv-id${index}-${i}`).remove(); // 수정, 취소 버튼 
 }
 
+
+// 저장 기능
 function commentEditCarryOutEvent(index, i) {
-    const wantedCommentLocal = `${postingNumber}_${i}`;
+    console.log("index= ", index,"i: ", i)
+    const wantedCommentLocal = `${postingNumber}_${index}`;
     const existingComment = new StoreBoard().getContentArray(wantedCommentLocal);
-    existingComment.content = document.querySelector(`#commentUpdateTextarea-id${index}-${i}`).value;
+    console.log("원하는로컬: ", new StoreBoard().getContentArray(`${postingNumber}_${index}`));
+    console.log(existingComment[i]);
+    existingComment[i].content = document.querySelector(`#commentUpdateTextarea-id${index}-${i}`).value;
+    console.log(existingComment);
+    localStorage.setItem(wantedCommentLocal, JSON.stringify(existingComment));
+    location.reload();
 }
