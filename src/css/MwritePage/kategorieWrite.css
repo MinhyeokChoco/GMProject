@@ -1,0 +1,70 @@
+/* 브라우저 기본 설정 제거 */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#main-body {
+    width: 100%;
+}
+
+/* 전체 페이지 요소 정렬 */
+#item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 제목 부분 설정 */
+#title-box-form-input {
+    width: 520px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* 제목과 본문 분리 여백 */
+#container-mid {
+    margin-top: 25px;
+}
+
+/* 텍스트에어리어 부분 설정 */
+#text-box-area {
+    width: 500px;
+    height: 500px;
+    resize: none;
+    font-size: 16px;
+    padding: 10px;
+}
+
+/* 버튼 요소가 들어가는 div설정 */
+#bottom-itemBox {
+    display: flex;
+    width: 300px;
+    justify-content: space-evenly;
+    margin-top: 15px;
+}
+
+/* 버튼 전체 설정 */
+.itembox-btn {
+    width: 100px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 완료버튼 설정 */
+#itembox-make {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+/* 취소버튼 설정 */
+#itembox-cancle {
+    border: 1px solid black;
+    cursor: pointer;
+}
