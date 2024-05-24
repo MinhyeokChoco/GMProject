@@ -159,22 +159,77 @@ class UserProfileManage {
             return userProfile ? userProfile[id] : null;
         }
     }
-
+    
+    // 티어 가져오기 위한 전용 함수
+    
     _getProfileLocal(desiredLocal) {
-        return JSON.parse(localStorage.getItem(desiredLocal));
+        return JSON.parse(localStorage.getItem(desiredLocal)) || [];
     }
 }
+
+// 별점을 주기 위한 클래스
+class ForGrade {
+    constructor () {
+        this.userTierArray = JSON.parse(localStorage.getItem("lUserTier")) || [];
+    }
+
+    setTierData(id, value) {
+        const currentTier = this.userTierArray.find(Obj => Obj.hasOwnProperty(id));
+        if (currentTier) {
+            currentTier[id].push(value);
+        } else {
+            const newTier = { [id]: [value] };
+            this.userTierArray.push(newTier);
+        }
+        localStorage.setItem("lUserTier", JSON.stringify(this.userTierArray));
+    }
+
+    getUserTier(id) {
+        const profileArray = this._getTierRawData(id);
+        let userTier = 10;
+        if(profileArray) {
+            const sum = profileArray.reduce((accumulator, currentValue) => accumulator + currentValue);
+            userTier = sum / profileArray.length;
+        }
+        console.log(userTier);
+        if (userTier < 1.5) {
+            return "타인";
+        } else if (userTier < 2) {
+            return "지인";
+        } else if (userTier < 3) {
+            return "친구";
+        } else if (userTier < 4) {
+            return "절친";
+        } else if (userTier <= 5) {
+            return "베프";
+        } else {
+            return "신입";
+        }
+    }
+
+    _getTierRawData(id) {
+        const nowTier = this.userTierArray.find(Obj => Obj.hasOwnProperty(id));
+        return nowTier ? nowTier[id] : null;
+    }
+}
+
 
 // 별점 하루에 한번 주기위한 클래스
 class checkeGiveAScore {
     timeBox = [];
     constructor(id) {
-        
+        this.timeBox = this.getLastGiveTime();
     }
+
+    setLastGiveTime(id, time) {
+        const timeOfUser = {id: time};
+        this.timeBox.push(timeOfUser);
+    }
+
     getLastGiveTime() {
-        return JSON.parse(localStorage.getItem("lastGiveAScoreTime"))
+        return JSON.parse(localStorage.getItem("lastGiveAScoreTime")) || [];
     }
-}
+} 
 
 
 // DB에서 유저 정보가 있는 인덱스 번호를 가져오는 클래스 (쓸데가 있나...?)

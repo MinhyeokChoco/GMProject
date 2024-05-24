@@ -7,11 +7,13 @@ const pageuserIndex = new UserDBManager('lUserDB').getWantedUserDBIndex(pageUser
 const pageuserInfor = userDB[pageuserIndex]; // 전체 유저 정보에서 페이지 유저 정보를 찾아온다.
 const nowConnectUser = new UserLoginManager().getUserInforBox(); // 현재 접속 중인 유저
 
+const userLastCheckTime = new UserProfileManage("lastGiveAScoreTime"); // 시간
 const userMessase = new UserProfileManage("lUserMessage").getProfileData(pageUserId); // 상메
 const userProfile = new UserProfileManage("lUserProfile").getProfileData(pageUserId); // 프사
-const userTier = new UserProfileManage("lUserTier").getProfileData(pageUserId); // 티어
+const userTier = new ForGrade().getUserTier(pageUserId); // 티어
 const userFavorite = new UserProfileManage("lUserFavoriteGame").getProfileData(pageUserId); //즐겨하는 게임
 let userFavorteGame = ""
+
 
 // select 메뉴의 밸류 값을 텍스트로 변환하는 스위치문
 switch (userFavorite) {
@@ -93,7 +95,7 @@ document.querySelector("#meteTier-modal").addEventListener('click', (e) => {
     e.stopPropagation();
 });
 
-// 별점 제출
+// 별점 submit 눌렀을때 이벤트
 document.querySelector("#modal-form-submit").addEventListener('click', (e) => {
     e.preventDefault();
     executeTheAssesment();
@@ -107,18 +109,31 @@ function executeTheAssesment() {
     } else {
         return; // 선택 안되있으면 리턴
     }
-    markInMT = Number(markInMT);
-    const userTierImgManager = new UserProfileManage('lUserTier');
-    let nowTier = userTierImgManager.getProfileData(pageUserId); // 로컬에서 티어 가져옴
-    let sumTier = 0;
-    if (nowTier) {
-        nowTier = Number(nowTier);
-        sumTier = (markInMT + nowTier)/2;
-    } else {
-        nowTier = 5; // 티어점수 없으면 5점으로 설정
-        sumTier = (markInMT + nowTier)/2;
+    const checkPossible = checkTheTime(nowConnectUser.userId); // 마지막으로 평가한 날 체크
+    // const checkPossible = true; // 테스트용 코드
+
+    if (!checkPossible) {
+        alert("메이트 평가는 하루에 한번만 하실 수 있습니다");
+        return;
     }
-    console.log(sumTier);
-    userTierImgManager.setProfileData(pageUserId, sumTier);
-    document.querySelector("#mateTier-background").style.display = "none";
+    markInMT = Number(markInMT); // 라디오 밸류 숫자로 변환
+    const userTierImgManager = new ForGrade();
+    userTierImgManager.setTierData(pageuserInfor.userId, markInMT);
+    location.reload();
+}
+
+// 시간 확인하는 함수
+function checkTheTime(id) {
+    const userDate = userLastCheckTime.getProfileData(id);
+    const today = new Date().toISOString().split('T')[0];
+    if(userDate === null) {
+        userLastCheckTime.setProfileData(id, today);
+        return true; // 한번도 평가한적 없으면 (로컬스토리지에 저장된 값이 없으면) 현재 날짜 저장하고 true 반환
+    }
+    // 날짜 비교 후 결과 반환
+    if (userDate !== today) {
+        return true;
+    } else {
+        return false;
+    }
 }

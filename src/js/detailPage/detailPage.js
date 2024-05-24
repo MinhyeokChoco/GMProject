@@ -44,16 +44,19 @@ function lenderDetailPage() {
 
     const imgSrc = userProfileImg.getProfileData(contentObj.userId);
     const userMessage = userProfilemessage.getProfileData(contentObj.userId);
+    const userTier = new ForGrade().getUserTier(contentObj.userId);
 
     //최상단 영역
     document.querySelector("#topDiv-userInforDiv-nick").innerHTML = contentObj.userNicknameInfor;
     document.querySelector("#topDiv-userInforDiv-message").innerHTML = userMessage;
     document.querySelector(".topDiv-profileDiv-img").src = imgSrc; // 프사
+    document.querySelector("#topDiv-userInforDiv-tier").innerHTML += userTier; //티어
     //즐겨하는 게임
     document.querySelector ("#midTopDiv-playList-p").innerHTML = userLikeGameToText;
     //제목 및 본문
     document.querySelector("#midDiv-titleDiv-h").innerHTML = contentObj.postTitle;
     document.querySelector("#midDiv-contentDiv").innerHTML = contentObj.postContent;
+
 
 
     // 업데이트 삭제 버튼 생성
