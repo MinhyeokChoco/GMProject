@@ -2,7 +2,8 @@
     --width-Size: 600px;
     --width-Size-includePadding: 560px;
     --boder-radius: 30px;
-    --boder-setting : 1px solid black;
+    --boder-setting : 0px solid black;
+    --background-color: #FFF;
 }
 
 * {
@@ -13,9 +14,12 @@
 
 #mainDiv {
     width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #F5F7F8;
+    
 }
 
 /* 상단 프로필 창 영역 설정 */
@@ -28,6 +32,7 @@
     justify-content: start;
     align-items: center;
     border-radius: var(--boder-radius);
+    background-color: var(--background-color);
 }
 
 /* 상단 프로필창 글자 간격 조절*/
@@ -64,6 +69,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: var(--background-color);
 }
 
 /* 제목 영역 */
@@ -73,6 +79,7 @@
     border: var(--boder-setting);
     padding: 20px;
     margin-top: 15px;
+    background-color: var(--background-color);
 }
 
 /* 본문 영역 */
@@ -84,6 +91,7 @@
     margin-top: 15px;
     white-space: pre-wrap;
     word-wrap: break-word;
+    background-color: var(--background-color);
     
 }
 
@@ -108,6 +116,7 @@
     border: var(--boder-setting);
     border-radius: var(--boder-radius);
     margin-top: 15px;
+    background-color: var(--background-color);
 }
 
 /* 댓글 폼영역 */
@@ -128,6 +137,8 @@
     width: 80px;
     height: 50px;
     margin-top: 15px;
+    background-color: pink;
+    border: 1px solid gray;
 }
 
 
