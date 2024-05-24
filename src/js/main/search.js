@@ -257,101 +257,69 @@ serviceWrap.addEventListener('mouseout', () =>{
     serviceWrap.style.visibility = 'hidden'
 })
 
-//검색 기능
-const searchInput = document.querySelector('#header_search_box')
-const searchclick = document.querySelector('#header_search_image')
+// 검색 후 로컬스토리지 저장
 class Search{
-    constructor(userProfile,userId,userNickname,userFavoriteGame,userTier){
-        this.userProfile = userProfile
-        this.userId = userId
-        this.userNickname = userNickname
-        this.userFavoriteGame = userFavoriteGame
-        this.userTier = userTier
+    constructor(searchclick,searchInput){
+        this.searchclick = document.querySelector('#header_search_image')
+        this.searchInput = document.querySelector('#header_search_box')
         
         this.event()
     }
     
     event(){
-        const searchId = () => {
+        const searchUser = () => {
             let resultData = [...signupArray];
-            if (searchInput){
+            if (this.searchInput){
                 resultData = resultData.filter((value) => {
-                    return value.userId.includes(searchInput.value)
+                    return  value.userId.includes(this.searchInput.value) ||
+                            value.userNickname.includes(this.searchInput.value);
                 })
                 if (resultData.length === 0) {
                     alert("검색 결과가 없습니다.");
                     return;
                 }
-            }
-            if (searchInput){
-                resultData = resultData.filter((value) => {
-                    return value.userId.includes(searchInput.value)
-                })
                 localStorage.setItem('searchResults', JSON.stringify(resultData));
                 location.href = './search.html'
+                return;
             }
-            let i = 0
-            const search_box2 = document.querySelector('.search_box2')
-            search_box2.innerHTML = "";
-            for(i = 0; i < resultData.length; i++){
-                const infobox = document.createElement('div')
-                const profilebox = document.createElement('span')
-                const idbox = document.createElement('span')
-                const nicknamebox = document.createElement('span')
-                const gamebox = document.createElement('span')
-                const tierbox = document.createElement('span')
-        
-                search_box2.append(infobox)
-                infobox.append(profilebox, idbox, nicknamebox, gamebox, tierbox)
-        
-                profilebox.innerHTML = i+1;
-                idbox.innerHTML = resultData[i].userId;
-                nicknamebox.innerHTML = resultData[i].userNickname;
-                gamebox.innerHTML = 'League Of Legends';
-                tierbox.innerHTML = '아이언IV';
-            }   
         }
-        searchclick.addEventListener('click', searchId)
 
-        searchInput.addEventListener('keydown', (event) => {
+        this.searchclick.addEventListener('click', searchUser)
+
+        this.searchInput.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
-                searchId();
+                searchUser();
             }
         });
     }
-    
 }
-const search = new Search()
+
+const searching = new Search();
 
 // header 끝 //
 
-// searchclick.addEventListener('click', () => {
-//     let resultData = [...signupArray];
-//     if (searchInput) {
-//     resultData = resultData.filter((value) => {
-//         return value.userId.includes(searchInput.value) == true
-//     })
-//     console.log(resultData)
-//     console.log(signupArray)
-//     }
-//     let i = 0
-//     const search_box2 = document.querySelector('.search_box2')
-//     search_box2.innerHTML = "";
-//     for(i = 0; i < resultData.length; i++){
-//         const infobox = document.createElement('div')
-//         const profilebox = document.createElement('span')
-//         const idbox = document.createElement('span')
-//         const nicknamebox = document.createElement('span')
-//         const gamebox = document.createElement('span')
-//         const tierbox = document.createElement('span')
+// 검색 로컬스토리지 출력
+document.addEventListener('DOMContentLoaded', () => {
+    const resultData = JSON.parse(localStorage.getItem('searchResults'));
+    if (!resultData) return;
 
-//         search_box2.append(infobox)
-//         infobox.append(profilebox, idbox, nicknamebox, gamebox, tierbox)
+    const search_box2 = document.querySelector('.search_box2');
+    search_box2.innerHTML = "";
+    resultData.forEach((item, i) => {
+        const infobox = document.createElement('div');
+        const profilebox = document.createElement('span');
+        const idbox = document.createElement('span');
+        const nicknamebox = document.createElement('span');
+        const gamebox = document.createElement('span');
+        const tierbox = document.createElement('span');
 
-//         profilebox.innerHTML = i+1;
-//         idbox.innerHTML = resultData[i].userId;
-//         nicknamebox.innerHTML = resultData[i].userNickname;
-//         gamebox.innerHTML = 'League Of Legends';
-//         tierbox.innerHTML = '아이언IV';
-//     }   
-// })
+        profilebox.innerHTML = i + 1;
+        idbox.innerHTML = item.userId;
+        nicknamebox.innerHTML = item.userNickname;
+        gamebox.innerHTML = 'League Of Legends';
+        tierbox.innerHTML = '.';
+
+        infobox.append(profilebox, idbox, nicknamebox, gamebox, tierbox);
+        search_box2.append(infobox);
+    });
+});

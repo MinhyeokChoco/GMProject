@@ -259,4 +259,41 @@ serviceWrap.addEventListener('mouseout', () =>{
     serviceWrap.style.visibility = 'hidden'
 })
 
+// 검색 후 로컬스토리지 저장
+class Search{
+    constructor(searchclick,searchInput){
+        this.searchclick = document.querySelector('#header_search_image')
+        this.searchInput = document.querySelector('#header_search_box')
+        
+        this.event()
+    }
+    
+    event(){
+        const searchUser = () => {
+            let resultData = [...signupArray];
+            if (this.searchInput){
+                resultData = resultData.filter((value) => {
+                    return  value.userId.includes(this.searchInput.value) ||
+                            value.userNickname.includes(this.searchInput.value);
+                })
+                if (resultData.length === 0) {
+                    alert("검색 결과가 없습니다.");
+                    return;
+                }
+                localStorage.setItem('searchResults', JSON.stringify(resultData));
+                location.href = './search.html'
+                return;
+            }
+        }
+
+        this.searchclick.addEventListener('click', searchUser)
+
+        this.searchInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                searchUser();
+            }
+        });
+    }
+}
+
 // header 끝
