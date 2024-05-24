@@ -3,7 +3,7 @@ class CommentPost { // 클래스 생성
         this.name = name; // 작성자
         this.comment = comment; // 댓글
         this.date = _date; // 작성일
-        this.page = _page;
+        this.page = _page; // 현재 페이지
     }
 }
 
@@ -50,8 +50,8 @@ deleteBtn.addEventListener("click", () => { // 삭제 버튼에 클릭했을 때
 });
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    render();
+document.addEventListener("DOMContentLoaded", function () { // 페이지의 모든 DOM 요소가 로드된 후
+    render(); // 페이지 로드 시 
     comment();
 });
 
@@ -77,35 +77,61 @@ function comment() {
 }
 
 function render() {
-    const commentView = document.getElementById("commentView");
-    const commentData = JSON.parse(localStorage.getItem("comData"))
-    if (commentView !== null) {
+    const commentView = document.getElementById("commentView"); // commentView div 요소에 접근
+    const commentData = JSON.parse(localStorage.getItem("comData")) || []; // 로컬스토리지에 comData 키 안의 값을 파씽해서 가져옵니다.
+    if (commentView !== null) { // commentView 값이 있으면
         commentView.innerHTML = ''; // 기존 댓글 요소 초기화
 
         for (let i = 0; i < commentData.length; i++) {
-            if (commentData[i].page === index) {
-                const _view = document.createElement("div");
+            if (commentData[i].page === index) { // 로컬스토리지 안에 저장되어 있는 페이지 값과 뷰인덱스의 값이 같으면
+                const _view = document.createElement("div"); // div 생성
+                _view.dataset.cmt = `${i}` // 생성된 div에게 cmt라는 데이터셋을 부여 (cmt : 키 / `${i}` : 값)
 
-                _view.innerHTML = `
-                <span>${commentData[i].name}</span>
-                <span>${commentData[i].comment}</span>
-                <span>${commentData[i].date}</span>
-                <button>수정</button>
-                <button>삭제</button>
-                `
+                const name = document.createElement("span"); // span 생성 후 name에 할당
+                name.innerHTML = `${commentData[i].name}` // name에 commentData 배열 [i] 요소의 name 값을 입력
+                const comment = document.createElement("span"); // comment 변수의 span 생성 할당
+                comment.innerHTML = `${commentData[i].comment}` // 내용 값 입력
+                const date = document.createElement("span"); // 작성일
+                date.innerHTML = `${commentData[i].date}` // 작성일 값 입력
+                const modifyBtn = document.createElement("button"); // 수정 역할을 할 버튼 생성
+                modifyBtn.innerHTML = "수정"
+                const deleteBtn = document.createElement("button"); // 삭제 역할을 할 버튼 생성
+                deleteBtn.innerHTML = "삭제"
 
                 // const commentModify = document.getElementById("commentModify");
+                // const commentDelete = document.getElementById("commentDelete");
+                _view.append(name, comment, date, modifyBtn, deleteBtn); // div 안에 작성자, 댓글 내용, 작성일, 수정 삭제 버튼 추가
+                commentView.append(_view); // span 태그 담은 div 태그를 commentView 태그에 추가
 
-                const commentDelete = document.getElementById("commentDelete");
+                // modifyBtn.addEventListener("cilck", (e) => {
 
-                commentView.append(_view);
-                commentDelete.addEventListener("click", () => { // 삭제 버튼에 클릭했을 때의 이벤트를 추가
-                    commentData.splice(index, 1); // 로컬스토리지 안 배열에서 삭제 버튼을 눌렀을 때의 해당 객체를 삭제
-                    for (let i = 0; i < commentData.length; i++) { // 삭제 후 배열의 인덱스 재설정
-                        commentData[i].index = i;
+                // })
+
+                deleteBtn.addEventListener("click", (e) => { // 삭제 버튼에 클릭했을 때의 이벤트를 추가
+                    let commit = commentData.filter((value) => value.page === index); // 로컬스토리지에 저장된 댓글 배열 안에 있는 객체들 중에 page가 현재 페이지와 일치하는 객체만 불러오기
+                    // 배열 상태임
+
+                    const target = e.target.parentNode.dataset.cmt; // 이벤트가 발생된 타겟의 부모 요소의 cmt 라는 데이터셋의 값을 변수 target 할당
+                    commit.splice(target, 1); // 로컬스토리지 안 배열에서 삭제 버튼을 눌렀을 때의 해당 객체를 삭제
+
+                    let _index = 0; // _index는 for문이 정상 작동하도록 도와주는 기존 i 역할을 대신 해준다.
+
+                    const a = commentData.length // a는 splice 되기 전 원래 댓글 배열의 길이
+
+                    for (let i = 0; i < a; i++) { // commentData 배열의 여러 요소에서 page 값이 index와 같으면 commentData 배열에서 해당 요소 값을 삭제 
+                        if (commentData[_index].page == index) {
+                            commentData.splice(_index, 1);
+                            _index--; // 삭제 후 인덱스가 올라가는걸 방지하기 위해 빼줌
+                        }
+                        _index++; // 조건식이 끝나면 다시 증가
                     }
-                    const setCom = JSON.stringify(commentData); // csData를 문자형으로 변환해서 setCS 변수에 할당
-                    localStorage.setItem("comData", setCom); // 로컬스토리지 csData 키 값에 새로 저장
+
+                    for (let i = 0; i < commit.length; i++) { // splice 한 배열을 다시 로컬스토리지에 저장
+                        commentData.push(commit[i]);
+                    }
+                    const setCom = JSON.stringify(commentData); // commentData를 문자형으로 변환해서 setCom 변수에 할당
+                    localStorage.setItem("comData", setCom) // 로컬스토리지 comData 키 값에 저장
+                    location.reload(); // 페이지 새로 고침
                 });
             }
         }
@@ -117,3 +143,6 @@ function render() {
 // 페이지네이션 CSS 해야 함
 // 기존 저장되어 있는 내용 플레이스홀더로 불러서 수정 하는거 완료
 // 댓글창 CSS 및 수정과 삭제 기능
+
+// 지금 브런치가 메인이여서 이거 옮길 때 자료 어떻게 할 지
+// 수정 버튼을 구현 해야 하는데 이거를 또 어떻게 할 지
