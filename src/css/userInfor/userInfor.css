@@ -63,6 +63,11 @@
     background-color: var(--background-color);
 }
 
+/* 닉네임 p 태그 */
+#topDiv-nicknameRegion-nick {
+    font-weight: bold;
+}
+
 /* 좋아하는 게임 영역 */
 #midDiv-favoritRegion {
     width: 540px;
