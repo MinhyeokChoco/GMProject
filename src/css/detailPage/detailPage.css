@@ -12,14 +12,15 @@
     padding: 0px;
 }
 
+body {
+    background-color: #F5F7F8;
+}
 
 #mainDiv {
     width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #F5F7F8;
     
 }
 
@@ -143,7 +144,7 @@
 /* 댓글 입력 버튼 (submit) */
 #bottomDiv-replyDiv-button {
     width: 80px;
-    height: 50px;
+    height: 62px;
     margin-top: 15px;
     background-color: pink;
     border: 1px solid gray;
@@ -273,7 +274,7 @@
 /* 답글 닉네임 p태그 */
 .pforNickname {
     color: violet;
-    font-weight: b;
+    font-weight: bolder;
 }
 
 .wholeCommentDiv{
