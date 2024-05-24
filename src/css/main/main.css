@@ -430,7 +430,6 @@ body {
     transition :transform 0.2s;
 }
 
-
 .scroll_bar{
     width: 400px;
     height: 6px;
@@ -556,43 +555,132 @@ body {
     text-decoration-line: none;
 }
 
-.game_postlist{
-    width:1125px;
-    height:300px;
-    display:flex;
+.game_view{
+    position:relative;
 }
 
-.game_postlist > div{
+.game_postlist{
+    width: 1125px;
+    height:300px;
+    display:flex;
+    overflow-x : scroll;
+}
+
+.post_prev_btn{
+    width:40px;
+    height:40px;
+    display:none;
+    position:absolute;
+    border-radius: 40px;
+    border:none;
+    top:200px;
+    left:7px;
+    background-color:rgba(0,0,0,0.1);
+}
+
+.post_prev_btn:hover{
+    cursor:pointer;
+    transform:scale(0.95);
+    transition:0.3s;
+}
+
+.post_prev_btn::after{
+    content:'';
+    position:absolute;
+    width:10px;
+    left: 12px;
+    top: 15px;
+    border:1px solid black;
+    transform: rotate(131deg)
+}
+.post_prev_btn::before{
+    content: '';
+    position: absolute;
+    width: 10px;
+    left: 12px;
+    top: 23px;
+    border: 1px solid black;
+    transform: rotate(45deg);
+}
+
+.post_next_btn{
+    width:40px;
+    height:40px;
+    display:flex;
+    position:absolute;
+    border-radius: 40px;
+    border:none;
+    top:200px;
+    right:-21px;
+    background-color:rgba(0,0,0,0.1);
+}
+
+.post_next_btn::after{
+    content:'';
+    position:absolute;
+    width:10px;
+    right: 13px;
+    top: 15px;
+    border:1px solid black;
+    transform: rotate(45deg)
+}
+.post_next_btn::before{
+    content: '';
+    position: absolute;
+    width: 10px;
+    right: 13px;
+    top: 23px;
+    border: 1px solid black;
+    transform: rotate(131deg);
+}
+
+.post_next_btn:hover{
+    cursor:pointer;
+    transform:scale(0.95);
+    transition:0.3s;
+}
+
+
+.game_postlist > ul{
+    display:flex;
+    flex-direction: row;
+}
+
+.game_postlist > ul > li{
     display:flex;
     flex-direction: column;
     width:360px;
     height:240px;
     border:1px solid;
-    margin:20px 10px 0 0;
+    margin:20px 8px 0 8px;
     position:relative;
 }
 
-.game_postlist > div > p:nth-child(1){
+.game_postlist > ul > li > p:nth-child(1){
     margin:20px 0 0 20px;
     font-size:20px;
     font-weight: 700;
 }
 
-.game_postlist > div > p:nth-child(2){
+.game_postlist > ul > li > p:nth-child(2){
     margin-left:20px;
     font-size:12px;
     color:#646464
 }
 
-.game_postlist > div > p:nth-child(3){
+.game_postlist > ul > li > p:nth-child(3){
     margin:20px 0 0 20px;
     font-size:16px;
     color:#424242
 }
 
-.game_postlist > div > p:nth-child(4){
+.game_postlist > ul > li > p:nth-child(4){
     margin:100px 0 0 20px;
     font-size:14px;
+}
+
+.game_postlist::-webkit-scrollbar{
+    /* display:none; */
 }
 
 .footer{

@@ -1,44 +1,7 @@
-// const gameListScrollBtn = document.querySelector(".game_list_scroll > div > span");
-const rec_category = document.querySelector(".rec_category");
-const categoryList = document.querySelector(".category_list");
-// const scrollBar = document.querySelector(".scroll_bar");
-// const scrollClick = document.querySelector(".scroll_bar");
-
-// scrollLeft
-// scrollWidth
-// let scrollTarget = null;
-// let startPosX = gameListScrollBtn.getBoundingClientRect().left;
-// let click = null;
-// let scrollBarWidth = scrollBar.clientWidth;
-// // console.log(scrollBarWidth)
-// gameListScrollBtn.onmousedown = function(e) {
-//     scrollTarget = e.target;
-//     // console.log(gameListScrollBtn.getBoundingClientRect().left);
-//     click = e.x - gameListScrollBtn.getBoundingClientRect().left;
-//     // console.log(click);
-// }
-
-// categoryList.onscroll = function(e) {
-//     // console.log(e.target)
-// }
-
-// window.onmousemove = function(e) {
-//     if(scrollTarget){
-//         // console.log(e.x)
-//         const _left = (e.x - startPosX) - click ;
-//         // console.log(_left)
-//         if((_left <= 0) || (_left >= (scrollBarWidth - gameListScrollBtn.clientWidth))) return
-//         scrollTarget.style.left = `${_left}px`
-//         const a = _left/scrollBarWidth *100;
-//         categoryList.scrollLeft =(categoryList.scrollWidth- categoryList.offsetWidth) * a / 100;
-//     }
-// }
-
-// window.onmouseup = function(e) {
-//     scrollTarget = null;
-// }
 
 //스크롤바 클라스
+const rec_category = document.querySelector(".rec_category");
+const categoryList = document.querySelector(".category_list");
 class GameListScroll {
     constructor(root, categoryList){
         this.root = root;
@@ -324,7 +287,7 @@ function login() {
         if (loginID === signupArray[i].userId) {
             if (loginPW === signupArray[i].userPw) {
                 islogin = true
-                const OnloginArray = {"userId": signupArray[i].userId,"userPw":signupArray[i].userPw,"userNickname":signupArray[i].usernickname};
+                const OnloginArray = {"userId": signupArray[i].userId,"userNickname":signupArray[i].userNickname,"userLogOn":true};
                 localStorage.setItem('lUserInfor', JSON.stringify(OnloginArray));
                 window.sessionStorage.setItem("SUserInfor", JSON.stringify(signupArray[i]));
                 document.querySelector('#login_modal_btn').style.display = 'none';
@@ -471,3 +434,10 @@ class Search{
 }
 
 const searching = new Search();
+
+document.querySelector('.post_next_btn').addEventListener('click',() =>{
+    const gamePost = document.querySelector('.game_postlist > ul')
+    gamePost.clientLeft = '1125'
+    console.dir(gamePost)
+    console.log(gamePost.offsetX)
+})
