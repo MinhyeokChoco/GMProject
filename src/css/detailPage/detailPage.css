@@ -1,0 +1,297 @@
+:root {
+    --width-Size: 600px;
+    --width-Size-includePadding: 560px;
+    --boder-radius: 30px;
+    --boder-setting : 1px solid black;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#mainDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 상단 프로필 창 영역 설정 */
+#topDiv {
+    width: var(--width-Size);
+    height: 150px;
+    border: var(--boder-setting);
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    border-radius: var(--boder-radius);
+}
+
+/* 상단 프로필창 글자 간격 조절*/
+#topDiv-userInforDiv > p {
+    margin:10px 0 10px 0;
+}
+
+/* 프로필 사진 영역 설정*/
+#topDiv-profileDiv {
+    width: 100px;
+    height: 100px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.topDiv-profileDiv-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 즐겨하는 게임 영역 */
+#midTopDiv-playList {
+    width: var(--width-Size);
+    height: 100px;
+    border: var(--boder-setting);
+    margin-top: 15px;
+    border-radius: var(--boder-radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 제목 영역 */
+#midDiv-titleDiv {
+    width: var(--width-Size-includePadding);
+    height: 30px;
+    border: var(--boder-setting);
+    padding: 20px;
+    margin-top: 15px;
+}
+
+/* 본문 영역 */
+#midDiv-contentDiv {
+    width: var(--width-Size-includePadding);
+    border: var(--boder-setting);
+    border-radius: var(--boder-radius);
+    padding: 20px;
+    margin-top: 15px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    
+}
+
+/* 수정, 삭제, 목록으로 영역*/
+#midbottomDiv {
+    display: flex;
+    flex-direction: row;
+    width: 560px;
+    justify-content: right;
+}
+
+#midbottomDiv > p {
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+/*댓글 영역*/
+#bottomDiv-replyDiv {
+    width: var(--width-Size-includePadding);
+    padding: 20px;
+    border: var(--boder-setting);
+    border-radius: var(--boder-radius);
+    margin-top: 15px;
+}
+
+/* 댓글 폼영역 */
+#bottomDiv-replyDiv-form{
+    display: flex;
+    justify-content: center;
+}
+
+/* 댓글 텍스트에리어 */
+#bottomDiv-replyDiv-area {
+    width: 500px;
+    height: 50px;
+    margin-top: 15px;
+}
+
+/* 댓글 입력 버튼 (submit) */
+#bottomDiv-replyDiv-button {
+    width: 80px;
+    height: 50px;
+    margin-top: 15px;
+}
+
+
+/* 프사 영역 */
+.contentDiv-profile{
+    width: 80px;
+    height: 80px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+#bottomDiv-replyDiv-contentDiv{
+    display: flex;
+    flex-direction: column;
+}
+
+/* 댓글 그리는 영역 */
+.bottomDiv-replyDiv-contentDiv-replyBox {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+/* 닉네임, 댓글 영역*/
+.contentDiv-reple{
+    width: 460px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* 댓글창 닉네임*/
+.contentDiv-reple-nickName {
+    font-weight: bold;
+    color: violet;
+}
+
+/* 수정, 삭제버튼 영역 */
+.bottomContentDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: 5px;
+}
+
+.updateP{
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.updateP:hover {
+    text-decoration: underline;
+}
+
+.deleteP {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.deleteP:hover {
+    text-decoration: underline;
+}
+
+/* 댓글 수정시 나오는 에리어*/
+.updateTextArea {
+    width: 460px;
+    height: 110px;
+    resize: none;
+}
+
+/* 댓글 수정시 나오는 버튼*/
+.updateCCBtn {
+    width: 50px;
+    height: 30px;
+    border: 1px solid gray;
+    background-color: white;
+    cursor: pointer;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+.commentP{
+    cursor: pointer;
+}
+
+.commentP:hover {
+    text-decoration: underline;
+}
+
+/* 이 아래로 답글 영역 */
+
+/* 답글 영역 감쌀 div*/
+.commentBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+}
+
+/* 답글영역 컨텐트, 댓글 감싸는 div */
+.letterDiv {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* 답글 작성, 취소 감싸는 div */
+.commentBtnDiv {
+    margin-top: 10px;
+}
+
+/* 답글 에리어*/
+.commentTextArea {
+    width: 480px;
+    height: 110px;
+    margin-top: 5px;
+    resize: none;
+}
+
+/* 답글 닉네임 p태그 */
+.pforNickname {
+    color: violet;
+    font-weight: b;
+}
+
+.wholeCommentDiv{
+    margin-top: 10px;
+}
+
+.onlyCommentDiv {
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+}
+
+/* 대댓글 수정, 삭제 영역 */
+.commentBtnDiv{
+    display: flex;
+    justify-content: right;
+}
+
+/* 대댓글 수정 버튼 */
+.commentUpdateBtn {
+    cursor: pointer;
+}
+
+.commentUpdateBtn:hover {
+    text-decoration: underline;
+}
+
+/* 대댓글 삭제버튼 */
+.commentDeleteBtn {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.commentDeleteBtn:hover {
+    text-decoration: underline;
+}
+
+/* 대댓글 수정할때 나오는 텍스트 에리어 */
+.commentUpdateTextarea {
+    width: 400px;
+    height: 110px;
+    resize: none;
+}

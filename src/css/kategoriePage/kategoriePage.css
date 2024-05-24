@@ -1,0 +1,82 @@
+/* 카테고리 페이지의 전체 CSS를 설정 */
+
+/* 기본 속성 제거 */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.body{
+    display:flex;
+}
+
+#div-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 게임 카테고리와 글 작성하는 부분 설정 */
+#div-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* 상단부의 게임이름과 글작성 부분 분리*/
+    width: 80%;
+}
+
+/* 글작성 부분 div 설정 */
+#div-writeButton-box{
+    cursor: pointer;
+}
+
+
+/* 게시물이 올라오는 부분 전체 영역 설정 */
+#div-item-box {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+/* 게시물 div박스 설정 */
+.div-item-object {
+    width: 320px;
+    height: 250px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-right: 30px;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+}
+
+/* 제목 영역 말줄임표(...) 표시 */
+.div-item-object > h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 본문 영역 말줄임표 표시 */
+.div-item-object > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    margin-top: 5px;
+}
+
+/* 닉네임 */
+.div-item-object > p:nth-child(4) {
+    position: absolute;
+    bottom: 15%;
+    font-weight: bold;
+}
+/* 댓글 수 */
+.div-item-object > p:nth-child(5) {
+    position: absolute;
+    bottom: 5%;
+}
