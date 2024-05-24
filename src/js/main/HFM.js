@@ -132,13 +132,8 @@ document.querySelector('.signup_btn').addEventListener('click', () => {
         localStorage.setItem("lUserDB",JSON.stringify(signupArray));
         alert("회원가입이 완료되었습니다.")
         document.querySelector(".modal_signup_page").style.display = 'none';
+        location.href = './main.html'
     }
-    userId.innerHTML = "";
-    userPw.innerHTML = "";
-    document.querySelector('#signupPW2').innerHTML="";
-    userEmail.innerHTML = "";
-    userNickname.innerHTML = "";
-    // location.reload();
 })
 
 //로그인 실행 이벤트
@@ -278,6 +273,10 @@ class Search{
                 })
                 if (resultData.length === 0) {
                     alert("검색 결과가 없습니다.");
+                    return;
+                }
+                else if(this.searchInput === null||this.searchInput===undefined||this.searchInput.value===''){
+                    alert("검색어를 입력해주세요.")
                     return;
                 }
                 localStorage.setItem('searchResults', JSON.stringify(resultData));
