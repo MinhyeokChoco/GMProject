@@ -656,7 +656,7 @@ body {
     border:1px solid;
     margin:20px 8px 0 8px;
     position:relative;
-    background-color: #FFDC4D;
+    background-color: white;
 }
 
 .game_postlist > ul > li > p:nth-child(1){
