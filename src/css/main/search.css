@@ -181,6 +181,26 @@ body {
     
 }
 
+#to_cs{
+    width:80px;
+    height:30px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size:18px;
+    margin:16px 0 0 35px;
+}
+
+#to_cs > a{
+    text-decoration-line: none;
+    color:#4D4D4D;
+}
+
+#to_cs:hover{
+    font-weight: 700;
+    cursor:pointer;
+}
+
 .header_search {
     position:absolute;
     left:42%;

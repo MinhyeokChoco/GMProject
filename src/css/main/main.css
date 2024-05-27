@@ -68,7 +68,7 @@ body {
 
 .service{
     width:116px;
-    height:30px;
+    height:45px;
     position:relative;
     left:160px;
     top:19px;
@@ -99,7 +99,6 @@ body {
     height:1.5px;
     left:98px;
     transition: 0.1s;
-
 }
 
 .service > button {
@@ -143,6 +142,7 @@ body {
     border-radius: 10px;
     left:277px;
     top:55px;
+    transform:scale(0.5);
 }
 
 .service_wrap > a{
@@ -180,6 +180,26 @@ body {
     background-color: #F5F7F8;
     color:black;
     
+}
+
+#to_cs{
+    width:80px;
+    height:30px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size:18px;
+    margin:16px 0 0 35px;
+}
+
+#to_cs > a{
+    text-decoration-line: none;
+    color:#4D4D4D;
+}
+
+#to_cs:hover{
+    font-weight: 700;
+    cursor:pointer;
 }
 
 .header_search {
@@ -563,7 +583,8 @@ body {
     width: 1125px;
     height:300px;
     display:flex;
-    overflow-x : scroll;
+    overflow-x : hidden;
+    transition: 0.3s;
 }
 
 .post_prev_btn{
