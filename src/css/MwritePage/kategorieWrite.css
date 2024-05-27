@@ -25,7 +25,7 @@ body {
 /* 텍스트 부분 */
 .explanation {
     margin-bottom: 10px;
-    color: rgb(0, 53, 56);
+    color: #ff75ac
 }
 
 /* 제목 부분 설정 */
@@ -50,7 +50,7 @@ body {
     resize: none;
     font-size: 16px;
     padding: 10px;
-    border-top: 5px solid skyblue;
+    border-top: 5px solid #f199bc;
     border-radius: 5px;
 }
 
@@ -75,7 +75,7 @@ body {
 }
 
 .itembox-btn:hover {
-    background-color: lightgray;
+    background-color: #f199bc;
     transition: 0.3s;
 }
 
