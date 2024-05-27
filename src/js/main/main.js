@@ -126,9 +126,9 @@ class GameListScroll {
     // 스크롤 버튼 위치 업데이트
     this.scrollBtn.style.left = `${newScrollBtnLeft}px`;
 
-        // 카테고리 리스트를 오른쪽으로 스크롤
-        this.category_list.scrollLeft += category_list_scroll;
-        });
+    // 카테고리 리스트를 오른쪽으로 스크롤
+    this.category_list.scrollLeft += category_list_scroll;
+    });
     }
 }
 
@@ -435,9 +435,28 @@ class Search{
 
 const searching = new Search();
 
-document.querySelector('.post_next_btn').addEventListener('click',() =>{
-    const gamePost = document.querySelector('.game_postlist > ul')
-    gamePost.clientLeft = '1125'
-    console.dir(gamePost)
-    console.log(gamePost.offsetX)
-})
+// 게임 게시글 스크롤 기능
+const nextBtn = document.querySelectorAll('.post_next_btn')
+const prevBtn = document.querySelectorAll('.post_prev_btn')
+const gamePost = document.querySelectorAll('.game_postlist')
+
+// 게임 게시글 오른쪽 버튼 클릭
+for(let i = 0; i < nextBtn.length; i++){
+    nextBtn[i].addEventListener('click',() =>{
+        const category_list_scroll = gamePost[i].offsetWidth
+        gamePost[i].scrollLeft += category_list_scroll +3
+        nextBtn[i].style.display = 'none';
+        prevBtn[i].style.display = 'flex';
+        console.dir(nextBtn[i])
+    })
+}
+
+// 게임 게시글 왼쪽 버튼 클릭
+for(let i = 0; i < prevBtn.length; i++){
+    prevBtn[i].addEventListener('click',() =>{
+        const category_list_scroll = gamePost[i].offsetWidth
+        gamePost[i].scrollLeft -= category_list_scroll +3
+        prevBtn[i].style.display = 'none';
+        nextBtn[i].style.display = 'flex';
+    })
+}
