@@ -74,7 +74,7 @@ class GameListScroll {
         this.prev.addEventListener('click', () => {
             // 필요한 요소와 변수를 초기화합니다.
             this.category_list = document.querySelector('.category_list');
-            this.scrollPercentage = 16.6666666;
+            this.scrollPercentage = 20;
         
             // 카테고리 리스트의 스크롤 거리를 계산합니다.
             const category_list_scroll = this.category_list.offsetWidth * (this.scrollPercentage / 100);
@@ -104,11 +104,11 @@ class GameListScroll {
         this.next.addEventListener('click', () => {
     // 필요한 요소와 변수를 초기화
     this.category_list = document.querySelector('.category_list');
-    this.scrollPercentage = 16.6666666;
+    this.scrollPercentage = 20;
 
     // 카테고리 리스트의 스크롤 거리 계산
     const category_list_scroll = this.category_list.offsetWidth * (this.scrollPercentage / 100);
-
+            console.log(this.category_list.offsetWidth)
     // 스크롤 버튼의 스크롤 거리 계산
     const scrollBtn_scroll = (this.scrollBarWidth - this.scrollBtn.clientWidth) * (this.scrollPercentage / 100);
 
@@ -371,24 +371,28 @@ service.addEventListener('mouseover', () =>{
     serviceWrap.style.display = 'flex' 
     serviceWrap.style.visibility = 'visible'
     serviceWrap.style.opacity = '1'
-    serviceWrap.style.transition = '0.3s'
+    serviceWrap.style.transition = '0.2s'
+    serviceWrap.style.transform = 'scale(1)'
 });
 
 service.addEventListener('mouseout', () =>{
-    serviceWrap.style.opacity = '0'
-    serviceWrap.style.visibility = 'hidden'
+        serviceWrap.style.opacity = '0'
+        serviceWrap.style.visibility = 'hidden'
+        serviceWrap.style.transform = 'scale(0.5)'
 })
 
 serviceWrap.addEventListener('mouseover', () =>{
     serviceWrap.style.display = 'flex'
     serviceWrap.style.visibility = 'visible'
     serviceWrap.style.opacity = '1'
-    serviceWrap.style.transition = '0.3s'
+    serviceWrap.style.transition = '0.2s'
+    serviceWrap.style.transform = 'scale(1)'
 })
 
 serviceWrap.addEventListener('mouseout', () =>{
-    serviceWrap.style.opacity = '0'
-    serviceWrap.style.visibility = 'hidden'
+        serviceWrap.style.opacity = '0'
+        serviceWrap.style.visibility = 'hidden'
+        serviceWrap.style.transform = 'scale(0.5)'
 })
 
 
@@ -443,11 +447,10 @@ const gamePost = document.querySelectorAll('.game_postlist')
 // 게임 게시글 오른쪽 버튼 클릭
 for(let i = 0; i < nextBtn.length; i++){
     nextBtn[i].addEventListener('click',() =>{
-        const category_list_scroll = gamePost[i].offsetWidth
-        gamePost[i].scrollLeft += category_list_scroll +3
-        nextBtn[i].style.display = 'none';
-        prevBtn[i].style.display = 'flex';
-        console.dir(nextBtn[i])
+            const category_list_scroll = gamePost[i].offsetWidth
+            gamePost[i].scrollLeft += category_list_scroll + 3
+            nextBtn[i].style.display = 'none';
+            prevBtn[i].style.display = 'flex';
     })
 }
 
@@ -460,3 +463,11 @@ for(let i = 0; i < prevBtn.length; i++){
         nextBtn[i].style.display = 'flex';
     })
 }
+
+const postContents = document.querySelectorAll('.game_postlist > ul')
+const lolContents = JSON.parse(localStorage.getItem('LOL'))
+const _li = document.createElement('li')
+const titleP = document.createElement('p')
+const nicknameP = document.createElement('p')
+const contentP = document.createElement('p')
+const CommentP = document.createElement('p')
