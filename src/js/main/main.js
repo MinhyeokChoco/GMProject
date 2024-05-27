@@ -464,10 +464,72 @@ for(let i = 0; i < prevBtn.length; i++){
     })
 }
 
-const postContents = document.querySelectorAll('.game_postlist > ul')
-const lolContents = JSON.parse(localStorage.getItem('LOL'))
-const _li = document.createElement('li')
-const titleP = document.createElement('p')
-const nicknameP = document.createElement('p')
-const contentP = document.createElement('p')
-const CommentP = document.createElement('p')
+
+
+const gamePostList = document.querySelectorAll('.game_postlist')
+const lolContent = JSON.parse(localStorage.getItem('LOL'))
+const pubgContent = JSON.parse(localStorage.getItem('PUBG'))
+const overwatchContent = JSON.parse(localStorage.getItem('overwatch'))
+const starrailContent = JSON.parse(localStorage.getItem('StarRail'))
+
+
+for(let j = 0; j < gamePostList.length; j++){
+    for(let i = 0; i < Math.min(lolContent.length, 5); i++){
+        const _li = document.createElement('li')
+        const titleP = document.createElement('p')
+        const nicknameP = document.createElement('p')
+        const contentP = document.createElement('p')
+        const commentP = document.createElement('p')
+
+        _li.append(titleP, nicknameP, contentP, commentP)
+        gamePostList[j].append(_li)
+        titleP.innerHTML = lolContent[i].postTitle
+        nicknameP.innerHTML = lolContent[i].userNicknameInfor
+        contentP.innerHTML = lolContent[i].PostContent
+    }
+    for(let i = 0; i < Math.min(pubgContent.length, 5); i++){
+        const _li = document.createElement('li')
+        const titleP = document.createElement('p')
+        const nicknameP = document.createElement('p')
+        const contentP = document.createElement('p')
+        const commentP = document.createElement('p')
+    
+        _li.append(titleP, nicknameP, contentP, commentP)
+        gamePostList[j].append(_li)
+    
+        titleP.innerHTML = pubgContent[i].postTitle
+        nicknameP.innerHTML = pubgContent[i].userNicknameInfor
+        contentP.innerHTML = pubgContent[i].PostContent
+    }
+    
+    for(let i = 0; i < Math.min(overwatchContent.length, 5); i++){
+        const _li = document.createElement('li')
+        const titleP = document.createElement('p')
+        const nicknameP = document.createElement('p')
+        const contentP = document.createElement('p')
+        const commentP = document.createElement('p')
+    
+        _li.append(titleP, nicknameP, contentP, commentP)
+        gamePostList[j].append(_li)
+
+        titleP.innerHTML = overwatchContent[i].postTitle
+        nicknameP.innerHTML = overwatchContent[i].userNicknameInfor
+        contentP.innerHTML = overwatchContent[i].PostContent
+    }
+    
+    for(let i = 0; i < Math.min(starrailContent.length, 5); i++){
+        const _li = document.createElement('li')
+        const titleP = document.createElement('p')
+        const nicknameP = document.createElement('p')
+        const contentP = document.createElement('p')
+        const commentP = document.createElement('p')
+    
+        _li.append(titleP, nicknameP, contentP, commentP)
+        gamePostList[j].append(_li)
+    
+        titleP.innerHTML = starrailContent[i].postTitle
+        nicknameP.innerHTML = starrailContent[i].userNicknameInfor
+        contentP.innerHTML = starrailContent[i].PostContent
+    }
+}
+
