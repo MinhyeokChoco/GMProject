@@ -466,7 +466,7 @@ for(let i = 0; i < prevBtn.length; i++){
 
 
 
-const gamePostList = document.querySelectorAll('.game_postlist')
+const gamePostList = document.querySelectorAll('.game_postlist > ul')
 const lolContent = JSON.parse(localStorage.getItem('LOL'))
 const pubgContent = JSON.parse(localStorage.getItem('PUBG'))
 const overwatchContent = JSON.parse(localStorage.getItem('overwatch'))
@@ -485,7 +485,7 @@ for(let j = 0; j < gamePostList.length; j++){
         gamePostList[j].append(_li)
         titleP.innerHTML = lolContent[i].postTitle
         nicknameP.innerHTML = lolContent[i].userNicknameInfor
-        contentP.innerHTML = lolContent[i].PostContent
+        contentP.innerHTML = lolContent[i].postContent
     }
     for(let i = 0; i < Math.min(pubgContent.length, 5); i++){
         const _li = document.createElement('li')
@@ -499,7 +499,7 @@ for(let j = 0; j < gamePostList.length; j++){
     
         titleP.innerHTML = pubgContent[i].postTitle
         nicknameP.innerHTML = pubgContent[i].userNicknameInfor
-        contentP.innerHTML = pubgContent[i].PostContent
+        contentP.innerHTML = pubgContent[i].postContent
     }
     
     for(let i = 0; i < Math.min(overwatchContent.length, 5); i++){
@@ -514,7 +514,7 @@ for(let j = 0; j < gamePostList.length; j++){
 
         titleP.innerHTML = overwatchContent[i].postTitle
         nicknameP.innerHTML = overwatchContent[i].userNicknameInfor
-        contentP.innerHTML = overwatchContent[i].PostContent
+        contentP.innerHTML = overwatchContent[i].postContent
     }
     
     for(let i = 0; i < Math.min(starrailContent.length, 5); i++){
@@ -529,7 +529,6 @@ for(let j = 0; j < gamePostList.length; j++){
     
         titleP.innerHTML = starrailContent[i].postTitle
         nicknameP.innerHTML = starrailContent[i].userNicknameInfor
-        contentP.innerHTML = starrailContent[i].PostContent
+        contentP.innerHTML = starrailContent[i].postContent
     }
 }
-
