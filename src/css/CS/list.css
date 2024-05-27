@@ -166,5 +166,39 @@
 
 .searchWrap>#searchInput {
     width: 20%;
-    font-size: px;
+    font-size: 20px;
+}
+
+.paginationWrap {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paginationWrap>#pagination {
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.paginationWrap>#pagination li {
+    width: 25px;
+    height: 25px;
+    background-color: #f199bc;
+    opacity: 0.7;
+    color: white;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+}
+
+.paginationWrap>#pagination li:hover {
+    width: 32px;
+    height: 32px;
+    background-color: #f199bc;
+    opacity: 1;
+
 }
