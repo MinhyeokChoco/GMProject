@@ -51,28 +51,28 @@ deleteBtn.addEventListener("click", () => { // 삭제 버튼에 클릭했을 때
 
 
 document.addEventListener("DOMContentLoaded", function () { // 페이지의 모든 DOM 요소가 로드된 후
-    render(); // 페이지 로드 시 
-    comment();
+    render(); // 댓글 Read, Update, Delete 함수 실행
+    comment(); // 댓글 Create 함수 실행
 });
 
-const commentData = JSON.parse(localStorage.getItem("comData")) || [];
+const commentData = JSON.parse(localStorage.getItem("comData")) || []; // 로컬스토리지에 comData가 있으면 할당, 아니면 빈 배열 생성
 
 function comment() {
-    const writerValue = document.getElementById("_writer");
-    const commentValue = document.getElementById("commentText");
-    const commentBtn = document.getElementById("commentAddBtn");
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
+    const writerValue = document.getElementById("_writer"); // 작성자 (로그인 데이터랑 연동해야 함)
+    const commentValue = document.getElementById("commentText"); // 댓글
+    const commentBtn = document.getElementById("commentAddBtn"); // 댓글 작성 버튼
+    const date = new Date(); // 댓글 작성일
+    const year = date.getFullYear(); // 작성 년도
+    const month = date.getMonth() + 1; // 작성 월
+    const day = date.getDate(); // 작성 일
 
-    commentBtn.onclick = () => {
-        const commentList = new CommentPost(undefined, commentValue.value, `${year}-${month}-${day}`, index)
-        const commentData = JSON.parse(localStorage.getItem("comData")) || [];
-        commentData.push(commentList);
-        localStorage.setItem("comData", JSON.stringify(commentData));
+    commentBtn.onclick = () => { // 댓글 작성 버튼 클릭했을 때 이벤트 추가
+        const commentList = new CommentPost(undefined, commentValue.value, `${year}-${month}-${day}`, index) // 작성자, 댓글 내용, 작성일, 삭제 하기 위한 댓글번호
+        const commentData = JSON.parse(localStorage.getItem("comData")) || []; // 로컬스토리지에 저장되어 있는 내용 가져오기
+        commentData.push(commentList); // 로컬스토리지에 댓글 작성한 내용 추가
+        localStorage.setItem("comData", JSON.stringify(commentData)); // 로컬스토리지에 새로 저장
         render();
-        commentValue.value = '';
+        commentValue.value = ''; // 댓글 내용 초기화
     }
 }
 
@@ -103,7 +103,6 @@ function render() {
 
                 modifyBtn.addEventListener("click", (e) => { // 수정 버튼 클릭 했을 때의 이벤트 추가
                     const target = e.target.parentNode.dataset.cmt; // 이벤트가 발생한 타겟의 부모 요소의 cmt 데이터셋 값을 가져옴
-                    console.log(target);
                     const commentText = prompt("댓글을 수정하세요 : ", commentData[target].comment); // 로컬스토리지에 저장되어 있는 commentData의 target 요소의 comment값을 할당
                     if (commentText !== null) { // commentText 값이 있으면
                         commentData[target].comment = commentText; // 수정한 댓글 내용 업데이트
