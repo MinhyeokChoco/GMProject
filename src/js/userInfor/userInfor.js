@@ -32,6 +32,24 @@ switch (userFavorite) {
     case "valorant":
         userFavorteGame = "발로란트";
         break;
+    case "kartrider":
+        userFavorteGame = "카트라이더";
+        break;
+    case "lostark":
+        userFavorteGame = "로스트아크";
+        break;
+    case "overwatch":
+        userFavorteGame = "오버워치";
+        break;
+    case "TFT":
+        userFavorteGame = "전략적 팀 전투";
+        break;
+    case "starcraft":
+        userFavorteGame = "스타크래프트";
+        break;
+    case "suddenattack":
+        userFavorteGame = "서든어택";
+        break;
     default:
         userFavorteGame = "";
 }
