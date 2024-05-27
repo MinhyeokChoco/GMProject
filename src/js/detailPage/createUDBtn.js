@@ -47,6 +47,28 @@ function fnImplementation() {
             break;
         case "valorant":
             window.location.href = "../kategoriePage/valorant.html"
+            break;
+        case "kartrider":
+            window.location.href = "../kategoriePage/kartrider.html"
+            break;
+        case "lostark":
+            window.location.href = "../kategoriePage/lostark.html"
+            break;
+        case "overwatch":
+            window.location.href = "../kategoriePage/overwatch.html"
+            break;
+        case "starcraft":
+            window.location.href = "../kategoriePage/starcraft.html"
+            break;
+        case "steamgame":
+            window.location.href = "../kategoriePage/steamgame.html"
+            break;
+        case "suddenattack":
+            window.location.href = "../kategoriePage/suddenattack.html"
+            break;
+        case "TFT":
+            window.location.href = "../kategoriePage/TFT.html"
+            break;
         default:
             alert("잘못된 접근입니다.");
             /* ↓ 임시 코드입니다 수정 필요 ↓*/

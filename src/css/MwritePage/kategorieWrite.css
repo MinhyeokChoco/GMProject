@@ -4,15 +4,28 @@
     padding: 0px;
 }
 
+body {
+    background-color: #F5F7F8;
+}
+
+
 #main-body {
     width: 100%;
 }
+
 
 /* 전체 페이지 요소 정렬 */
 #item-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
+}
+
+/* 텍스트 부분 */
+.explanation {
+    margin-bottom: 10px;
+    color: #ff75ac
 }
 
 /* 제목 부분 설정 */
@@ -22,20 +35,23 @@
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+
 }
 
 /* 제목과 본문 분리 여백 */
 #container-mid {
-    margin-top: 25px;
+    margin-top: 18px;
 }
 
 /* 텍스트에어리어 부분 설정 */
 #text-box-area {
     width: 500px;
-    height: 500px;
+    height: 400px;
     resize: none;
     font-size: 16px;
     padding: 10px;
+    border-top: 5px solid #f199bc;
+    border-radius: 5px;
 }
 
 /* 버튼 요소가 들어가는 div설정 */
@@ -55,16 +71,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: white;
+}
+
+.itembox-btn:hover {
+    background-color: #f199bc;
+    transition: 0.3s;
 }
 
 /* 완료버튼 설정 */
 #itembox-make {
     border: 1px solid black;
     cursor: pointer;
+
 }
 
 /* 취소버튼 설정 */
 #itembox-cancle {
     border: 1px solid black;
     cursor: pointer;
+
 }
