@@ -33,10 +33,11 @@ function displayItems(page, arr) { // 게시판 글들을 보여주는 함수
             // 작성한 글의 번호, 제목, 내용, 작성자, 작성일, 조회수, 보기 버튼을 _list에 입력
 
             _list.lastElementChild.onclick = (e) => { // _list의 마지막 자식요소를 클릭 했을 때 발생되는 이벤트 작성
-                sessionStorage.setItem("viewIndex", e.target.dataset.index) // 세션스토리지에 viewIndex 라는 키 안에 이벤트가 발생되는 데이터셋의 값을 저장한다.
+
                 for (let j = 0; j < writeList.length; j++) { // writeList 배열의 길이만큼 반복한다.
-                    const element = writeList[j].number; // writeList 배열의 i번째의 넘버를 element에 할당
-                    if (element == itemsToShow[i].number) { // element가 itemsToShow 배열의 i번째의 넘버와 동일하다면
+                    const element = writeList[j].number; // writeList 배열의 j번째의 넘버 값을 element에 할당
+                    if (element == itemsToShow[i].number) { // element가 itemsToShow 배열의 i번째의 넘버 값과 동일하다면
+                        sessionStorage.setItem("viewIndex", writeList[j].number) // 세션스토리지에 viewIndex 라는 키 안에 writeList 배열의 j번째의 number 값을 저장한다.
                         writeList[j].views++ // // writeList 배열의 j번째 요소의 views 속성을 1씩 증가 시킵니다. (조회수)
                     }
                 }
