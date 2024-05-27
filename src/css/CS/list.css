@@ -154,6 +154,7 @@
     height: 40px;
     display: flex;
     align-items: center;
+    filter: invert(23%) sepia(97%) saturate(6811%) hue-rotate(358deg) brightness(89%) contrast(127%);
 }
 
 .searchWrap {
