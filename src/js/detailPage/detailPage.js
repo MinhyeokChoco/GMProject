@@ -37,6 +37,24 @@ function lenderDetailPage() {
         case "valorant":
             userLikeGameToText = "발로란트";
             break;
+        case "kartrider":
+            userFavorteGame = "카트라이더";
+            break;
+        case "lostark":
+            userFavorteGame = "로스트아크";
+            break;
+        case "overwatch":
+            userFavorteGame = "오버워치";
+            break;
+        case "TFT":
+            userFavorteGame = "전략적 팀 전투";
+            break;
+        case "starcraft":
+            userFavorteGame = "스타크래프트";
+            break;
+        case "suddenattack":
+            userFavorteGame = "서든어택";
+            break;
         default:
             userLikeGameToText = "";
     }
@@ -87,6 +105,28 @@ document.querySelector("#midbottomDiv-listBtn").addEventListener('click', () => 
             break;
         case "valorant":
             window.location.href = "../kategoriePage/valorant.html"
+            break;
+        case "kartrider":
+            window.location.href = "../kategoriePage/kartrider.html"
+            break;
+        case "lostark":
+            window.location.href = "../kategoriePage/lostark.html"
+            break;
+        case "overwatch":
+            window.location.href = "../kategoriePage/overwatch.html"
+            break;
+        case "starcraft":
+            window.location.href = "../kategoriePage/starcraft.html"
+            break;
+        case "steamgame":
+            window.location.href = "../kategoriePage/steamgame.html"
+            break;
+        case "suddenattack":
+            window.location.href = "../kategoriePage/suddenattack.html"
+            break;
+        case "TFT":
+            window.location.href = "../kategoriePage/TFT.html"
+            break;
         default:
             alert("잘못된 접근입니다.");
             /* ↓ 임시 코드입니다 수정 필요 ↓*/
