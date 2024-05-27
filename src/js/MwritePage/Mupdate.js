@@ -52,10 +52,32 @@ postBtn.addEventListener('click', () => {
             window.location.href = "../kategoriePage/PUBG.html";
             break;
         case "eternalreturn":
-            window.location.href = "../kategoriePage/eternalreturn.html";
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
             break;
         case "valorant":
-            window.location.href = "../kategoriePage/valorant.html"
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
+            break;
+        case "kartrider":
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
+            break;
+        case "lostark":
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
+            break;
+        case "overwatch":
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
+            break;
+        case "starcraft":
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
+            break;
+        case "steamgame":
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
+            break;
+        case "suddenattack":
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
+            break;
+        case "TFT":
+            window.location.href = `../detailPage/detailPage.html?index=${nowIndex}`
+            break;
         default:
             alert("잘못된 접근입니다.");
             /* ↓ 임시 코드입니다 수정 필요 ↓*/
