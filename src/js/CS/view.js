@@ -84,7 +84,8 @@ function render() {
 
         for (let i = 0; i < commentData.length; i++) {
             if (commentData[i].page === index) { // 로컬스토리지 안에 저장되어 있는 페이지 값과 뷰인덱스의 값이 같으면
-                const _view = document.createElement("div"); // div 생성
+                const _view = document.createElement("div"); // 작성자와 댓글, 작성일을 담을 div 생성
+                const _btn = document.createElement("div"); // 버튼을 담을 div 생성
                 _view.dataset.cmt = `${i}` // 생성된 div에게 cmt라는 데이터셋을 부여 (cmt : 키 / `${i}` : 값)
 
                 const name = document.createElement("span"); // span 생성 후 name에 할당
@@ -98,17 +99,33 @@ function render() {
                 const deleteBtn = document.createElement("button"); // 삭제 역할을 할 버튼 생성
                 deleteBtn.innerHTML = "삭제"
 
-                _view.append(name, comment, date, modifyBtn, deleteBtn); // div 안에 작성자, 댓글 내용, 작성일, 수정 삭제 버튼 추가
+                _btn.append(modifyBtn, deleteBtn); // div 안에 수정, 삭제 버튼 추가
+                _view.append(name, comment, date, _btn); // div 안에 작성자, 댓글 내용, 작성일 추가
                 commentView.append(_view); // span 태그 담은 div 태그를 commentView 태그에 추가
 
                 modifyBtn.addEventListener("click", (e) => { // 수정 버튼 클릭 했을 때의 이벤트 추가
-                    const target = e.target.parentNode.dataset.cmt; // 이벤트가 발생한 타겟의 부모 요소의 cmt 데이터셋 값을 가져옴
-                    const commentText = prompt("댓글을 수정하세요 : ", commentData[target].comment); // 로컬스토리지에 저장되어 있는 commentData의 target 요소의 comment값을 할당
-                    if (commentText !== null) { // commentText 값이 있으면
-                        commentData[target].comment = commentText; // 수정한 댓글 내용 업데이트
-                        localStorage.setItem("comData", JSON.stringify(commentData)); // 업데이트 후 로컬스토리지에 저장
+                    const target = e.target.parentNode.parentNode.dataset.cmt; // 이벤트가 발생한 타겟의 부모 요소의 cmt 데이터셋 값을 가져옴
+
+                    const commentInput = document.createElement("input"); // 댓글 수정 입력창 생성
+                    const updateBtn = document.createElement("button"); // 댓글 수정 입력값 수정 완료 버튼 생성
+                    updateBtn.innerHTML = "완료"
+                    updateBtn.onclick = () => { // 완료 버튼 클릭 시 이벤트 생성
+                        commentData[target].comment = commentInput.value // commentData 배열안에 target 요소의 댓글 값에 입력창의 값을 할당
+                        localStorage.setItem("comData", JSON.stringify(commentData)); // 로컬스토리지 comData 안에 저장
                         render();
                     }
+                    commentInput.addEventListener("keydown", (e) => { // 완료 버튼 클릭 시 이벤트 생성
+                        if (e.key == "Enter") { // 엔터키를 눌렀을 때
+                            commentData[target].comment = commentInput.value // commentData 배열안에 target 요소의 댓글 값에 입력창의 값을 할당
+                            localStorage.setItem("comData", JSON.stringify(commentData)); // 로컬스토리지 comData 안에 저장
+                            render();
+                        }
+                    })
+                    commentInput.setAttribute("value", commentData[i].comment) // 이전 댓글 내용을 가지고 commentInput에 있는 값으로 업데이트 해준다.
+
+                    comment.replaceWith(commentInput); // comment span 태그를 input 태그로 변경
+                    commentData[target].comment = commentInput.value // comment 수정 입력값을 기존 댓글에 할당
+                    modifyBtn.replaceWith(updateBtn); // 수정 버튼을 완료 버튼으로 변경
                 });
 
                 deleteBtn.addEventListener("click", (e) => { // 삭제 버튼 클릭 했을 때의 이벤트를 추가
