@@ -224,10 +224,23 @@ const logout = () => {
 
 // 마이페이지 클릭시 이동
 const mypageBtn = document.querySelector('#mypage')
-const mypageData = JSON.parse(localStorage.getItem('lUserInfor'))
-mypageBtn.addEventListener('click', () => {
-    window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
-})
+let mypageData
+
+try {
+    // 로컬 스토리지에서 'lUserInfor' 키의 값을 가져옴
+    const storedData = localStorage.getItem('lUserInfor');
+    // 값이 null이 아닌 경우 JSON.parse 시도
+    mypageData = storedData ? JSON.parse(storedData) : [];
+} catch (error) {
+    // JSON 파싱 중 오류 발생 시 빈 배열로 초기화
+    mypageData = [];
+}
+
+if(mypageData.length !== 0){
+    mypageBtn.addEventListener('click', () => {
+        window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
+    })
+}
 
 // 모든 서비스 hover 시 나오는 창
 const service = document.querySelector('.service')

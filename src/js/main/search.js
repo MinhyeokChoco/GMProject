@@ -185,9 +185,6 @@ function loginHeader(el) {
     const onbtn = document.createElement('button')
     onbtn.id = 'mypage';
     onbtn.innerHTML = "내 정보";
-    onbtn.addEventListener('click', () => {
-        mypage();
-    })
     const onbtn2 = document.createElement('button')
     onbtn2.id = 'logout';
     onbtn2.addEventListener('click', () => {
@@ -222,10 +219,23 @@ const logout = () => {
 
 // 마이페이지 클릭시 이동
 const mypageBtn = document.querySelector('#mypage')
-const mypageData = JSON.parse(localStorage.getItem('lUserInfor'))
-mypageBtn.addEventListener('click', () => {
-    window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
-})
+let mypageData
+
+try {
+    // 로컬 스토리지에서 'lUserInfor' 키의 값을 가져옴
+    const storedData = localStorage.getItem('lUserInfor');
+    // 값이 null이 아닌 경우 JSON.parse 시도
+    mypageData = storedData ? JSON.parse(storedData) : [];
+} catch (error) {
+    // JSON 파싱 중 오류 발생 시 빈 배열로 초기화
+    mypageData = [];
+}
+
+if (mypageData.length !== 0) {
+    mypageBtn.addEventListener('click', () => {
+        window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
+    })
+}
 
 // 모든 서비스 hover 시 나오는 창
 const service = document.querySelector('.service')
@@ -302,6 +312,8 @@ const searching = new Search();
 
 // 검색 로컬스토리지 출력
 document.addEventListener('DOMContentLoaded', () => {
+    const favorGame = JSON.parse(localStorage.getItem('lUserFavoriteGame')) || [];
+    const localTier = JSON.parse(localStorage.getItem('lUserTier')) || [];
     const resultData = JSON.parse(localStorage.getItem('searchResults')).reverse();
     if (!resultData) return;
     const favorGame = JSON.parse(localStorage.getItem('lUserFavoriteGame'))
@@ -319,13 +331,34 @@ document.addEventListener('DOMContentLoaded', () => {
         idbox.innerHTML = item.userId;
         nicknamebox.innerHTML = item.userNickname;
 
-        favorGame.forEach((obj) => { // favorGame이 배열안에 객체로 저장되어 있는데 배열 안에 객체를 쭉 순회
-            if (Object.keys(obj)[0] == item.userId) { // Object 객체의 키 값들중 0번째 요소 값이 item.userId 값과 같으면 (대상이 특정되어 있지 않아서 전체 키값들을 가져옴)
-                gamebox.innerHTML = Object.values(obj)[0]; // gamebox에 객체의 값들 중 0번째 값을 넣어줌
-            }
-        })
+        if (favorGame.length !== 0) {
+            const playGame = favorGame.find(key => key.hasOwnProperty(item.userId))
+            if (playGame) gamebox.innerHTML = playGame[item.userId];
+        }
+        // favorGame.forEach((obj) => { // favorGame이 배열안에 객체로 저장되어 있는데 배열 안에 객체를 쭉 순회
+        //     if (Object.keys(obj)[0] == item.userId) { // Object 객체의 키 값들중 0번째 요소 값이 item.userId 값과 같으면 (대상이 특정되어 있지 않아서 전체 키값들을 가져옴)
+        //         gamebox.innerHTML = Object.values(obj)[0]; // gamebox에 객체의 값들 중 0번째 값을 넣어줌
+        //     }
+        // })
+        if (localTier.length !== 0) {
+            const tier = localTier.find(key => key.hasOwnProperty(item.userId))
 
-        tierbox.innerHTML = '.';
+            if (tier) {
+                if (tier[item.userId] < 1.5) {
+                    tierbox.innerHTML = '타인';
+                } else if (tier[item.userId] < 2) {
+                    tierbox.innerHTML = '지인';
+                } else if (tier[item.userId] < 3) {
+                    tierbox.innerHTML = '친구';
+                } else if (tier[item.userId] < 4) {
+                    tierbox.innerHTML = '절친';
+                } else if (tier[item.userId] <= 5) {
+                    tierbox.innerHTML = '베프';
+                }
+            } else {
+                tierbox.innerHTML = '신입';
+            }
+        }
 
         infobox.append(profilebox, idbox, nicknamebox, gamebox, tierbox);
         search_box2.append(infobox);
