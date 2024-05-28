@@ -130,7 +130,7 @@ document.querySelector('.signup_btn').addEventListener('click', () => {
         localStorage.setItem("lUserDB",JSON.stringify(signupArray));
         alert("회원가입이 완료되었습니다.")
         document.querySelector(".modal_signup_page").style.display = 'none';
-        location.href = './main.html'
+        location.reload();
     }
 })
 
