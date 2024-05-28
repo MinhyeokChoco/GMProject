@@ -173,7 +173,7 @@ function login() {
 document.querySelector('.login_btn').addEventListener('click', (e) => {
     e.preventDefault();
     login();
-
+    location.reload();
 })
 
 // 로그인 이후에 나올 div
@@ -232,9 +232,10 @@ try {
 }
 
 if (mypageData.length !== 0) {
-    mypageBtn.addEventListener('click', () => {
-        window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
-    })
+    if (mypageBtn)
+        mypageBtn.addEventListener('click', () => {
+            window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
+        })
 }
 
 // 모든 서비스 hover 시 나오는 창
@@ -316,7 +317,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const localTier = JSON.parse(localStorage.getItem('lUserTier')) || [];
     const resultData = JSON.parse(localStorage.getItem('searchResults')).reverse();
     if (!resultData) return;
-    const favorGame = JSON.parse(localStorage.getItem('lUserFavoriteGame'))
     const search_box2 = document.querySelector('.search_box2');
     search_box2.innerHTML = "";
     resultData.forEach((item, i) => {

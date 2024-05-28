@@ -1,12 +1,17 @@
 const writeList = JSON.parse(localStorage.getItem("csData")) || []; // csData 키에 저장되어 있는 값을 parse 해서 writeList 배열에 할당, 값이 없으면 빈 배열 할당
 const viewIndex = sessionStorage.getItem("viewIndex"); // 세션스토리지에 있는 viewIndex 키의 값을 viewIndex 변수에 할당
-const lUserInfor = JSON.parse(localStorage.getItem("lUserInfor")); // 로컬스토리지에 있는 lUserInfor 키의 값을 lUserInfor 변수에 할당 
+const userInfor = localStorage.getItem("lUserInfor"); // 로컬스토리지에 있는 lUserInfor 키의 값을 lUserInfor 변수에 할당 
 const csWriteBtn = document.getElementById("_csWriteBtn"); // 문의 글 작성 버튼
 const searchInput = document.getElementById("searchInput"); // 검색창
 const searchArr = []; // 검색 했을 때 검색된 게시글을 담을 배열
 const itemsPerPage = 3; // 한 페이지당 몇개의 글을 보여줄 것인지 결정
 let currentPage = 1; // 현재 페이지 설정
 
+let lUserInfor = [];
+
+if (userInfor.length !== 0) {
+    lUserInfor = JSON.parse(userInfor)
+}
 csWriteBtn.onclick = () => { // 문의 글 작성 버튼 클릭 했을 때 발생되는 이벤트 작성
     if (lUserInfor.userLogOn) { // 로그인 되어 있으면
         location.href = "write.html"; // 작성 페이지로 이동
