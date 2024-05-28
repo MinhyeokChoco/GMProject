@@ -38,10 +38,6 @@ class GameListScroll {
         // 마우스를 누를 때
         this.scrollBtn.onmousedown = (e) => {
             this.scrollTarget = e.target;
-            // console.dir(this.scrollBtn)
-            // console.log(e.offsetX)
-            // console.log(this.scrollBarWidth - e.offsetX)
-            // console.log((e.x - this.startPosX) - e.offsetX)
             this.startPosX = e.clientX - this.scrollBtn.offsetLeft;
             this.scrollBtn.classList.add('active'); 
             this.scrollBtn.style.cursor = 'grabbing'
@@ -108,7 +104,6 @@ class GameListScroll {
 
     // 카테고리 리스트의 스크롤 거리 계산
     const category_list_scroll = this.category_list.offsetWidth * (this.scrollPercentage / 100);
-            console.log(this.category_list.offsetWidth)
     // 스크롤 버튼의 스크롤 거리 계산
     const scrollBtn_scroll = (this.scrollBarWidth - this.scrollBtn.clientWidth) * (this.scrollPercentage / 100);
 
@@ -323,9 +318,6 @@ function loginHeader(el){
     const onbtn = document.createElement('button')
     onbtn.id = 'mypage';
     onbtn.innerHTML = "내 정보";
-    onbtn.addEventListener('click',() => {
-        mypage();
-    })
     const onbtn2 = document.createElement('button')
     onbtn2.id = 'logout';
     onbtn2.addEventListener('click',() => {
@@ -360,11 +352,23 @@ const logout = ()=>{
 
 // 마이페이지 클릭시 이동
 const mypageBtn = document.querySelector('#mypage')
-const mypageData = JSON.parse(localStorage.getItem('lUserInfor'))
-mypageBtn.addEventListener('click', () => {
-    window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
-})
+let mypageData
 
+try {
+    // 로컬 스토리지에서 'lUserInfor' 키의 값을 가져옴
+    const storedData = localStorage.getItem('lUserInfor');
+    // 값이 null이 아닌 경우 JSON.parse 시도
+    mypageData = storedData ? JSON.parse(storedData) : [];
+} catch (error) {
+    // JSON 파싱 중 오류 발생 시 빈 배열로 초기화
+    mypageData = [];
+}
+
+if(mypageData.length !== 0){
+    mypageBtn.addEventListener('click', () => {
+        window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
+    })
+}
 // 모든 서비스 hover 시 나오는 창
 const service = document.querySelector('.service')
 const serviceWrap = document.querySelector('.service_wrap')
@@ -475,7 +479,6 @@ for (let j = 0; j < gamePostList.length; j++) {
             break;
     }
     for (let i = contentList.length - 1; i >= (contentList.length - index); i--) {
-        console.log(contentList);
         const _li = document.createElement('li');
         const titleP = document.createElement('p');
         const nicknameP = document.createElement('p');
