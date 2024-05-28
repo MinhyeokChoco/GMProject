@@ -191,7 +191,6 @@ class ForGrade {
             const sum = profileArray.reduce((accumulator, currentValue) => accumulator + currentValue);
             userTier = sum / profileArray.length;
         }
-        console.log(userTier);
         if (userTier < 1.5) {
             return "타인";
         } else if (userTier < 2) {
