@@ -9,13 +9,13 @@
 // userMessageSetting.setProfileData(userId, "테스트용 계정입니다.");
 // userFavoriteSetting.setProfileData(userId, "");
 // ↑ 테스트용 코드
-const user = JSON.parse(localStorage.getItem("lUserInfor"));
+const user = JSON.parse(localStorage.getItem("lUserInfor")) || [];
 const postGmBtn = document.querySelector("#div-writeButton-box"); // 글작성 HTML요소 가져오기
 
 
 // 메이트 만들기 버튼 클릭시 동작 함수
 postGmBtn.addEventListener('click', () => {
-    if (!user.userLogOn) {
+    if (!user.userLogOn || user.length === 0) {
         alert("로그인을 해주세요!");
     } else {
         new MemorizeKategorie().setSession(globalGameName) // 세션에 카테고리명 저장
