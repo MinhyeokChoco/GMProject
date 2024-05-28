@@ -316,7 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const localTier = JSON.parse(localStorage.getItem('lUserTier')) || [];
     const resultData = JSON.parse(localStorage.getItem('searchResults')).reverse();
     if (!resultData) return;
-    const favorGame = JSON.parse(localStorage.getItem('lUserFavoriteGame'))
     const search_box2 = document.querySelector('.search_box2');
     search_box2.innerHTML = "";
     resultData.forEach((item, i) => {
