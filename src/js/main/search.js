@@ -215,6 +215,7 @@ const logout = ()=>{
         afterLogin.remove();
         loginBox.style.display = 'flex';
         window.sessionStorage.setItem('SUserInfor', '');
+        localStorage.setItem('lUserInfor', '');
         location.reload();
     }
 }
