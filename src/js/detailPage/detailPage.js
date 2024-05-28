@@ -2,7 +2,7 @@ const nowlocation = location.search; // 주소의 쿼리스트링 가져옴
 const nowIndex = nowlocation.split("=")[1]; // 쿼리스트링에서 인덱스번호 추출
 const nowKategorie = new MemorizeKategorie().getSession(); // 세션에서 카테고리 가져옴
 const contentObj = new StoreBoard().getContentArray(nowKategorie)[nowIndex]; // 로컬저장소에서 해당 인덱스 컨텐츠 불러오기
-const userInfor = new UserLoginManager().getUserInforBox(); // 지금 로그인 중인 유저의 정보를 가져옴
+const userInfor = new UserLoginManager().getUserInforBox() || {}; // 지금 로그인 중인 유저의 정보를 가져옴
 const localConetArray = new StoreBoard().getContentArray(nowKategorie); // 로컬의 모든 정보 불러옴
 const postingNumber = nowKategorie + nowIndex; // 댓글 구현을 위한 현재 카테고리와 게시물 인덱스 정보
 const replyStore = new StoreBoard(postingNumber); // 댓글 담을 객체 생성

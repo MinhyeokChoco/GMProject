@@ -5,7 +5,7 @@ const pageUserId = nowAddress.split("=")[1]; // 페이지 유저 정보
 const userDB = JSON.parse(localStorage.getItem('lUserDB')); // 전체 유저 정보 가져옴
 const pageuserIndex = new UserDBManager('lUserDB').getWantedUserDBIndex(pageUserId); // 페이지 유저의 인덱스 번호 찾기
 const pageuserInfor = userDB[pageuserIndex]; // 전체 유저 정보에서 페이지 유저 정보를 찾아온다.
-const nowConnectUser = new UserLoginManager().getUserInforBox(); // 현재 접속 중인 유저
+const nowConnectUser = new UserLoginManager().getUserInforBox() || {}; // 현재 접속 중인 유저
 
 const userLastCheckTime = new UserProfileManage("lastGiveAScoreTime"); // 시간
 const userMessase = new UserProfileManage("lUserMessage").getProfileData(pageUserId); // 상메
