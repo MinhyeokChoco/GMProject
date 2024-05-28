@@ -439,96 +439,57 @@ class Search{
 
 const searching = new Search();
 
-// 게임 게시글 스크롤 기능
+// 메인페이지 게시글 기능
+const lolContent = JSON.parse(localStorage.getItem('LOL')).reverse();
+const pubgContent = JSON.parse(localStorage.getItem('PUBG')).reverse();
+const overwatchContent = JSON.parse(localStorage.getItem('overwatch')).reverse();
+const starrailContent = JSON.parse(localStorage.getItem('StarRail')).reverse();
+const contents = [lolContent, pubgContent, overwatchContent, starrailContent];
+
 const nextBtn = document.querySelectorAll('.post_next_btn')
 const prevBtn = document.querySelectorAll('.post_prev_btn')
 const gamePost = document.querySelectorAll('.game_postlist')
 
-// 게임 게시글 오른쪽 버튼 클릭
-for(let i = 0; i < nextBtn.length; i++){
-    nextBtn[i].addEventListener('click',() =>{
-            const category_list_scroll = gamePost[i].offsetWidth
-            gamePost[i].scrollLeft += category_list_scroll + 3
-            nextBtn[i].style.display = 'none';
-            prevBtn[i].style.display = 'flex';
-    })
-}
+const gamePostList = document.querySelectorAll('.game_postlist > ul');
 
-// 게임 게시글 왼쪽 버튼 클릭
-for(let i = 0; i < prevBtn.length; i++){
-    prevBtn[i].addEventListener('click',() =>{
-        const category_list_scroll = gamePost[i].offsetWidth
-        gamePost[i].scrollLeft -= category_list_scroll +3
-        prevBtn[i].style.display = 'none';
-        nextBtn[i].style.display = 'flex';
-    })
-}
+// 메인페이지 게임 게시글 생성
+for (let j = 0; j < gamePostList.length; j++) {
+    const contentList = contents[j];
+    for (let i = 0; i < Math.min(contentList.length, 6); i++) {
+        const _li = document.createElement('li');
+        const titleP = document.createElement('p');
+        const nicknameP = document.createElement('p');
+        const contentP = document.createElement('p');
+        const commentP = document.createElement('p');
 
-
-
-const gamePostList = document.querySelectorAll('.game_postlist > ul')
-const lolContent = JSON.parse(localStorage.getItem('LOL'))
-const pubgContent = JSON.parse(localStorage.getItem('PUBG'))
-const overwatchContent = JSON.parse(localStorage.getItem('overwatch'))
-const starrailContent = JSON.parse(localStorage.getItem('StarRail'))
-
-
-for(let j = 0; j < gamePostList.length; j++){
-    for(let i = 0; i < Math.min(lolContent.length, 5); i++){
-        const _li = document.createElement('li')
-        const titleP = document.createElement('p')
-        const nicknameP = document.createElement('p')
-        const contentP = document.createElement('p')
-        const commentP = document.createElement('p')
-
-        _li.append(titleP, nicknameP, contentP, commentP)
-        gamePostList[j].append(_li)
-        titleP.innerHTML = lolContent[i].postTitle
-        nicknameP.innerHTML = lolContent[i].userNicknameInfor
-        contentP.innerHTML = lolContent[i].postContent
+        _li.append(titleP, nicknameP, contentP, commentP);
+        gamePostList[j].append(_li);
+        titleP.innerHTML = contentList[i].postTitle;
+        nicknameP.innerHTML = contentList[i].userNicknameInfor;
+        contentP.innerHTML = contentList[i].postContent;
     }
-    for(let i = 0; i < Math.min(pubgContent.length, 5); i++){
-        const _li = document.createElement('li')
-        const titleP = document.createElement('p')
-        const nicknameP = document.createElement('p')
-        const contentP = document.createElement('p')
-        const commentP = document.createElement('p')
-    
-        _li.append(titleP, nicknameP, contentP, commentP)
-        gamePostList[j].append(_li)
-    
-        titleP.innerHTML = pubgContent[i].postTitle
-        nicknameP.innerHTML = pubgContent[i].userNicknameInfor
-        contentP.innerHTML = pubgContent[i].postContent
-    }
-    
-    for(let i = 0; i < Math.min(overwatchContent.length, 5); i++){
-        const _li = document.createElement('li')
-        const titleP = document.createElement('p')
-        const nicknameP = document.createElement('p')
-        const contentP = document.createElement('p')
-        const commentP = document.createElement('p')
-    
-        _li.append(titleP, nicknameP, contentP, commentP)
-        gamePostList[j].append(_li)
 
-        titleP.innerHTML = overwatchContent[i].postTitle
-        nicknameP.innerHTML = overwatchContent[i].userNicknameInfor
-        contentP.innerHTML = overwatchContent[i].postContent
-    }
-    
-    for(let i = 0; i < Math.min(starrailContent.length, 5); i++){
-        const _li = document.createElement('li')
-        const titleP = document.createElement('p')
-        const nicknameP = document.createElement('p')
-        const contentP = document.createElement('p')
-        const commentP = document.createElement('p')
-    
-        _li.append(titleP, nicknameP, contentP, commentP)
-        gamePostList[j].append(_li)
-    
-        titleP.innerHTML = starrailContent[i].postTitle
-        nicknameP.innerHTML = starrailContent[i].userNicknameInfor
-        contentP.innerHTML = starrailContent[i].postContent
-    }
+    // 게임 게시글 오른쪽 버튼 클릭
+    if(contents[j].length >= 4){
+            for(let i = 0; i < nextBtn.length; i++){
+                nextBtn[j].style.display = 'flex';
+                nextBtn[i].addEventListener('click',() =>{
+                        const category_list_scroll = gamePost[i].offsetWidth
+                        gamePost[i].scrollLeft += category_list_scroll + 3
+                        nextBtn[i].style.display = 'none';
+                        prevBtn[i].style.display = 'flex';
+                })
+            }
+        }
+        
+        // 게임 게시글 왼쪽 버튼 클릭
+        for(let i = 0; i < prevBtn.length; i++){
+            prevBtn[i].addEventListener('click',() =>{
+                const category_list_scroll = gamePost[i].offsetWidth
+                gamePost[i].scrollLeft -= category_list_scroll +3
+                prevBtn[i].style.display = 'none';
+                nextBtn[i].style.display = 'flex';
+            })
+        }
+        
 }
