@@ -173,7 +173,7 @@ function login() {
 document.querySelector('.login_btn').addEventListener('click', (e) => {
     e.preventDefault();
     login();
-
+    location.reload();
 })
 
 // 로그인 이후에 나올 div
@@ -232,6 +232,7 @@ try {
 }
 
 if(mypageData.length !== 0){
+    if(mypageBtn)
     mypageBtn.addEventListener('click', () => {
         window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
     })
