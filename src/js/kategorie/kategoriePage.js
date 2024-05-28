@@ -60,12 +60,15 @@ function replyCount(index) {
     let replyOfContent = JSON.parse(localStorage.getItem(`${globalGameName}${index}`));
     let replyOfContentLength = 0;
     let totalRepleNumber = 0;
+    let flleterdReplyOfContent
     if (replyOfContent !== null) {
         replyOfContentLength = replyOfContent.length;
+        flleterdReplyOfContent = replyOfContent.filter(obj => obj.being === true).length
     } else {
         replyOfContentLength = 0;
+        flleterdReplyOfContent = 0;
     }
-    totalRepleNumber += replyOfContentLength;
+    totalRepleNumber += flleterdReplyOfContent;
     for(let i = 0; i < replyOfContentLength; i++) {
         let commentOfReply = JSON.parse(localStorage.getItem(`${globalGameName}${index}_${i}`));
         if (commentOfReply === null) {
