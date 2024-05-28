@@ -220,9 +220,11 @@ const logout = ()=>{
 }
 
 // 마이페이지 클릭시 이동
-const mypage = () => {
-        location.href = "http://www.naver.com";
-    }
+const mypageBtn = document.querySelector('#mypage')
+const mypageData = JSON.parse(localStorage.getItem('lUserInfor'))
+mypageBtn.addEventListener('click', () => {
+    window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
+})
 
 // 모든 서비스 hover 시 나오는 창
 const service = document.querySelector('.service')
