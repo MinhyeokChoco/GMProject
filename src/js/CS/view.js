@@ -30,6 +30,11 @@ if (csData !== null) { // 로컬 스토리지에 저장되어 있는 csData키 �
 const modifyBtn = document.getElementById("_modify"); // 수정 버튼
 
 modifyBtn.addEventListener("click", () => { // 수정 버튼을 눌렀을 때의 이벤트 추가
+    const userInfor = JSON.parse(localStorage.getItem("lUserInfor")) || []; // 현재 로그인 된 유저 정보
+    if (csData[listIndex].id !== userInfor.userId || userInfor === null) { // 현재 로그인 된 유저 아이디와 같지 않으면
+        alert("작성자가 아닌 사람은 접근할 수 없습니다.")
+        return;
+    }
     location.href = "modify.html" // 수정 페이지로 이동
 })
 
@@ -145,10 +150,11 @@ function render() {
                     // 배열 상태임
 
                     const target = e.target.parentNode.parentNode.dataset.cmt; // 이벤트가 발생된 타겟의 부모 요소의 cmt 라는 데이터셋의 값을 변수 target 할당
-                    console.log(e.target)
+                    // console.log(target.parentNode.parentNode);
                     commit.splice(target, 1); // 로컬스토리지 안 배열에서 삭제 버튼을 눌렀을 때의 해당 객체를 삭제
 
                     let _index = 0; // _index는 for문이 정상 작동하도록 도와주는 기존 i 역할을 대신 해준다.
+                    console.log(_index);
 
                     const a = commentData.length // a는 splice 되기 전 원래 댓글 배열의 길이
 
