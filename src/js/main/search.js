@@ -149,7 +149,7 @@ function login() {
         if (loginID === signupArray[i].userId) {
             if (loginPW === signupArray[i].userPw) {
                 islogin = true
-                const OnloginArray = {"userId": signupArray[i].userId,"userPw":signupArray[i].userPw,"userNickname":signupArray[i].usernickname};
+                const OnloginArray = {"userId": signupArray[i].userId,"userNickname":signupArray[i].userNickname,"userLogOn":true};
                 localStorage.setItem('lUserInfor', JSON.stringify(OnloginArray));
                 window.sessionStorage.setItem("SUserInfor", JSON.stringify(signupArray[i]));
                 document.querySelector('#login_modal_btn').style.display = 'none';
