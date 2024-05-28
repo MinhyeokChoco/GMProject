@@ -237,6 +237,7 @@ try {
 }
 
 if(mypageData.length !== 0){
+    if(mypageBtn)
     mypageBtn.addEventListener('click', () => {
         window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
     })
