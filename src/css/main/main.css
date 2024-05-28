@@ -189,7 +189,9 @@ body {
     justify-content: center;
     align-items: center;
     font-size:18px;
-    margin:16px 0 0 35px;
+    position:absolute;
+    top: 16px;
+    left:420px;
 }
 
 #to_cs > a{
@@ -628,7 +630,7 @@ body {
 .post_next_btn{
     width:40px;
     height:40px;
-    display:flex;
+    display:none;
     position:absolute;
     border-radius: 40px;
     border:none;

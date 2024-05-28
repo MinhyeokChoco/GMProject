@@ -1,0 +1,57 @@
+/* 모달창 CSS*/
+
+/* 백그라운드 */
+#mateTier-background {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(165, 165, 165, 0.1);
+    display:none;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: absolute;
+}
+
+/* 모달창 */
+#meteTier-modal {
+    width:450px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightgray;
+    background-color: lavender;
+    border-radius: 30px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1000px;
+}
+
+/* 타이틀 */
+#modal-header {
+    margin-bottom: 15px;
+}
+
+/* 점수 주는 인풋과 레이블 */
+#modal-form > input,
+#modal-form > label {
+    cursor: pointer;
+}
+
+/* 제출 버튼*/
+#modal-form-submit{
+    width: 100px;
+    height: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+/* 하단 텍스트 */
+#modal-p {
+    padding: 15px;
+    font-size: 14px;
+}
