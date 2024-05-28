@@ -71,7 +71,7 @@ function replyCount(index) {
         if (commentOfReply === null) {
             continue;
         }
-        const fileterdCommentOfReply = commentOfReply.filter(obj => obj.being === ture).length
+        const fileterdCommentOfReply = commentOfReply.filter(obj => obj.being === true).length
         totalRepleNumber += fileterdCommentOfReply
     }
     console.log("1: ", totalRepleNumber);
