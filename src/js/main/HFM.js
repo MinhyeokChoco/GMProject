@@ -132,7 +132,7 @@ document.querySelector('.signup_btn').addEventListener('click', () => {
         localStorage.setItem("lUserDB",JSON.stringify(signupArray));
         alert("회원가입이 완료되었습니다.")
         document.querySelector(".modal_signup_page").style.display = 'none';
-        location.href = './main.html'
+        location.reload();
     }
 })
 
@@ -151,7 +151,7 @@ function login() {
         if (loginID === signupArray[i].userId) {
             if (loginPW === signupArray[i].userPw) {
                 islogin = true
-                const OnloginArray = {"userId": signupArray[i].userId,"userPw":signupArray[i].userPw,"userNickname":signupArray[i].usernickname};
+                const OnloginArray = {"userId": signupArray[i].userId,"userNickname":signupArray[i].userNickname,"userLogOn":true};
                 localStorage.setItem('lUserInfor', JSON.stringify(OnloginArray));
                 window.sessionStorage.setItem("SUserInfor", JSON.stringify(signupArray[i]));
                 document.querySelector('#login_modal_btn').style.display = 'none';
