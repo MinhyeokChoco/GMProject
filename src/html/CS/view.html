@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM 고객 센터</title>
+    <link rel="stylesheet" href="/GMProject/src/css/CS/view.css">
+</head>
+
+<body>
+    <div class="viewTitle">글 상세 페이지</div>
+    <div id="viewContent">
+        <div class="viewTop">
+            <span id="_writer"></span>
+            <span id="_date"></span>
+            <span id="_views"></span>
+        </div>
+        <div id="_title"></div>
+        <div id="_content"></div>
+    </div>
+    <div class="btnContainer">
+        <div class="btnWrap">
+            <button id="_modify">수정</button>
+            <button id="_back">뒤로가기</button>
+            <button id="_delete">삭제</button>
+        </div>
+    </div>
+    <div class="commentContainer">
+        <div id="commentView"></div>
+        <textarea id="commentText" placeholder="댓글을 입력해주세요." cols="50" rows="5"></textarea>
+        <button id="commentAddBtn">댓글 작성</button>
+    </div>
+</body>
+<script src="/GMProject/src/js/CS/view.js"></script>
+
+</html>

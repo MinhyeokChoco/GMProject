@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "styleSheet" href="../../css/userInfor/userInfor.css">
+</head>
+<body>
+    <div id = "mainDiv">
+        <div id = "leftRegion">
+            <div id = "topDiv">
+                <div id = "topDiv-imgRegion"> <!-- 프사 -->
+                    <img src ="" class = "topDiv-imgRegion-img">
+                </div>
+                <form id = "topDiv-form">
+                    <input type = "file" name="userImg" accept="image/*" id = "topDiv-form-upload" style="display: none;">
+                    <label for = "topDiv-form-upload" id = "topDiv-form-label"> 이미지 업로드 </label>
+                </form>
+            </div>
+        </div>
+        <div id = "rightRegion">
+            <div id = "midDiv">
+                <div id = "topDiv-nicknameRegion"> <!-- 닉네임 & 티어 -->
+                    <p> 변경할 닉네임을 입력하세요. </p>
+                    <form id = "topDiv-nicknameRegion-form">
+                        <input type = "text" id = "topDiv-nicknameRegion-input" placeholder="닉네임을 입력하세요.">
+                    </form>
+                </div>
+                <div id = "midDiv-favoritRegion"> <!-- 즐겨하는 게임 -->
+                    <form id = "midDiv-favoritRegion-form">
+                        <p> 즐겨하는 게임을 골라주세요. </p>
+                        <select name = "gameList" id ="midDiv-favoritRegion-select">
+                            <option value="LOL"> 리그오브레전드 </option>
+                            <option value="starrail"> 붕괴: 스타레일 </option>
+                            <option value="eternalreturn"> 이터널 리턴 </option>
+                            <option value="PUBG"> 배틀그라운드 </option>
+                            <option value="kartrider"> 카트라이더 </option>
+                            <option value="lostark"> 로스트아크 </option>
+                            <option value="overwatch"> 오버워치 </option>
+                            <option value="starcraft"> 스타크래프트 </option>
+                            <option value="suddenattack"> 서든어택 </option>
+                            <option value="TFT"> 전략적 팀 전투 </option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div id = "bottomDiv"> 
+                <div id = "bottomDiv-messageRegion-up"> <!-- 상태메세지 -->
+                    <textarea id = "bottomDiv-messageRegion-textarea"></textarea>
+                </div>
+            </div>
+            <div id = "addtionalBottmDiv-up">
+                <div id = addtionalBottmDiv-update class = addtionalBottmDiv-btn> 수정 </div>
+                <div id = addtionalBottmDiv-cancle class = addtionalBottmDiv-btn> 취소 </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src = "../../js/classCollection/classList.js"></script>
+<script src = "../../js/userInfor/userInforUpdate.js"></script>
+</html>

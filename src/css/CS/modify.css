@@ -1,0 +1,98 @@
+html,
+body {
+    padding: 0%;
+    margin: 0%;
+    width: 100%;
+    height: 100%;
+}
+
+.modifyTitle {
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 50px;
+    color: yellow;
+}
+
+#modifyContent {
+    height: 100%;
+    background-image: url(https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2019%2F12%2Fleague-of-legends-10th-anniversary-riot-games-faker-kda-true-damage-skt1-ahri-2.jpg?q=90&w=2180&format=jpeg&cbr=1&fit=max);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#modifyContent>div:nth-child(1) {
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modifyWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 40px;
+    opacity: 0.7;
+}
+
+.modifyWrap>#newTitle {
+    width: 60%;
+    height: 25px;
+    font-size: 18px;
+}
+
+.modifyWrap>#newContent {
+    width: 60%;
+    height: 500px;
+    font-size: 16px;
+    margin-top: 40px;
+}
+
+.btnContainer {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnWrap {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btnWrap>#modifyBtn {
+    width: 100px;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+    background-color: #F08080;
+    opacity: 0.5;
+    color: white;
+    font-size: large;
+    border-radius: 12px;
+}
+
+.btnWrap>#modifyBtn:hover {
+    background-color: #F08080;
+    opacity: 1;
+}
+
+.btnWrap>#backBtn {
+    width: 100px;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+    background-color: #F08080;
+    opacity: 0.5;
+    color: white;
+    font-size: large;
+    border-radius: 12px;
+}
+
+.btnWrap>#backBtn:hover {
+    background-color: #F08080;
+    opacity: 1;
+}
