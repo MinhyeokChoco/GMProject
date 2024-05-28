@@ -268,7 +268,7 @@ document.querySelector('.signup_btn').addEventListener('click', () => {
         localStorage.setItem("lUserDB",JSON.stringify(signupArray));
         alert("회원가입이 완료되었습니다.")
         document.querySelector(".modal_signup_page").style.display = 'none';
-        location.href = './main.html'
+        location.reload();
     }
 })
 
@@ -359,9 +359,11 @@ const logout = ()=>{
 }
 
 // 마이페이지 클릭시 이동
-const mypage = () => {
-        location.href = "http://www.naver.com";
-    }
+const mypageBtn = document.querySelector('#mypage')
+const mypageData = JSON.parse(localStorage.getItem('lUserInfor'))
+mypageBtn.addEventListener('click', () => {
+    window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
+})
 
 // 모든 서비스 hover 시 나오는 창
 const service = document.querySelector('.service')
@@ -440,10 +442,11 @@ class Search{
 const searching = new Search();
 
 // 메인페이지 게시글 기능
-const lolContent = JSON.parse(localStorage.getItem('LOL')).reverse();
-const pubgContent = JSON.parse(localStorage.getItem('PUBG')).reverse();
-const overwatchContent = JSON.parse(localStorage.getItem('overwatch')).reverse();
-const starrailContent = JSON.parse(localStorage.getItem('StarRail')).reverse();
+const lolContent = JSON.parse(localStorage.getItem('LOL')) || [];
+const pubgContent = JSON.parse(localStorage.getItem('PUBG')) || [];
+const overwatchContent = JSON.parse(localStorage.getItem('overwatch')) || [];
+const starrailContent = JSON.parse(localStorage.getItem('StarRail')) || [];
+
 const contents = [lolContent, pubgContent, overwatchContent, starrailContent];
 
 const nextBtn = document.querySelectorAll('.post_next_btn')
@@ -455,19 +458,49 @@ const gamePostList = document.querySelectorAll('.game_postlist > ul');
 // 메인페이지 게임 게시글 생성
 for (let j = 0; j < gamePostList.length; j++) {
     const contentList = contents[j];
-    for (let i = 0; i < Math.min(contentList.length, 6); i++) {
+    const index = Math.min(contentList.length, 6);
+    let globalGameName = "";
+    switch (j) {
+        case 0 :
+            globalGameName = "LOL"
+            break;
+        case 1 : 
+            globalGameName = "PUBG"
+            break;
+        case 2 :
+            globalGameName = "overwatch"
+            break;
+        case 3 :
+            globalGameName = "StarRail"
+            break;
+    }
+    for (let i = contentList.length - 1; i >= (contentList.length - index); i--) {
+        console.log(contentList);
         const _li = document.createElement('li');
         const titleP = document.createElement('p');
         const nicknameP = document.createElement('p');
         const contentP = document.createElement('p');
         const commentP = document.createElement('p');
-
         _li.append(titleP, nicknameP, contentP, commentP);
         gamePostList[j].append(_li);
+        if (contentList[i] === null) {
+            contentP.innerHTML = "삭제된 게시물입니다.";
+            continue;
+        }
+
         titleP.innerHTML = contentList[i].postTitle;
         nicknameP.innerHTML = contentList[i].userNicknameInfor;
         contentP.innerHTML = contentList[i].postContent;
+        commentP.innerHTML = '댓글수 0';
+
+
+        _li.addEventListener('click', () =>{
+            sessionStorage.setItem('sGameName', globalGameName);
+            window.location.href = `../detailPage/detailPage.html?index=${i}`
+        })
     }
+
+
 
     // 게임 게시글 오른쪽 버튼 클릭
     if(contents[j].length >= 4){
@@ -482,7 +515,7 @@ for (let j = 0; j < gamePostList.length; j++) {
             }
         }
         
-        // 게임 게시글 왼쪽 버튼 클릭
+    // 게임 게시글 왼쪽 버튼 클릭
         for(let i = 0; i < prevBtn.length; i++){
             prevBtn[i].addEventListener('click',() =>{
                 const category_list_scroll = gamePost[i].offsetWidth

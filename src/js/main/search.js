@@ -130,7 +130,7 @@ document.querySelector('.signup_btn').addEventListener('click', () => {
         localStorage.setItem("lUserDB",JSON.stringify(signupArray));
         alert("회원가입이 완료되었습니다.")
         document.querySelector(".modal_signup_page").style.display = 'none';
-        location.href = './main.html'
+        location.reload();
     }
 })
 
@@ -149,7 +149,7 @@ function login() {
         if (loginID === signupArray[i].userId) {
             if (loginPW === signupArray[i].userPw) {
                 islogin = true
-                const OnloginArray = {"userId": signupArray[i].userId,"userPw":signupArray[i].userPw,"userNickname":signupArray[i].usernickname};
+                const OnloginArray = {"userId": signupArray[i].userId,"userNickname":signupArray[i].userNickname,"userLogOn":true};
                 localStorage.setItem('lUserInfor', JSON.stringify(OnloginArray));
                 window.sessionStorage.setItem("SUserInfor", JSON.stringify(signupArray[i]));
                 document.querySelector('#login_modal_btn').style.display = 'none';
@@ -215,14 +215,17 @@ const logout = ()=>{
         afterLogin.remove();
         loginBox.style.display = 'flex';
         window.sessionStorage.setItem('SUserInfor', '');
+        localStorage.setItem('lUserInfor', '');
         location.reload();
     }
 }
 
 // 마이페이지 클릭시 이동
-const mypage = () => {
-        location.href = "http://www.naver.com";
-    }
+const mypageBtn = document.querySelector('#mypage')
+const mypageData = JSON.parse(localStorage.getItem('lUserInfor'))
+mypageBtn.addEventListener('click', () => {
+    window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
+})
 
 // 모든 서비스 hover 시 나오는 창
 const service = document.querySelector('.service')
