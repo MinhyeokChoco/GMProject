@@ -189,7 +189,9 @@ body {
     justify-content: center;
     align-items: center;
     font-size:18px;
-    margin:16px 0 0 35px;
+    position:absolute;
+    top: 16px;
+    left:420px;
 }
 
 #to_cs > a{

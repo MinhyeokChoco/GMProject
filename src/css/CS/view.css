@@ -1,0 +1,225 @@
+.viewTitle {
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 50px;
+    color: lightcoral;
+}
+
+#viewContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewContent>.viewTop {
+    width: 60%;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: pink;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 50px;
+}
+
+#viewContent>#_title {
+    width: 60%;
+    height: 100px;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    border-bottom: 1px solid red;
+    color: rgb(255, 47, 89);
+}
+
+#viewContent>#_content {
+    width: 60%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+}
+
+.btnContainer {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.btnContainer>.btnWrap {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid red;
+}
+
+.btnContainer>.btnWrap>#_modify {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 15px;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #f199bc;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.btnContainer>.btnWrap>#_modify:hover {
+    width: 80px;
+    height: 35px;
+    background-color: #f199bc;
+    color: #ffffff;
+}
+
+.btnContainer>.btnWrap>#_back {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 15px;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #f199bc;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.btnContainer>.btnWrap>#_back:hover {
+    width: 80px;
+    height: 35px;
+    background-color: #f199bc;
+    color: #ffffff;
+}
+
+.btnContainer>.btnWrap>#_delete {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 15px;
+    font-family: "paybooc-light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    background-color: #f199bc;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.btnContainer>.btnWrap>#_delete:hover {
+    width: 80px;
+    height: 35px;
+    background-color: #f199bc;
+    color: #ffffff;
+}
+
+.commentContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.commentContainer>#commentView {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.commentContainer>#commentView div {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.commentContainer>#commentView>div>span {
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commentContainer>#commentView>div>input {
+    width: 350px;
+}
+
+.commentContainer>#commentView>div>div {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.commentContainer>#commentView>div>span:nth-child(2) {
+    width: auto;
+    flex: 1;
+}
+
+.commentContainer>#commentView>div>div>button {
+    width: 50px;
+    height: 25px;
+    padding: 0;
+    margin: 2px 0;
+    border: 0;
+    border-radius: 8px;
+    opacity: 0.7;
+    color: white;
+    background-color: #f199bc;
+}
+
+.commentContainer>#commentView>div>div>button:hover {
+    margin: 2px 0;
+    padding: 0;
+    border: none;
+    opacity: 1;
+    background-color: #f199bc;
+    border-radius: 8px;
+}
+
+.commentContainer>#commentText {
+    width: 35%;
+    height: auto;
+    border: 1px solid orangered;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.commentContainer>#commentAddBtn {
+    width: 5%;
+    height: 35px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    background-color: rgb(244, 132, 188);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    opacity: 0.7;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.commentContainer>#commentAddBtn:hover {
+    width: 5.5%;
+    height: 40px;
+}

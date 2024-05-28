@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM 고객 센터</title>
+    <link rel="stylesheet" href="/GMProject/src/css/CS/list.css">
+</head>
+
+<body>
+    <div class="listTitle">GM 고객 센터</div>
+    <div class="btnWrap">
+        <button id="_csWriteBtn">문의 글 작성</button>
+    </div>
+    <div class="guide">
+        <span class="guideNumber">번호</span>
+        <span class="guideTitle">제목</span>
+        <span class="guideContent">내용</span>
+        <span class="guideName">작성자</span>
+        <span class="guideDate">작성일</span>
+        <span class="guideViews">조회수</span>
+        <span class="guideView">보기</span>
+    </div>
+    <div id="List"></div>
+    <div class="searchWrap"><input type="search" id="searchInput" placeholder="찾고 싶은 글의 제목을 검색해주세요."></div>
+    <div class="paginationWrap">
+        <div id="pagination"></div>
+    </div>
+</body>
+<script src="/GMProject/src/js/CS/read.js"></script>
+
+</html>
