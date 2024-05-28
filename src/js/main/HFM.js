@@ -1,4 +1,5 @@
 // header
+console.log("Head")
 
 // 로그인 세션 유지
 let SUser = null
