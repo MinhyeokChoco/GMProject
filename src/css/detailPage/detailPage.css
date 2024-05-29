@@ -22,6 +22,7 @@ body {
     flex-direction: column;
     align-items: center;
     margin-top: 80px;
+
 }
 
 /* 상단 프로필 창 영역 설정 */
@@ -83,12 +84,13 @@ body {
 /* 제목 영역 */
 #midDiv-titleDiv {
     width: var(--width-Size-includePadding);
-    height: 30px;
+    height: 60px;
     border: var(--boder-setting);
     padding: 20px;
     margin-top: 15px;
     background-color: var(--background-color);
 }
+
 
 /* 본문 영역 */
 #midDiv-contentDiv {

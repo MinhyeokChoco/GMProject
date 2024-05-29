@@ -29,7 +29,12 @@ class UserLoginManager {
 
     // 로컬 스토리지에서 유저 정보 가져오기
     getUserInforBox() {
-        return JSON.parse(localStorage.getItem("lUserInfor"));
+        const userinfor = localStorage.getItem("lUserInfor");
+        let userObj = {};
+        if(userinfor) {
+                userObj = JSON.parse(userinfor);
+            }
+        return userObj;
     }
     
     // 로그아웃시 유저 정보 삭제
