@@ -30,7 +30,12 @@ if (csData !== null) { // 로컬 스토리지에 저장되어 있는 csData키 �
 const modifyBtn = document.getElementById("_modify"); // 수정 버튼
 
 modifyBtn.addEventListener("click", () => { // 수정 버튼을 눌렀을 때의 이벤트 추가
-    const userInfor = JSON.parse(localStorage.getItem("lUserInfor")) || []; // 현재 로그인 된 유저 정보
+    let userInfor = (localStorage.getItem("lUserInfor")); // 현재 로그인 된 유저 정보
+    if (userInfor.length == 0) {
+        userInfor = [];
+    } else {
+        userInfor = JSON.parse(userInfor);
+    }
     if (csData[listIndex].id !== userInfor.userId || userInfor === null) { // 현재 로그인 된 유저 아이디와 같지 않으면
         alert("작성자가 아닌 사람은 접근할 수 없습니다.")
         return;
@@ -47,7 +52,12 @@ backBtn.addEventListener("click", () => { // 뒤로 가기 버튼을 눌렀을 �
 const deleteBtn = document.getElementById("_delete"); // 삭제 버튼
 
 deleteBtn.addEventListener("click", () => { // 삭제 버튼에 클릭했을 때의 이벤트를 추가
-    const userInfor = JSON.parse(localStorage.getItem("lUserInfor")) || []; // 현재 로그인 된 유저 정보
+    let userInfor = (localStorage.getItem("lUserInfor")); // 현재 로그인 된 유저 정보
+    if (userInfor.length == 0) {
+        userInfor = [];
+    } else {
+        userInfor = JSON.parse(userInfor);
+    }
     if (csData[listIndex].id !== userInfor.userId || userInfor === null) { // 현재 로그인 된 유저 아이디와 같지 않으면
         alert("작성자가 아닌 사람은 접근할 수 없습니다.")
         return;
@@ -89,18 +99,24 @@ function comment() {
 }
 
 function render() {
-    const userInfor = JSON.parse(localStorage.getItem("lUserInfor")); // 현재 로그인 되어 있는 유저 정보
+    let userInfor = (localStorage.getItem("lUserInfor")); // 현재 로그인 되어 있는 유저 정보
+    if (userInfor.length == 0) {
+        userInfor = [];
+    } else {
+        userInfor = JSON.parse(userInfor);
+    }
     const commentView = document.getElementById("commentView"); // commentView div 요소에 접근
     const commentData = JSON.parse(localStorage.getItem("comData")) || []; // 로컬스토리지에 comData 키 안의 값을 파씽해서 가져옵니다.
     if (commentView !== null) { // commentView 값이 있으면
         commentView.innerHTML = ''; // 기존 댓글 요소 초기화
 
+        let test = 0;
         for (let i = 0; i < commentData.length; i++) {
             if (commentData[i].page === listIndex) { // 로컬스토리지 안에 저장되어 있는 페이지 값과 뷰인덱스의 값이 같으면
                 const _view = document.createElement("div"); // 작성자와 댓글, 작성일을 담을 div 생성
                 const _btn = document.createElement("div"); // 버튼을 담을 div 생성
-                _view.dataset.cmt = `${i}` // 생성된 div에게 cmt라는 데이터셋을 부여 (cmt : 키 / `${i}` : 값)
-
+                _view.dataset.cmt = `${test}` // 생성된 div에게 cmt라는 데이터셋을 부여 (cmt : 키 / `${i}` : 값)
+                test++;
                 const name = document.createElement("span"); // span 생성 후 name에 할당
                 name.innerHTML = `${commentData[i].name}` // name에 commentData 배열 [i] 요소의 name 값을 입력
                 const comment = document.createElement("span"); // comment 변수의 span 생성 할당
@@ -118,6 +134,12 @@ function render() {
 
                 modifyBtn.addEventListener("click", (e) => { // 수정 버튼 클릭 했을 때의 이벤트 추가
                     const target = e.target.parentNode.parentNode.dataset.cmt; // 이벤트가 발생한 타겟의 부모 요소의 cmt 데이터셋 값을 가져옴
+                    const commentData = JSON.parse(localStorage.getItem("comData"))
+                    let commit = commentData.filter((value) => value.page === listIndex); // 로컬스토리지에 저장된 댓글 배열 안에 있는 객체들 중에 page가 현재 페이지와 일치하는 객체만 불러오기
+                    if (commit[parseInt(target)].id !== userInfor.userId) {
+                        alert("작성자가 아닌 사람은 접근할 수 없습니다.")
+                        return;
+                    }
 
                     const commentInput = document.createElement("input"); // 댓글 수정 입력창 생성
                     const updateBtn = document.createElement("button"); // 댓글 수정 입력값 수정 완료 버튼 생성
@@ -142,24 +164,26 @@ function render() {
                 });
 
                 deleteBtn.addEventListener("click", (e) => { // 삭제 버튼 클릭 했을 때의 이벤트를 추가
-                    if (commentData[i].id !== userInfor.userId) {
+                    const target = e.target.parentNode.parentNode.dataset.cmt; // 이벤트가 발생된 타겟의 부모 요소의 cmt 라는 데이터셋의 값을 변수 target 할당
+                    const commentData = JSON.parse(localStorage.getItem("comData"))
+                    let commit = commentData.filter((value) => value.page === listIndex); // 로컬스토리지에 저장된 댓글 배열 안에 있는 객체들 중에 page가 현재 페이지와 일치하는 객체만 불러오기
+                    console.log(commit[parseInt(target)].id, userInfor.userId);
+                    if (commit[parseInt(target)].id !== userInfor.userId) {
                         alert("작성자가 아닌 사람은 접근할 수 없습니다.")
                         return;
                     }
-                    let commit = commentData.filter((value) => value.page === listIndex); // 로컬스토리지에 저장된 댓글 배열 안에 있는 객체들 중에 page가 현재 페이지와 일치하는 객체만 불러오기
                     // 배열 상태임
 
-                    const target = e.target.parentNode.parentNode.dataset.cmt; // 이벤트가 발생된 타겟의 부모 요소의 cmt 라는 데이터셋의 값을 변수 target 할당
                     // console.log(target.parentNode.parentNode);
                     commit.splice(target, 1); // 로컬스토리지 안 배열에서 삭제 버튼을 눌렀을 때의 해당 객체를 삭제
 
                     let _index = 0; // _index는 for문이 정상 작동하도록 도와주는 기존 i 역할을 대신 해준다.
-                    console.log(_index);
 
                     const a = commentData.length // a는 splice 되기 전 원래 댓글 배열의 길이
 
                     for (let i = 0; i < a; i++) { // commentData 배열의 여러 요소에서 page 값이 index와 같으면 commentData 배열에서 해당 요소 값을 삭제 
                         if (commentData[_index].page == listIndex) {
+                            console.log(commentData);
                             commentData.splice(_index, 1);
                             _index--; // 삭제 후 인덱스가 올라가는걸 방지하기 위해 빼줌
                         }
