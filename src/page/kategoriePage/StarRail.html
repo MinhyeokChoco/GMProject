@@ -12,8 +12,8 @@
     <!-- 헤더 시작 -->
     <div class="header">
         <div class="header-box">
-            <div class="logo"><a href="./main.html"><img src="../../image/GM로고.png"></a></div>
-            <a href="./main.html">홈페이지</a>
+            <div class="logo"><a href="../main/main.html"><img src="../../image/GM로고.png"></a></div>
+            <a href="../main/main.html">홈페이지</a>
             <div class="service">
                 <button>모든 서비스</button>
                 <div id="header_arrow"></div>
@@ -114,7 +114,7 @@
         </div>
         <div class="footer_start">
             <div id="footer_start_title">시작</div>
-            <a href="">홈페이지</a>
+            <a href="../main/main.html">홈페이지</a>
             <div id="footer_all_page">모든 페이지</div>
         </div>
         <div class="footer_company">
@@ -144,6 +144,55 @@
         </div>
     </div>
     <!-- 푸터 끝 -->
+    <!-- 모달 시작 -->
+    <div class="modal_page">
+        <div class="login_modal">
+            <span>X</span>
+            <div class="modal_logo">
+                <img src="../../image/GM로고.png">
+            </div>
+            <div class="modal_text">GM에서 게임 메이트와 즐겁게 대화하며 롤 듀오를 즐겨보세요!</div>
+            <div class="login_form">
+                <form id="login_input">
+                    <span class="member_input">
+                        <h2>로그인</h2>
+                    </span>
+                    <input required type="text" id="loginID" placeholder="아이디를 입력해주세요.">
+                    <input required type="password" id="loginPW" placeholder="비밀번호를 입력해주세요.">
+                    <input type="checkbox" id="auto_login"><span id="auto_login_text">로그인 상태 유지
+                </form>
+                <div class="login_btn_box">
+                    <button class="login_btn">로그인</button>
+                </div>
+                <span id="signup_text">혹시 아직 회원이 아니신가요?<button id="tosignup_btn">회원가입</button></span>
+            </div>
+        </div>
+    </div>
+    <div class="modal_signup_page">
+        <div class="signup_modal">
+            <span>X</span>
+            <div class="modal_logo2">
+                <img src="../../image/GM로고.png">
+            </div>
+            <div class="signup_form">
+                <form onsubmit="return false;" id="signup_input">
+                    <span class="member_input2">
+                        <h2>회원가입</h2>
+                    </span>
+                    <input required type="text" id="signupID" placeholder="아이디를 입력해주세요.(영문자 시작 4~12글자)">
+                    <input required type="password" id="signupPW" placeholder="비밀번호를 입력해주세요.">
+                    <input required type="password" id="signupPW2" placeholder="비밀번호를 한번 더 입력해주세요.">
+                    <input required type="text" id="signupNick" placeholder="닉네임을 입력해주세요.">
+                    <input required type="email" id="signupemail" placeholder="이메일을 입력해주세요.">
+                    <input type="checkbox" id="rec_mail_check"><span id="rec_mail_text">이메일로 각종 이벤트/혜택 정보 수신동의하시겠습니까?
+                </form>
+                <div class="signup_btn_box">
+                    <button class="signup_btn">회원가입</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 모달 끝 -->
 </body>
 <script>
     const globalGameName = "StarRail";

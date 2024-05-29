@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM 고객 센터</title>
+    <link rel="stylesheet" href="/GMProject/src/css/CS/modify.css">
+</head>
+
+<body>
+    <!-- 헤더 시작 -->
+    <div class="header">
+        <div class="header-box">
+            <div class="logo"><a href="../../page/main/main.html"><img src="../../image/GM로고.png"></a></div>
+            <a href="../../page/main/main.html">홈페이지</a>
+            <div class="service">
+                <button>모든 서비스</button>
+                <div id="header_arrow"></div>
+            </div>
+        </div>
+        <div class="service_wrap">
+            <a href="../kategoriePage/LoLPage.html" class="service_category">
+                <img class="service_img" src='../../image/롤.png'>
+                <div class="category_text">리그오브레전드</div>
+            </a>
+            <a href="../kategoriePage/PUBG.html" class="service_category">
+                <img class="service_img" src='../../image/pubg.jpeg'>
+                <div class="category_text">배틀그라운드</div>
+            </a>
+            <a href="../kategoriePage/TFT.html" class="service_category">
+                <img class="service_img" src='../../image/TFT.png'>
+                <div class="category_text">전략적 팀 전투</div>
+            </a>
+            <a href="../kategoriePage/overwatch.html" class="service_category">
+                <img class="service_img" src='../../image/오버워치.jpeg'>
+                <div class="category_text">오버워치</div>
+            </a>
+            <a href="../kategoriePage/valorant.html" class="service_category">
+                <img class="service_img" src='../../image/발로란트.png'>
+                <div class="category_text">발로란트</div>
+            </a>
+            <a href="../kategoriePage/suddenattack.html" class="service_category">
+                <img class="service_img" src='../../image/서든어택.jpeg'>
+                <div class="category_text">서든어택</div>
+            </a>
+            <a href="../kategoriePage/eternalreturn.html" class="service_category">
+                <img class="service_img" src='../../image/이터널리턴.png'>
+                <div class="category_text">이터널리턴</div>
+            </a>
+            <a href="../kategoriePage/steamgame.html" class="service_category">
+                <img class="service_img" src='../../image/스팀게임.jpeg'>
+                <div class="category_text">스팀게임</div>
+            </a>
+            <a href="../kategoriePage/StarRail.html" class="service_category">
+                <img class="service_img" src='../../image/스타레일.jpg'>
+                <div class="category_text">스타레일</div>
+            </a>
+            <a href="../kategoriePage/starcraft.html" class="service_category">
+                <img class="service_img" src='../../image/스타크래프트.jpg'>
+                <div class="category_text">스타크래프트</div>
+            </a>
+            <a href="../kategoriePage/kartrider.html" class="service_category">
+                <img class="service_img" src='../../image/카트라이더.jpeg'>
+                <div class="category_text">카트라이더</div>
+            </a>
+            <a href="../kategoriePage/lostark.html" class="service_category">
+                <img class="service_img" src='../../image/로스트아크.jpg'>
+                <div class="category_text">로스트아크</div>
+            </a>
+        </div>
+        <div id='to_cs'>
+            <a href="../../html/CS/list.html">고객센터</a>
+        </div>
+        <div class="header_search">
+            <input type="text" id="header_search_box" placeholder="아이디 또는 닉네임 검색"><img src="../../image/돋보기.png"
+                id="header_search_image">
+        </div>
+        <div class="login_box">
+            <div class="login"><button type="button" id="login_modal_btn">로그인</button></div>
+        </div>
+        <!-- <div class="after_login">
+            <p>..님 환영합니다!</p><button>내 정보</button><button>로그아웃</button>
+        </div> -->
+    </div>
+    <!-- 헤더 끝 -->
+    <!-- 전체 틀 -->
+    <div class="wrap"></div>
+
+    <div id="modifyContainer">
+        <div id="modifyContent">
+            <div class="modifyTitle">문의 글 수정</div>
+            <div class="modifyWrap">
+                <textarea id="newTitle" cols="50" rows="1" placeholder="제목"></textarea>
+                <textarea id="newContent" cols="130" rows="50" placeholder="내용"></textarea>
+            </div>
+            <div class="btnContainer">
+                <div class="btnWrap">
+                    <button id="modifyBtn">수정 완료</button>
+                    <button id="backBtn">뒤로 가기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 시작 -->
+    <div class="footer">
+        <div class="footer_GM">
+            <div id="footer_logo"><a href=""><img src="../../image/GM로고.png"></a></div>
+            <div id="footer_text">GM(Game Mate) 플레이 플랫폼은 완벽한 게임 메이트를 찾아 함께 게임을 할 수 있습니다.</div>
+            <div id="footer_ul">
+                <ul>
+                    <li><a href=""><img src="../../image/인스타.png"></a></li>
+                    <li><a href=""><img src="../../image/유튜브.png"></a></li>
+                    <li><a href=""><img src="../../image/페북.png"></a></li>
+                    <li><a href=""><img src="../../image/블로그.png"></a></li>
+                </ul>
+            </div>
+            <p>© 2024 Kyungil Gangkkoma Team.</p>
+        </div>
+        <div class="footer_start">
+            <div id="footer_start_title">시작</div>
+            <a href="../../page/main/main.html">홈페이지</a>
+            <div id="footer_all_page">모든 페이지</div>
+        </div>
+        <div class="footer_company">
+            <div id="footer_company_title">회사</div>
+            <a href="">회사 소개</a>
+            <a href="">고객센터에 문의하기</a>
+            <a href="">추천 계획</a>
+            <a href="">프라이버시 정책</a>
+            <a href="">서비스 약관</a>
+        </div>
+        <div class="footer_mobile">
+            <div id="footer_mobile_title">GM 모바일 다운로드</div>
+            <a href="" id="footer_android_download">
+                <div><img src="../../image/구글.png"></div>
+                <div class="footer_mobile_text">
+                    <div class="download_making">제작중 ㅠㅠ</div>
+                    <div class="download_app">Google Play</div>
+                </div>
+            </a>
+            <a href="" id="footer_ios_download">
+                <div><img src="../../image/아이폰.png"></div>
+                <div class="footer_mobile_text">
+                    <div class="download_making">제작중 ㅠㅠ</div>
+                    <div class="download_app">Apple Store</div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- 푸터 끝 -->
+    <!-- 모달 시작 -->
+    <div class="modal_page">
+        <div class="login_modal">
+            <span>X</span>
+            <div class="modal_logo">
+                <img src="../../image/GM로고.png">
+            </div>
+            <div class="modal_text">GM에서 게임 메이트와 즐겁게 대화하며 롤 듀오를 즐겨보세요!</div>
+            <div class="login_form">
+                <form id="login_input">
+                    <span class="member_input">
+                        <h2>로그인</h2>
+                    </span>
+                    <input required type="text" id="loginID" placeholder="아이디를 입력해주세요.">
+                    <input required type="password" id="loginPW" placeholder="비밀번호를 입력해주세요.">
+                    <input type="checkbox" id="auto_login"><span id="auto_login_text">로그인 상태 유지
+                </form>
+                <div class="login_btn_box">
+                    <button class="login_btn">로그인</button>
+                </div>
+                <span id="signup_text">혹시 아직 회원이 아니신가요?<button id="tosignup_btn">회원가입</button></span>
+            </div>
+        </div>
+    </div>
+    <div class="modal_signup_page">
+        <div class="signup_modal">
+            <span>X</span>
+            <div class="modal_logo2">
+                <img src="../../image/GM로고.png">
+            </div>
+            <div class="signup_form">
+                <form onsubmit="return false;" id="signup_input">
+                    <span class="member_input2">
+                        <h2>회원가입</h2>
+                    </span>
+                    <input required type="text" id="signupID" placeholder="아이디를 입력해주세요.(영문자 시작 4~12글자)">
+                    <input required type="password" id="signupPW" placeholder="비밀번호를 입력해주세요.">
+                    <input required type="password" id="signupPW2" placeholder="비밀번호를 한번 더 입력해주세요.">
+                    <input required type="text" id="signupNick" placeholder="닉네임을 입력해주세요.">
+                    <input required type="email" id="signupemail" placeholder="이메일을 입력해주세요.">
+                    <input type="checkbox" id="rec_mail_check"><span id="rec_mail_text">이메일로 각종 이벤트/혜택 정보 수신동의하시겠습니까?
+                </form>
+                <div class="signup_btn_box">
+                    <button class="signup_btn">회원가입</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 모달 끝 -->
+    </div>
+    <!-- 전체 틀 끝 -->
+
+</body>
+<script src="/GMProject/src/js/CS/modify.js"></script>
+<script src="/GMProject/src/js/main/HFM.js"></script>
+
+</html>
