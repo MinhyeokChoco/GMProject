@@ -89,7 +89,7 @@ body {
  
 /* 한줄 메세지 영역*/
 #bottomDiv-messageRegion {
-    width: var(--with-size);
+    width: 540px;
     height: var(--height-size);
     border: var(--boder-color);
     margin-top: var(--margin-top);

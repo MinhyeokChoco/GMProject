@@ -9,7 +9,12 @@
 // userMessageSetting.setProfileData(userId, "테스트용 계정입니다.");
 // userFavoriteSetting.setProfileData(userId, "");
 // ↑ 테스트용 코드
-const user = JSON.parse(localStorage.getItem("lUserInfor")) || [];
+const localUser = localStorage.getItem("lUserInfor") || {};
+let user = {};
+if (localUser.length)
+    {
+        user = JSON.parse(localUser);
+    }
 const postGmBtn = document.querySelector("#div-writeButton-box"); // 글작성 HTML요소 가져오기
 
 
