@@ -237,11 +237,11 @@ try {
     mypageData = [];
 }
 
-if(mypageData.length !== 0){
-    if(mypageBtn)
-    mypageBtn.addEventListener('click', () => {
-        window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
-    })
+if (mypageData.length !== 0) {
+    if (mypageBtn)
+        mypageBtn.addEventListener('click', () => {
+            window.location.href = `../userInfor/userInformation.html?user=${mypageData.userId}`
+        })
 }
 
 // 모든 서비스 hover 시 나오는 창
@@ -298,7 +298,7 @@ class Search {
                     return;
                 }
                 localStorage.setItem('searchResults', JSON.stringify(resultData));
-                location.href = './search.html'
+                location.href = 'http://127.0.0.1:5500/GMProject/src/page/main/search.html'
                 return;
             }
         }
@@ -312,5 +312,6 @@ class Search {
         });
     }
 }
+const searching = new Search();
 
 // header 끝
