@@ -11,6 +11,7 @@ body {
 
 #main-body {
     width: 100%;
+    margin-top: 50px;
 }
 
 
@@ -19,7 +20,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 80px;
 }
 
 /* 텍스트 부분 */
