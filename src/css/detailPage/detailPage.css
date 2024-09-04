@@ -2,7 +2,7 @@
     --width-Size: 600px;
     --width-Size-includePadding: 560px;
     --boder-radius: 30px;
-    --boder-setting : 0px solid black;
+    --boder-setting: 0px solid black;
     --background-color: #FFF;
     --textarea-padding: 5px;
 }
@@ -21,7 +21,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    margin-top: 80px;
+
 }
 
 /* 상단 프로필 창 영역 설정 */
@@ -39,7 +40,7 @@ body {
 }
 
 /* 상단 프로필창 글자 간격 조절*/
-#topDiv-userInforDiv > p {
+#topDiv-userInforDiv>p {
     margin-bottom: 5px;
 }
 
@@ -83,12 +84,13 @@ body {
 /* 제목 영역 */
 #midDiv-titleDiv {
     width: var(--width-Size-includePadding);
-    height: 30px;
+    height: 60px;
     border: var(--boder-setting);
     padding: 20px;
     margin-top: 15px;
     background-color: var(--background-color);
 }
+
 
 /* 본문 영역 */
 #midDiv-contentDiv {
@@ -100,7 +102,7 @@ body {
     white-space: pre-wrap;
     word-wrap: break-word;
     background-color: var(--background-color);
-    
+
 }
 
 /* 수정, 삭제, 목록으로 영역*/
@@ -111,7 +113,7 @@ body {
     justify-content: right;
 }
 
-#midbottomDiv > p {
+#midbottomDiv>p {
     padding: 5px;
     cursor: pointer;
 }
@@ -128,7 +130,7 @@ body {
 }
 
 /* 댓글 폼영역 */
-#bottomDiv-replyDiv-form{
+#bottomDiv-replyDiv-form {
     display: flex;
     justify-content: center;
 }
@@ -153,7 +155,7 @@ body {
 
 
 /* 프사 영역 */
-.contentDiv-profile{
+.contentDiv-profile {
     width: 80px;
     height: 80px;
     border: 1px solid lightgray;
@@ -163,7 +165,7 @@ body {
     margin-right: 15px;
 }
 
-#bottomDiv-replyDiv-contentDiv{
+#bottomDiv-replyDiv-contentDiv {
     display: flex;
     flex-direction: column;
 }
@@ -176,7 +178,7 @@ body {
 }
 
 /* 닉네임, 댓글 영역*/
-.contentDiv-reple{
+.contentDiv-reple {
     width: 460px;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -189,14 +191,14 @@ body {
 }
 
 /* 수정, 삭제버튼 영역 */
-.bottomContentDiv{
+.bottomContentDiv {
     display: flex;
     flex-direction: row;
     justify-content: right;
     margin-top: 5px;
 }
 
-.updateP{
+.updateP {
     cursor: pointer;
     margin-left: 5px;
 }
@@ -233,7 +235,7 @@ body {
     border-radius: 5px;
 }
 
-.commentP{
+.commentP {
     cursor: pointer;
 }
 
@@ -277,7 +279,7 @@ body {
     font-weight: bolder;
 }
 
-.wholeCommentDiv{
+.wholeCommentDiv {
     margin-top: 10px;
 }
 
@@ -288,7 +290,7 @@ body {
 }
 
 /* 대댓글 수정, 삭제 영역 */
-.commentBtnDiv{
+.commentBtnDiv {
     display: flex;
     justify-content: right;
 }

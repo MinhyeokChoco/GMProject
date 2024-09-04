@@ -1,13 +1,24 @@
 const writeList = JSON.parse(localStorage.getItem("csData")) || []; // csData 키에 저장되어 있는 값을 parse 해서 writeList 배열에 할당, 값이 없으면 빈 배열 할당
 const viewIndex = sessionStorage.getItem("viewIndex"); // 세션스토리지에 있는 viewIndex 키의 값을 viewIndex 변수에 할당
+const userInfor = localStorage.getItem("lUserInfor"); // 로컬스토리지에 있는 lUserInfor 키의 값을 lUserInfor 변수에 할당 
 const csWriteBtn = document.getElementById("_csWriteBtn"); // 문의 글 작성 버튼
 const searchInput = document.getElementById("searchInput"); // 검색창
 const searchArr = []; // 검색 했을 때 검색된 게시글을 담을 배열
 const itemsPerPage = 3; // 한 페이지당 몇개의 글을 보여줄 것인지 결정
 let currentPage = 1; // 현재 페이지 설정
 
+let lUserInfor = [];
+
+if (userInfor.length !== 0) {
+    lUserInfor = JSON.parse(userInfor)
+}
 csWriteBtn.onclick = () => { // 문의 글 작성 버튼 클릭 했을 때 발생되는 이벤트 작성
-    location.href = "write.html"; // 작성 페이지로 이동
+    if (lUserInfor.userLogOn) { // 로그인 되어 있으면
+        location.href = "write.html"; // 작성 페이지로 이동
+    } else {
+        alert("로그인을 해주세요");
+    }
+    return;
 }
 
 function displayItems(page, arr) { // 게시판 글들을 보여주는 함수
@@ -42,7 +53,7 @@ function displayItems(page, arr) { // 게시판 글들을 보여주는 함수
                     }
                 }
                 localStorage.setItem("csData", JSON.stringify(writeList)); // writeList 배열을 JSON 문자형으로 변환해서 로컬스토리지에 csData라는 키 안에 값으로 저장 합니다.
-                location.href = `view.html?index=${viewIndex}` // 상세 페이지로 이동
+                location.href = `view.html?index=${i}` // 상세 페이지로 이동
             }
 
             list.append(_list) // span을 담은 div를 list에 담는다.

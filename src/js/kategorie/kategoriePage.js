@@ -9,13 +9,18 @@
 // userMessageSetting.setProfileData(userId, "테스트용 계정입니다.");
 // userFavoriteSetting.setProfileData(userId, "");
 // ↑ 테스트용 코드
-const user = JSON.parse(localStorage.getItem("lUserInfor"));
+const localUser = localStorage.getItem("lUserInfor") || {};
+let user = {};
+if (localUser.length)
+    {
+        user = JSON.parse(localUser);
+    }
 const postGmBtn = document.querySelector("#div-writeButton-box"); // 글작성 HTML요소 가져오기
 
 
 // 메이트 만들기 버튼 클릭시 동작 함수
 postGmBtn.addEventListener('click', () => {
-    if (!user.userLogOn) {
+    if (!user.userLogOn || user.length === 0) {
         alert("로그인을 해주세요!");
     } else {
         new MemorizeKategorie().setSession(globalGameName) // 세션에 카테고리명 저장
@@ -60,19 +65,22 @@ function replyCount(index) {
     let replyOfContent = JSON.parse(localStorage.getItem(`${globalGameName}${index}`));
     let replyOfContentLength = 0;
     let totalRepleNumber = 0;
+    let flleterdReplyOfContent
     if (replyOfContent !== null) {
         replyOfContentLength = replyOfContent.length;
+        flleterdReplyOfContent = replyOfContent.filter(obj => obj.being === true).length
     } else {
         replyOfContentLength = 0;
+        flleterdReplyOfContent = 0;
     }
-    totalRepleNumber += replyOfContentLength;
+    totalRepleNumber += flleterdReplyOfContent;
     for(let i = 0; i < replyOfContentLength; i++) {
         let commentOfReply = JSON.parse(localStorage.getItem(`${globalGameName}${index}_${i}`));
         if (commentOfReply === null) {
             continue;
         }
-        totalRepleNumber += commentOfReply.length;
+        const fileterdCommentOfReply = commentOfReply.filter(obj => obj.being === true).length
+        totalRepleNumber += fileterdCommentOfReply
     }
-    console.log("1: ", totalRepleNumber);
     return totalRepleNumber;
 }

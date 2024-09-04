@@ -10,29 +10,32 @@ body {
     background-color: #F5F7F8;
 }
 
-.body{
-    display:flex;
+.body {
+    display: flex;
 }
 
 #div-main {
+    margin-top: 50px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    margin-top: 80px;
+
 }
 
 /* 게임 카테고리와 글 작성하는 부분 설정 */
 #div-top {
     display: flex;
     flex-direction: row;
-    justify-content: space-between; /* 상단부의 게임이름과 글작성 부분 분리*/
+    justify-content: space-between;
+    /* 상단부의 게임이름과 글작성 부분 분리*/
     width: 80%;
     margin-top: 30px;
 }
 
 /* 글작성 부분 div 설정 */
-#div-writeButton-box{
+#div-writeButton-box {
     cursor: pointer;
 }
 
@@ -61,14 +64,14 @@ body {
 }
 
 /* 제목 영역 말줄임표(...) 표시 */
-.div-item-object > h3 {
+.div-item-object>h3 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 /* 본문 영역 말줄임표 표시 */
-.div-item-object > span {
+.div-item-object>span {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -78,13 +81,14 @@ body {
 }
 
 /* 닉네임 */
-.div-item-object > p:nth-child(4) {
+.div-item-object>p:nth-child(4) {
     position: absolute;
     bottom: 15%;
     font-weight: bold;
 }
+
 /* 댓글 수 */
-.div-item-object > p:nth-child(5) {
+.div-item-object>p:nth-child(5) {
     position: absolute;
     bottom: 5%;
 }
