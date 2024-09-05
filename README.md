@@ -38,9 +38,9 @@
 
 - **MainPage(List)**
     - 작성한 글 볼 수 있는 화면
-    - 검색 기능으로 원하는 화면 검색 가능
+    - 검색 기능으로 원하는 글 검색 가능
     - 상세 페이지로 이동
-    - 페이지네이션으로 글 나눔
+    - 페이지네이션으로 원활한 게시판 구현
 
 <img width="1710" alt="뷰 페이지" src="https://github.com/user-attachments/assets/49a03228-c9cd-4ac9-90ca-abc0c88f2fde">
 
