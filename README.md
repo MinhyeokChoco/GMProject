@@ -37,8 +37,33 @@
 
 ## 주요 페이지 :
 
-https://github.com/user-attachments/assets/b4f7b3e7-5eb0-40cf-813a-770c867082b7
+- 페이지 예시
+<img width="1710" alt="예시 페이지" src="https://github.com/user-attachments/assets/02e32afc-e926-4b94-a839-569f452bcd6d">
 
+- **MainPage(List)**
+    - 작성한 글 볼 수 있는 화면
+    - 검색 기능으로 원하는 화면 검색 가능
+    - 상세 페이지로 이동
+    - 페이지네이션으로 글 나눔
+
+<img width="1710" alt="뷰 페이지" src="https://github.com/user-attachments/assets/49a03228-c9cd-4ac9-90ca-abc0c88f2fde">
+
+- **CreatePage**
+    - 제목, 내용 작성 할 수 있는 화면
+
+<img width="1710" alt="작성 페이지" src="https://github.com/user-attachments/assets/82077e7c-21a6-4528-a196-655e92b00379">
+
+- **DetailPage**
+    - 글의 상세 내용을 확인 할 수 있는 화면
+    - 수정, 삭제 할 수 있게 기능에 맞는 버튼 추가
+    - 댓글 작성, 수정, 삭제 할 수 있는 댓글창 구현
+
+<img width="1710" alt="상세 페이지" src="https://github.com/user-attachments/assets/ddf694e4-f86f-4d02-a97f-73b821a4c541">
+
+- **UpdatePage**
+    - 작성했던 글의 제목과 내용을 수정할 수 있는 화면
+
+<img width="1710" alt="수정 페이지" src="https://github.com/user-attachments/assets/f3af6214-6f01-4cee-bd8a-99d9cb7bbdd8">
 
 ## 본인 역할
 - **고객센터 구현**
