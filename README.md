@@ -34,7 +34,13 @@
 ## 주요 페이지
 
 - 페이지 예시
-<img width="1710" alt="예시 페이지" src="https://github.com/user-attachments/assets/02e32afc-e926-4b94-a839-569f452bcd6d">
+  
+<p align="center"
+
+
+![2024-09-052 46 11-ezgif com-video-to-gif-converter (1)](https://github.com/user-attachments/assets/63ae925e-7abe-4e05-b5e3-9c44150c8c34)
+</p>
+
 
 - **MainPage(List)**
     - 작성한 글 볼 수 있는 화면
