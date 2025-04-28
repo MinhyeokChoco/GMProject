@@ -19,9 +19,11 @@
 
 ## 개요
 
+<a href="https://www.notion.so/GM-1025c8f34305413d9838d0bc3cc9b4e2"><img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white"></a>
+
 ### 기간 : 2024.05.14 ~ 2024.05.28
 
-### 개발자 : [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FMinhyeokChoco&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com) <a href="https://www.notion.so/GM-1025c8f34305413d9838d0bc3cc9b4e2"><img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white"></a> MinHyeok 본인 외 2명
+### 개발자 : MinHyeok 본인 외 2명
 
 ### 기술 스택 :
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
